@@ -24,17 +24,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
   border-radius:32px;display:flex;flex-direction:column;
 }
 /* 顶部状态栏区域 */
-.phone-status-bar{
-  height:44px;background:rgba(0,0,0,.25);display:flex;align-items:center;
-  justify-content:space-between;padding:0 28px;position:relative;z-index:500;
-  font-size:12px;color:rgba(255,255,255,.9);font-weight:600;flex-shrink:0;
-}
-/* 刘海 */
-.phone-notch{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:160px;height:28px;background:#0a0a14;
-  border-radius:0 0 18px 18px;z-index:501;
-}
 /* 底部横条 */
 .phone-home-bar{
   position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
@@ -197,14 +186,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .outfit-text{font-size:13px;color:rgba(255,255,255,.7);margin-top:6px;line-height:1.5}
 .result-btns{display:flex;flex-direction:column;gap:10px;width:90%;max-width:320px;margin:16px auto 0}
 
-/* ===== 页面7 微调 ===== */
-#page7{background:linear-gradient(145deg,#120830,#281A78,#4B30C0)}
-.adjust-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
-.adjust-btn{padding:10px 16px;border-radius:20px;border:1.5px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;font-size:13px;cursor:pointer;transition:all .2s}
-.adjust-btn:hover{background:rgba(106,27,154,.3);border-color:#CE93D8}
-
-/* ===== 页面8 海报 ===== */
-#page8{background:linear-gradient(160deg,#080420,#18125A,#251880)}
+/* ===== 页面7 海报 ===== */
+#page7{background:linear-gradient(160deg,#080420,#18125A,#251880)}
 .poster-card{
   background:linear-gradient(145deg,#fff,#f0f8ff);border-radius:16px;
   width:90%;max-width:320px;padding:16px;margin:0 auto;
@@ -226,8 +209,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .id-info span{color:rgba(255,255,255,.6);font-size:11px}
 .poster-brand{text-align:center;font-size:11px;color:#999;margin-top:8px}
 
-/* ===== 页面9 分享 ===== */
-#page9{background:linear-gradient(150deg,#0B0828,#1A1260,#221878)}
+/* ===== 页面8 分享 ===== */
+#page8{background:linear-gradient(150deg,#0B0828,#1A1260,#221878)}
 .share-copy{
   background:rgba(255,255,255,.08);border-radius:16px;padding:16px;
   color:rgba(255,255,255,.85);font-size:14px;line-height:1.8;
@@ -251,8 +234,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 @keyframes stickerBounce{0%,100%{transform:scale(1)}30%{transform:scale(1.3) rotate(-5deg)}60%{transform:scale(.9) rotate(3deg)}}
 .shake-tip{font-size:12px;color:rgba(255,255,255,.5);text-align:center;margin-top:4px}
 
-/* ===== 页面10 品牌 ===== */
-#page10{background:linear-gradient(160deg,#080420,#1A1060,#221878)}
+/* ===== 页面9 品牌 ===== */
+#page9{background:linear-gradient(160deg,#080420,#1A1060,#221878)}
 .brand-logo{font-size:36px;font-weight:900;color:#FFD166;text-align:center;margin-bottom:4px}
 .brand-desc{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.8;padding:0 20px;margin-bottom:16px}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:90%;max-width:340px;margin:0 auto}
@@ -304,7 +287,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .monkey-big .monkey-svg{width:170px;height:204px}
 .monkey-med{display:flex;align-items:center;justify-content:center}
 .monkey-expression{display:inline-block;transition:all .3s}
-#p2Monkey,#p3Monkey,#p4Monkey,#p5Monkey,#p7Monkey{display:flex;align-items:center;justify-content:center}
+#p2Monkey,#p3Monkey,#p4Monkey,#p5Monkey{display:flex;align-items:center;justify-content:center}
 .outfit-display{font-size:0;display:flex;align-items:center;justify-content:center;min-height:100px}
 .poster-monkey{text-align:center;min-height:120px;display:flex;align-items:center;justify-content:center}
 .id-avatar{width:44px;height:44px;background:linear-gradient(135deg,#FFD166,#FF9A3C);border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -328,15 +311,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 <body>
 <!-- 手机外框 -->
 <div class="phone-frame">
-  <!-- 刘海 -->
-  <div class="phone-notch"></div>
-  <!-- 状态栏 -->
-  <div class="phone-status-bar">
-    <span>9:41</span>
-    <span style="display:flex;gap:4px;align-items:center">
-      <svg width="14" height="10" viewBox="0 0 14 10"><rect x="0" y="0" width="12" height="9" rx="1.5" fill="none" stroke="#fff" stroke-width="1"/><rect x="1" y="2" width="1.5" height="5" rx="0.5" fill="#fff"/><rect x="3.5" y="1" width="1.5" height="7" rx="0.5" fill="#fff"/><rect x="6" y="0" width="1.5" height="8" rx="0.5" fill="#fff"/><rect x="8.5" y="2" width="1" height="5" rx="0.5" fill="#fff"/></svg>
-    </span>
-  </div>
   <!-- 屏幕区域 -->
   <div class="phone-screen">
     <div id="app">
@@ -738,45 +712,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
       <button class="btn btn-secondary" onclick="goTo(4)" style="font-size:12px;padding:8px">
         🔄 重新选一套
       </button>
-      <button class="btn btn-secondary" onclick="goTo(7)" style="font-size:12px;padding:8px">
-        ✏️ 稍微调整细节
-      </button>
-      <button class="btn btn-primary" onclick="goTo(8)" style="font-size:13px;padding:8px">
+      <button class="btn btn-primary" onclick="goTo(7)" style="font-size:13px;padding:8px">
         🎨 我满意！生成工牌照
       </button>
     </div>
   </div>
 </div>
 
-<!-- ===================== 页面7：微调 ===================== -->
+<!-- ===================== 页面7：生成海报 ===================== -->
 <div class="page hidden" id="page7">
-  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
-    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px">🤔 微调工坊</div>
-    <div id="p7Monkey"></div>
-    <div class="bubble" style="margin:8px auto;font-size:12px">
-      想再调调细节吗？没问题～<br>
-      跟我说你想改哪里就好 😊
-    </div>
-
-    <div class="input-area">
-      <textarea class="cmd-input" id="adjustInput" placeholder="比如：把领带换成红色波点 / 加一副黑框眼镜" style="height:52px"></textarea>
-
-      <div style="font-size:11px;color:rgba(255,255,255,.5);margin:6px 0 4px">快捷调整：</div>
-      <div class="adjust-btns">
-        <button class="adjust-btn" onclick="setAdjust('加一件黑色外套')">🧥 加外套</button>
-        <button class="adjust-btn" onclick="setAdjust('把颜色换成红色')">🎨 换颜色</button>
-        <button class="adjust-btn" onclick="setAdjust('加一副圆框眼镜和一顶礼帽')">🕶️ 加配饰</button>
-      </div>
-
-      <button class="btn btn-danger" onclick="doAdjust()" style="width:100%;margin-top:8px">
-        🪄 调整！
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== 页面8：生成海报 ===================== -->
-<div class="page hidden" id="page8">
   <div style="text-align:center;padding:10px;width:100%;max-width:400px">
     <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">🏆 阿画的面试战袍</div>
 
@@ -810,14 +754,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
       <button class="btn btn-primary" onclick="showEasterEgg()" style="font-size:12px;padding:8px 16px">🎬 点击看阿画入职彩蛋</button>
     </div>
     <div style="display:flex;gap:8px;margin-top:6px;justify-content:center">
-      <button class="btn btn-secondary" onclick="goTo(9)" style="font-size:11px;padding:6px 12px">📱 分享给朋友</button>
-      <button class="btn btn-secondary" onclick="goTo(10)" style="font-size:11px;padding:6px 12px">📖 了解可画</button>
+      <button class="btn btn-secondary" onclick="goTo(8)" style="font-size:11px;padding:6px 12px">📱 分享给朋友</button>
+      <button class="btn btn-secondary" onclick="goTo(9)" style="font-size:11px;padding:6px 12px">📖 了解可画</button>
     </div>
   </div>
 </div>
 
-<!-- ===================== 页面9：分享页 ===================== -->
-<div class="page hidden" id="page9">
+<!-- ===================== 页面8：分享页 ===================== -->
+<div class="page hidden" id="page8">
   <div style="text-align:center;padding:10px;width:100%;max-width:400px">
     <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px">📱 分享给朋友</div>
     <div style="font-size:48px;animation:bounce 1s infinite">🎉</div>
@@ -839,14 +783,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 
     <div style="display:flex;gap:8px;margin-top:10px;justify-content:center">
       <button class="btn btn-secondary" onclick="goTo(1)" style="font-size:12px;padding:8px 14px">🏠 返回首页</button>
-      <button class="btn btn-primary" onclick="goTo(8)" style="font-size:12px;padding:8px 14px">🎨 查看海报</button>
-      <button class="btn btn-secondary" onclick="goTo(10)" style="font-size:12px;padding:8px 14px">📱 了解可画</button>
+      <button class="btn btn-primary" onclick="goTo(7)" style="font-size:12px;padding:8px 14px">🎨 查看海报</button>
+      <button class="btn btn-secondary" onclick="goTo(9)" style="font-size:12px;padding:8px 14px">📱 了解可画</button>
     </div>
   </div>
 </div>
 
-<!-- ===================== 页面10：了解可画 ===================== -->
-<div class="page hidden" id="page10">
+<!-- ===================== 页面9：了解可画 ===================== -->
+<div class="page hidden" id="page9">
   <div style="text-align:center;padding:10px;width:100%;max-width:400px">
     <div style="font-size:18px;font-weight:900;color:#FFD166;text-align:center;margin-bottom:2px">Canva 可画</div>
     <div style="font-size:11px;color:#00B4D8;margin-bottom:8px;text-align:center">全球领先的在线设计平台</div>
@@ -880,7 +824,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
       </div>
     </div>
 
-    <button class="btn btn-primary" style="margin:6px auto 0;display:block;padding:10px 28px;font-size:13px" onclick="showToast('正在跳转到应用商店，马上见到你啦～')">
+    <button class="btn btn-primary" style="margin:6px auto 0;display:block;padding:10px 28px;font-size:13px" onclick="window.open('https://www.canva.cn/','_blank')">
       📲 立即下载可画
     </button>
 
@@ -919,7 +863,7 @@ let currentPage = 1;
 let userCmd = '';
 let resultData = {};
 let resultOutfitKey = '';
-const totalPages = 10;
+const totalPages = 9;
 
 const quotes = [
   '"只要穿得对，猴子也能当总监"',
@@ -1564,9 +1508,8 @@ function onPageEnter(n) {
   if (n === 4) setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.55});
   if (n === 5) startLoading();
   if (n === 6) showResult();
-  if (n === 7) setMonkeySVG('p7Monkey', {expression:'thinking',clothing:'underwear',scale:0.6});
-  if (n === 8) initPoster();
-  if (n === 9) initStickerGrid();
+  if (n === 7) initPoster();
+  if (n === 8) initStickerGrid();
 }
 
 // 设置SVG猴子
@@ -1745,22 +1688,7 @@ function showResult() {
   // 入场动画spin-in由SVG的class处理
 }
 
-// ===================== 页面7微调 =====================
-function setAdjust(text) {
-  document.getElementById('adjustInput').value = text;
-}
-
-function doAdjust() {
-  const adj = document.getElementById('adjustInput').value.trim();
-  if (!adj) { showToast('嗯？想改什么呢？说说看吧～'); return; }
-  // SVG表情动画
-  const m = document.getElementById('p7Monkey');
-  m.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',scale:0.6});
-  setTimeout(() => { m.innerHTML = renderMonkeySVG({expression:'happy',clothing:'underwear',scale:0.6,bounce:true}); }, 800);
-  setTimeout(() => goTo(5), 1500);
-}
-
-// ===================== 页面8海报 =====================
+// ===================== 页面7海报 =====================
 function initPoster() {
   const pm = document.getElementById('posterMonkey');
   const ia = document.getElementById('idAvatar');
@@ -1786,7 +1714,7 @@ function savePoster() {
   showToast('海报已保存到相册！（演示版）');
 }
 
-// ===================== 页面9分享 =====================
+// ===================== 页面8分享 =====================
 function initStickerGrid() {
   const grid = document.getElementById('stickerGrid');
   grid.innerHTML = '';
@@ -1838,7 +1766,7 @@ function copyText() {
   }
 }
 
-// ===================== 页面10彩蛋 =====================
+// ===================== 页面9彩蛋 =====================
 const easterFrames = [
   '🚪 公司大门缓缓打开…',
   '👔 阿画穿着你搭配的衣服，深吸一口气…',
