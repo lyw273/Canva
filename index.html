@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>一句咒语，猴子变白领 | Canva可画</title>
+<style>
+:root{
+  --canva-blue:#00B4D8;
+  --canva-teal:#06D6A0;
+  --canva-yellow:#FFD166;
+  --canva-red:#EF476F;
+  --canva-dark:#0B0828;
+  --canva-purple:#6C3CE0;
+  --monkey-brown:#8B4513;
+  --bg-light:#FFF9F0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#0a0a14}
+/* 手机框外层 */
+.phone-frame{
+  position:relative;margin:0 auto;width:100%;max-width:412px;height:100vh;
+  background:#0B0828;overflow:hidden;box-shadow:0 0 60px rgba(108,60,224,.4),0 0 0 3px #1a1a2e,0 0 0 8px #0d0d1a,0 20px 60px rgba(0,0,0,.7);
+  border-radius:32px;display:flex;flex-direction:column;
+}
+/* 顶部状态栏区域 */
+.phone-status-bar{
+  height:44px;background:rgba(0,0,0,.25);display:flex;align-items:center;
+  justify-content:space-between;padding:0 28px;position:relative;z-index:500;
+  font-size:12px;color:rgba(255,255,255,.9);font-weight:600;flex-shrink:0;
+}
+/* 刘海 */
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:160px;height:28px;background:#0a0a14;
+  border-radius:0 0 18px 18px;z-index:501;
+}
+/* 底部横条 */
+.phone-home-bar{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  width:120px;height:4px;background:rgba(255,255,255,.35);border-radius:4px;
+  z-index:500;flex-shrink:0;
+}
+/* 屏幕区域 */
+.phone-screen{
+  position:relative;flex:1;overflow:hidden;display:flex;flex-direction:column;
+}
+#app{width:100%;height:100%;position:relative;overflow:hidden}
+.page{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .5s cubic-bezier(.77,0,.175,1),opacity .5s ease;
+  overflow-y:auto;overflow-x:hidden;
+}
+.page.hidden{transform:translateX(100%);pointer-events:none;opacity:0}
+.page.prev{transform:translateX(-100%);pointer-events:none;opacity:0}
+.page.active{transform:translateX(0);pointer-events:all;opacity:1}
+
+/* ===== 通用样式 ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 24px;border-radius:50px;border:none;cursor:pointer;
+  font-size:14px;font-weight:700;letter-spacing:1px;
+  transition:transform .2s,box-shadow .2s;user-select:none;
+}
+.btn:active{transform:scale(.95)}
+.btn-primary{background:linear-gradient(135deg,#FFD166,#FF9A3C);color:#1A1A2E;box-shadow:0 4px 20px rgba(255,209,102,.5)}
+.btn-secondary{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4)}
+.btn-danger{background:linear-gradient(135deg,#EF476F,#C9184A);color:#fff;box-shadow:0 4px 20px rgba(239,71,111,.4)}
+.shake{animation:shake 0.5s infinite}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.pulse{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.bounce{animation:bounce 0.8s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.float{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ===== 气泡 ===== */
+.bubble{
+  background:#fff;border-radius:14px;padding:8px 14px;
+  font-size:13px;font-weight:600;color:#333;position:relative;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);max-width:260px;text-align:center;
+  line-height:1.4;
+}
+.bubble::after{
+  content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
+  border:8px solid transparent;border-top-color:#fff;
+}
+.bubble.left::after{left:24px;transform:none}
+.bubble.right::after{right:24px;left:auto;transform:none}
+
+/* ===== 猴子SVG角色系统 ===== */
+.monkey-wrap{position:relative;display:inline-block}
+.monkey-svg{display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))}
+.monkey-svg .eye-group{transition:all .25s ease}
+.monkey-svg .mouth-group{transition:all .25s ease}
+.monkey-svg .blush{transition:opacity .25s ease}
+.monkey-svg .tail-path{animation:tailWag 3s ease-in-out infinite;transform-origin:80px 170px}
+@keyframes tailWag{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg)}}
+.monkey-svg.shake-monkey{animation:monkeyShake .5s ease}
+@keyframes monkeyShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.monkey-svg.bounce-monkey{animation:monkeyBounce .6s ease}
+@keyframes monkeyBounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-15px)}60%{transform:translateY(0)}}
+.monkey-svg.spin-in{animation:spinIn .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes spinIn{from{transform:scale(0) rotate(-30deg)}to{transform:scale(1) rotate(0)}}
+
+/* ===== 进度条 ===== */
+.progress-bar{width:80%;height:12px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin:16px auto}
+.progress-fill{height:100%;background:linear-gradient(90deg,#FFD166,#FF9A3C);border-radius:20px;transition:width .3s ease}
+
+/* ===== 页面1 启动页 ===== */
+#page1{background:linear-gradient(170deg,#0B0828 0%,#1C1368 50%,#3B1FA0 100%)}
+.p1-title{font-size:32px;font-weight:900;color:#FFD166;text-align:center;text-shadow:0 2px 20px rgba(255,209,102,.4);line-height:1.2;margin:12px 0}
+.p1-sub{font-size:14px;color:rgba(255,255,255,.7);text-align:center;margin-bottom:24px}
+.star-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle var(--d) infinite}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* ===== 页面2 ===== */
+#page2{background:linear-gradient(160deg,#0B0828,#18124A,#2B1F88)}
+
+/* ===== 页面3 ===== */
+#page3{background:linear-gradient(150deg,#120830,#281A78,#3B28A0)}
+.hint-rotate{font-size:13px;color:rgba(255,255,255,.7);text-align:center;padding:8px 20px;min-height:40px}
+
+/* ===== 页面4 ===== */
+#page4{background:linear-gradient(145deg,#0A0628,#1C1468,#3428A8)}
+
+/* 方案卡片 */
+.outfit-card{
+  background:rgba(255,255,255,.07);border-radius:14px;padding:12px 8px;
+  text-align:center;cursor:pointer;border:1.5px solid rgba(255,255,255,.12);
+  transition:all .25s;display:flex;flex-direction:column;align-items:center;
+  gap:4px;position:relative;overflow:hidden;
+}
+.outfit-card::before{
+  content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,209,102,0),rgba(0,180,216,0));
+  opacity:0;transition:opacity .25s;
+}
+.outfit-card:hover::before,.outfit-card:active::before{opacity:1}
+.outfit-card:hover,.outfit-card:active{
+  border-color:rgba(255,209,102,.5);transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,209,102,.15);
+}
+.outfit-card-icon{position:relative;z-index:1;margin-bottom:2px;display:flex;align-items:center;justify-content:center;height:42px}
+.outfit-card-icon svg{display:block}
+.outfit-card-name{font-size:13px;font-weight:700;color:#FFD166;position:relative;z-index:1}
+.outfit-card-desc{font-size:11px;color:rgba(255,255,255,.55);position:relative;z-index:1;line-height:1.4}
+
+/* 命运盲盒按钮 */
+.blind-box-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:360px;margin:12px auto 0;
+  padding:16px;border-radius:16px;cursor:pointer;
+  background:linear-gradient(135deg,rgba(123,45,139,.3),rgba(239,71,111,.25));
+  border:2px dashed rgba(255,209,102,.4);
+  color:#fff;transition:all .3s;position:relative;font-size:15px;font-weight:700;
+}
+.blind-box-btn:hover{
+  border-color:#FFD166;box-shadow:0 0 24px rgba(255,209,102,.3);
+  transform:translateY(-1px);
+}
+.blind-box-btn:active{transform:scale(.97)}
+.blind-box-dice{font-size:28px;animation:pulse 1.5s infinite}
+.blind-box-sub{display:block;font-size:11px;color:rgba(255,255,255,.5);font-weight:400}
+
+/* 盲盒揭晓弹窗 */
+.blind-reveal-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:800;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.blind-reveal-overlay.show{opacity:1;pointer-events:all}
+.blind-reveal-icon{font-size:64px;animation:bounce 0.5s infinite}
+.blind-reveal-text{font-size:18px;color:#FFD166;font-weight:700;margin:16px 0 8px;text-align:center}
+.blind-reveal-name{font-size:26px;color:#fff;font-weight:900;text-align:center;animation:fadeInUp .5s ease}
+
+/* ===== 页面5 加载 ===== */
+#page5{background:linear-gradient(135deg,#0B0828,#1A1060,#3628A0)}
+.loading-clothes{position:relative;width:260px;height:200px;margin:0 auto}
+.cloth{position:absolute;font-size:28px;animation:flyCloth var(--d) var(--delay) ease-in-out infinite alternate}
+@keyframes flyCloth{0%{transform:translate(0,0) rotate(0deg);opacity:0}50%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) rotate(var(--r));opacity:.6}}
+.load-text{font-size:15px;color:rgba(255,255,255,.8);text-align:center;min-height:28px;transition:opacity .3s}
+.monkey-tail-bar{width:80%;max-width:300px;height:16px;background:rgba(255,255,255,.15);border-radius:30px;overflow:hidden;margin:16px auto;position:relative}
+.tail-fill{height:100%;border-radius:30px;background:linear-gradient(90deg,var(--monkey-brown),#D2691E,#FFD166);position:relative}
+.tail-tip{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;background:#8B4513;border-radius:50%}
+
+/* ===== 页面6 结果 ===== */
+#page6{background:linear-gradient(150deg,#0B0828,#1A1260,#2C2088)}
+.compare-wrap{display:flex;gap:12px;align-items:flex-start;justify-content:center;width:100%;padding:0 16px}
+.compare-card{
+  flex:1;max-width:150px;background:rgba(255,255,255,.08);border-radius:14px;
+  padding:8px 6px;text-align:center;border:1.5px solid rgba(255,255,255,.15);
+}
+.compare-card.new-card{border-color:#FFD166;background:rgba(255,209,102,.08)}
+.compare-label{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.outfit-text{font-size:13px;color:rgba(255,255,255,.7);margin-top:6px;line-height:1.5}
+.result-btns{display:flex;flex-direction:column;gap:10px;width:90%;max-width:320px;margin:16px auto 0}
+
+/* ===== 页面7 微调 ===== */
+#page7{background:linear-gradient(145deg,#120830,#281A78,#4B30C0)}
+.adjust-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.adjust-btn{padding:10px 16px;border-radius:20px;border:1.5px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;font-size:13px;cursor:pointer;transition:all .2s}
+.adjust-btn:hover{background:rgba(106,27,154,.3);border-color:#CE93D8}
+
+/* ===== 页面8 海报 ===== */
+#page8{background:linear-gradient(160deg,#080420,#18125A,#251880)}
+.poster-card{
+  background:linear-gradient(145deg,#fff,#f0f8ff);border-radius:16px;
+  width:90%;max-width:320px;padding:16px;margin:0 auto;
+  box-shadow:0 8px 40px rgba(0,180,216,.3);overflow:hidden;position:relative;
+}
+.poster-title{font-size:22px;font-weight:900;color:#1A1A2E;text-align:center;margin-bottom:4px}
+.poster-quote{
+  background:linear-gradient(135deg,#E3F2FD,#E8EAF6);border-radius:12px;padding:12px 16px;
+  font-size:14px;color:#1A237E;text-align:center;margin:12px 0;font-weight:600;
+  cursor:pointer;transition:transform .2s;
+}
+.poster-quote:hover{transform:scale(1.02)}
+.poster-id-card{
+  background:linear-gradient(135deg,#1A1A2E,#16213E);border-radius:12px;padding:12px;
+  display:flex;align-items:center;gap:12px;margin:10px 0;
+}
+.id-avatar{width:48px;height:48px;background:linear-gradient(135deg,#FFD166,#FF9A3C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
+.id-info p{color:#fff;font-size:13px;font-weight:600}
+.id-info span{color:rgba(255,255,255,.6);font-size:11px}
+.poster-brand{text-align:center;font-size:11px;color:#999;margin-top:8px}
+
+/* ===== 页面9 分享 ===== */
+#page9{background:linear-gradient(150deg,#0B0828,#1A1260,#221878)}
+.share-copy{
+  background:rgba(255,255,255,.08);border-radius:16px;padding:16px;
+  color:rgba(255,255,255,.85);font-size:14px;line-height:1.8;
+  border:1.5px dashed rgba(255,255,255,.3);width:90%;max-width:340px;text-align:center;
+  cursor:pointer;position:relative;
+}
+.copy-badge{
+  position:absolute;top:-12px;right:-4px;background:#06D6A0;color:#fff;
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;
+  opacity:0;transition:opacity .3s;
+}
+.copy-badge.show{opacity:1}
+.sticker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:90%;max-width:320px;margin:16px auto}
+.sticker-item{
+  background:rgba(255,255,255,.08);border-radius:12px;padding:14px 6px;
+  text-align:center;cursor:pointer;transition:transform .2s,background .2s;
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.sticker-item:active{transform:scale(.92);background:rgba(255,255,255,.15)}
+.sticker-shake{animation:stickerBounce .4s cubic-bezier(.36,.07,.19,.97)}
+@keyframes stickerBounce{0%,100%{transform:scale(1)}30%{transform:scale(1.3) rotate(-5deg)}60%{transform:scale(.9) rotate(3deg)}}
+.shake-tip{font-size:12px;color:rgba(255,255,255,.5);text-align:center;margin-top:4px}
+
+/* ===== 页面10 品牌 ===== */
+#page10{background:linear-gradient(160deg,#080420,#1A1060,#221878)}
+.brand-logo{font-size:36px;font-weight:900;color:#FFD166;text-align:center;margin-bottom:4px}
+.brand-desc{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.8;padding:0 20px;margin-bottom:16px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:90%;max-width:340px;margin:0 auto}
+.feature-item{
+  background:rgba(255,255,255,.06);border-radius:14px;padding:14px 12px;
+  border:1px solid rgba(255,255,255,.1);text-align:center;
+}
+.feature-icon{margin-bottom:6px;display:flex;align-items:center;justify-content:center;height:36px}
+.feature-icon svg{display:block}
+.feature-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+.feature-sub{font-size:11px;color:rgba(255,255,255,.5)}
+.easter-egg-btn{
+  margin:16px auto;display:block;padding:12px 24px;
+  background:rgba(255,209,102,.1);border:2px dashed #FFD166;
+  border-radius:20px;color:#FFD166;font-size:14px;font-weight:700;cursor:pointer;
+  transition:all .3s;
+}
+.easter-egg-btn:hover{background:rgba(255,209,102,.2)}
+
+/* 彩蛋动画 */
+.easter-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.9);z-index:1000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+.easter-overlay.show{opacity:1;pointer-events:all}
+.easter-scene{font-size:18px;color:#fff;text-align:center;line-height:2;padding:30px}
+.easter-close{margin-top:20px}
+
+/* 导航提示 */
+.page-dots{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;z-index:100;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s}
+.dot.active{background:#FFD166;width:20px;border-radius:3px}
+
+/* 返回按钮 */
+.back-btn{
+  position:absolute;top:8px;left:8px;z-index:200;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;
+  transition:all .2s;backdrop-filter:blur(8px);
+}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+
+/* 阿画SVG容器 */
+.monkey-big{display:flex;align-items:center;justify-content:center;min-height:180px}
+.monkey-big .monkey-svg{width:170px;height:204px}
+.monkey-med{display:flex;align-items:center;justify-content:center}
+.monkey-expression{display:inline-block;transition:all .3s}
+#p2Monkey,#p3Monkey,#p4Monkey,#p5Monkey,#p7Monkey{display:flex;align-items:center;justify-content:center}
+.outfit-display{font-size:0;display:flex;align-items:center;justify-content:center;min-height:100px}
+.poster-monkey{text-align:center;min-height:120px;display:flex;align-items:center;justify-content:center}
+.id-avatar{width:44px;height:44px;background:linear-gradient(135deg,#FFD166,#FF9A3C);border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.id-avatar .monkey-svg{width:44px;height:52px}
+.sticker-item .monkey-svg{display:block;margin:0 auto}
+
+/* toast */
+.toast{
+  position:absolute;top:60px;left:50%;transform:translateX(-50%);
+  background:rgba(30,30,60,.95);color:#FFD166;padding:10px 22px;
+  border-radius:20px;font-size:14px;font-weight:600;z-index:500;
+  opacity:0;transition:opacity .3s;pointer-events:none;
+  border:1px solid rgba(255,209,102,.3);backdrop-filter:blur(10px);
+}
+.toast.show{opacity:1}
+
+/* 星星背景 */
+@keyframes twinkleStar{0%,100%{opacity:.1}50%{opacity:.8}}
+</style>
+</head>
+<body>
+<!-- 手机外框 -->
+<div class="phone-frame">
+  <!-- 刘海 -->
+  <div class="phone-notch"></div>
+  <!-- 状态栏 -->
+  <div class="phone-status-bar">
+    <span>9:41</span>
+    <span style="display:flex;gap:4px;align-items:center">
+      <svg width="14" height="10" viewBox="0 0 14 10"><rect x="0" y="0" width="12" height="9" rx="1.5" fill="none" stroke="#fff" stroke-width="1"/><rect x="1" y="2" width="1.5" height="5" rx="0.5" fill="#fff"/><rect x="3.5" y="1" width="1.5" height="7" rx="0.5" fill="#fff"/><rect x="6" y="0" width="1.5" height="8" rx="0.5" fill="#fff"/><rect x="8.5" y="2" width="1" height="5" rx="0.5" fill="#fff"/></svg>
+    </span>
+  </div>
+  <!-- 屏幕区域 -->
+  <div class="phone-screen">
+    <div id="app">
+<!-- 星星背景 -->
+<div class="star-bg" id="starBg"></div>
+
+<!-- Toast提示 -->
+<div class="toast" id="toast"></div>
+
+<!-- 页面指示点 -->
+<div class="page-dots" id="pageDots"></div>
+
+<!-- 返回按钮 -->
+<button class="back-btn" id="backBtn" onclick="goBack()" style="display:none">← 返回</button>
+
+<!-- ===================== 页面1：启动页 ===================== -->
+<div class="page active" id="page1">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div class="monkey-big float" id="p1Monkey"></div>
+    <div class="bubble" style="margin:8px auto 0;font-size:13px">
+      明天就要面试啦，我还没衣服穿呜呜… 救救我！🙏
+    </div>
+    <div style="font-size:28px;font-weight:800;color:#fff;line-height:1.2;text-shadow:0 2px 12px rgba(108,60,224,.4);margin-top:14px">一句咒语<br>猴子变白领</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">你的设计，从一句话开始 — Canva 可画</div>
+    <button class="btn btn-primary shake" onclick="goTo(2)" style="margin-top:8px;font-size:15px;padding:12px 36px">
+      🚀 拯救阿画
+    </button>
+    <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.3)">
+      📱 Canva可画 × 大广赛创意互动
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页面2：剧情引入 ===================== -->
+<div class="page hidden" id="page2">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px">🌙 深夜，巷口路灯下…</div>
+    <div id="p2Monkey" style="margin-bottom:8px"></div>
+    <div class="bubble" style="margin:0 auto;font-size:12px;animation:pulse 2s infinite">
+      ✨ 哇！发现《职场穿搭指南》！<br>
+      <span style="font-size:11px;color:#666;font-weight:400">「说一句话，就能换新装？！」</span>
+    </div>
+    <div class="magic-book-wrap" style="margin-top:8px;width:100%;max-width:220px;margin-left:auto;margin-right:auto">
+      <style>
+        .magic-book-wrap{position:relative}
+        /* 书整体入场 */
+        @keyframes bookOpen{
+          0%{transform:perspective(600px) rotateX(30deg) scale(.7);opacity:0}
+          60%{transform:perspective(600px) rotateX(-6deg) scale(1.04);opacity:1}
+          100%{transform:perspective(600px) rotateX(0deg) scale(1);opacity:1}
+        }
+        .magic-book{
+          position:relative;width:100%;
+          animation:bookOpen .8s cubic-bezier(.22,1,.36,1) both;
+          filter:drop-shadow(0 8px 32px rgba(108,60,224,.55));
+        }
+        /* 左页翻开 */
+        @keyframes pageLeft{
+          0%{transform:rotateY(80deg);opacity:.3}
+          100%{transform:rotateY(0deg);opacity:1}
+        }
+        /* 右页翻开 */
+        @keyframes pageRight{
+          0%{transform:rotateY(-80deg);opacity:.3}
+          100%{transform:rotateY(0deg);opacity:1}
+        }
+        .book-left{
+          transform-origin:right center;
+          animation:pageLeft .7s .3s cubic-bezier(.22,1,.36,1) both;
+        }
+        .book-right{
+          transform-origin:left center;
+          animation:pageRight .7s .45s cubic-bezier(.22,1,.36,1) both;
+        }
+        /* 粒子光效 */
+        @keyframes sparkFloat{
+          0%{transform:translateY(0) scale(1);opacity:1}
+          100%{transform:translateY(-28px) scale(0);opacity:0}
+        }
+        .book-spark{
+          position:absolute;border-radius:50%;
+          animation:sparkFloat 1.8s ease-in-out infinite;
+        }
+        /* 文字淡入 */
+        @keyframes textFadeIn{
+          0%{opacity:0;transform:translateY(6px)}
+          100%{opacity:1;transform:translateY(0)}
+        }
+        .book-title-text{animation:textFadeIn .5s .9s both}
+        .book-body-text{animation:textFadeIn .5s 1.1s both}
+        .book-sig-text{animation:textFadeIn .5s 1.3s both}
+        /* 书脊装饰线动画 */
+        @keyframes spineLine{
+          0%,100%{stroke-dashoffset:0}
+          50%{stroke-dashoffset:10}
+        }
+        .spine-line{stroke-dasharray:5 5;animation:spineLine 2s linear infinite}
+      </style>
+
+      <!-- 粒子 -->
+      <div class="book-spark" style="width:6px;height:6px;background:#FFD166;top:8px;left:28%;animation-delay:0s;animation-duration:1.6s"></div>
+      <div class="book-spark" style="width:4px;height:4px;background:#A78BFA;top:12px;left:68%;animation-delay:.4s;animation-duration:2s"></div>
+      <div class="book-spark" style="width:5px;height:5px;background:#06D6A0;top:20px;left:50%;animation-delay:.8s;animation-duration:1.4s"></div>
+      <div class="book-spark" style="width:3px;height:3px;background:#EF476F;top:6px;left:80%;animation-delay:1.2s;animation-duration:1.9s"></div>
+      <div class="book-spark" style="width:4px;height:4px;background:#FFD166;top:15px;left:15%;animation-delay:.3s;animation-duration:1.7s"></div>
+
+      <svg class="magic-book" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- 左页渐变 -->
+          <linearGradient id="pageGradL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1E1448"/>
+            <stop offset="100%" stop-color="#2A1E6A"/>
+          </linearGradient>
+          <!-- 右页渐变 -->
+          <linearGradient id="pageGradR" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2A1E6A"/>
+            <stop offset="100%" stop-color="#1C1250"/>
+          </linearGradient>
+          <!-- 封底渐变 -->
+          <linearGradient id="coverGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#120A38"/>
+            <stop offset="100%" stop-color="#0B0828"/>
+          </linearGradient>
+          <!-- 书脊渐变 -->
+          <linearGradient id="spineGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6C3CE0"/>
+            <stop offset="100%" stop-color="#A78BFA"/>
+          </linearGradient>
+          <!-- 页面光晕 -->
+          <radialGradient id="pageGlow" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#6C3CE0" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#6C3CE0" stop-opacity="0"/>
+          </radialGradient>
+          <!-- 书背阴影 -->
+          <filter id="bookShadow" x="-10%" y="-10%" width="120%" height="130%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#6C3CE0" flood-opacity="0.4"/>
+          </filter>
+          <!-- 文字光晕 -->
+          <filter id="textGlow">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- 金色文字光晕 -->
+          <filter id="goldGlow">
+            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- 封底（书整体背景） -->
+        <rect x="4" y="16" width="332" height="236" rx="8" fill="url(#coverGrad)" filter="url(#bookShadow)"/>
+        <!-- 封底装饰纹 -->
+        <rect x="4" y="16" width="332" height="236" rx="8" fill="none" stroke="#6C3CE0" stroke-width="1.5" opacity=".3"/>
+
+        <!-- 书脊（中线） -->
+        <rect x="165" y="16" width="10" height="236" fill="url(#spineGrad)" opacity=".9"/>
+        <line x1="170" y1="20" x2="170" y2="248" stroke="rgba(255,255,255,.25)" stroke-width=".8" class="spine-line"/>
+
+        <!-- ========== 左页 ========== -->
+        <g class="book-left">
+          <rect x="8" y="20" width="157" height="228" rx="4" fill="url(#pageGradL)"/>
+          <rect x="8" y="20" width="157" height="228" rx="4" fill="url(#pageGlow)"/>
+
+          <!-- 左页标题区 -->
+          <g class="book-title-text">
+            <!-- 装饰小圆点 -->
+            <circle cx="50" cy="42" r="2" fill="#FFD166" opacity=".6"/>
+            <circle cx="124" cy="42" r="2" fill="#FFD166" opacity=".6"/>
+            <text x="87" y="47" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFD166"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" filter="url(#goldGlow)">可画魔法师</text>
+            <text x="87" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFD166"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" filter="url(#goldGlow)">启 示 录</text>
+            <line x1="22" y1="73" x2="152" y2="73" stroke="#FFD166" stroke-width=".8" opacity=".4"/>
+            <line x1="30" y1="76" x2="144" y2="76" stroke="#FFD166" stroke-width=".4" opacity=".2"/>
+          </g>
+
+          <!-- 左页五芒星装饰（居中） -->
+          <g opacity=".65" transform="translate(87,118)">
+            <!-- 外光圈旋转 -->
+            <circle r="36" fill="none" stroke="#A78BFA" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- 五芒星 -->
+            <polygon points="0,-28 6.5,-9 26,-9 11,4 17,23 0,12 -17,23 -11,4 -26,-9 -6.5,-9"
+              fill="rgba(255,209,102,.12)" stroke="#FFD166" stroke-width="1.6"/>
+            <!-- 内光圈 -->
+            <circle r="20" fill="none" stroke="#06D6A0" stroke-width=".8" opacity=".55"/>
+            <!-- 中心小点 -->
+            <circle r="4" fill="#FFD166" opacity=".5"/>
+          </g>
+
+          <!-- 左页引言文字 -->
+          <g class="book-body-text">
+            <text x="87" y="168" text-anchor="middle" font-size="11.5" fill="rgba(255,255,255,.6)"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-style="italic">「施咒时代已然降临</text>
+            <text x="87" y="184" text-anchor="middle" font-size="11.5" fill="rgba(255,255,255,.6)"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-style="italic">换装只在一念之间」</text>
+          </g>
+
+          <!-- 卷页折角 -->
+          <path d="M148,234 L158,224 L158,234 Z" fill="rgba(255,255,255,.08)"/>
+          <line x1="148" y1="234" x2="158" y2="224" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+          <!-- 左页码 -->
+          <text x="87" y="243" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="serif">I</text>
+        </g>
+
+        <!-- ========== 右页 ========== -->
+        <g class="book-right">
+          <rect x="175" y="20" width="157" height="228" rx="4" fill="url(#pageGradR)"/>
+          <rect x="175" y="20" width="157" height="228" rx="4" fill="url(#pageGlow)"/>
+
+          <!-- 右页标题 -->
+          <g class="book-title-text">
+            <text x="253" y="46" text-anchor="middle" font-size="13" font-weight="bold" fill="#A78BFA"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" filter="url(#textGlow)">✦ 第一卷·换装咒 ✦</text>
+            <line x1="188" y1="54" x2="318" y2="54" stroke="#A78BFA" stroke-width=".8" opacity=".35"/>
+          </g>
+
+          <!-- 正文段落 -->
+          <g class="book-body-text">
+            <!-- 正文 -->
+            <text x="253" y="78" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.88)"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif">只要你对我说一句话，</text>
+            <text x="253" y="98" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.88)"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif">我就能立刻为你</text>
+            <!-- 高亮重点 -->
+            <rect x="193" y="107" width="120" height="26" rx="6" fill="rgba(108,60,224,.3)"/>
+            <text x="253" y="125" text-anchor="middle" font-size="16" font-weight="900" fill="#FFD166"
+              font-family="'PingFang SC','Microsoft YaHei',sans-serif" filter="url(#goldGlow)">换上职场新装！</text>
+            <!-- 装饰星号 -->
+            <text x="196" y="125" font-size="11" fill="#FFD166" opacity=".8">✦</text>
+            <text x="303" y="125" font-size="11" fill="#FFD166" opacity=".8">✦</text>
+          </g>
+
+          <!-- 分隔线 + 署名区 -->
+          <g class="book-sig-text">
+            <line x1="200" y1="146" x2="306" y2="146" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+            <!-- 署名 -->
+            <text x="253" y="167" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)"
+              font-family="'PingFang SC','Microsoft YaHei',serif" font-style="italic">—— 可画魔法师</text>
+            <!-- 印章 -->
+            <circle cx="253" cy="197" r="18" fill="rgba(239,71,111,.08)" stroke="#EF476F" stroke-width="1.4" opacity=".7"/>
+            <circle cx="253" cy="197" r="14" fill="none" stroke="#EF476F" stroke-width=".5" opacity=".4"/>
+            <text x="253" y="194" text-anchor="middle" font-size="10" fill="#EF476F" font-weight="bold"
+              font-family="'PingFang SC','Microsoft YaHei',serif" opacity=".85">可画</text>
+            <text x="253" y="207" text-anchor="middle" font-size="10" fill="#EF476F" font-weight="bold"
+              font-family="'PingFang SC','Microsoft YaHei',serif" opacity=".85">魔法</text>
+          </g>
+
+          <!-- 卷页折角 -->
+          <path d="M318,234 L328,224 L328,234 Z" fill="rgba(255,255,255,.08)"/>
+          <line x1="318" y1="234" x2="328" y2="224" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+          <!-- 右页码 -->
+          <text x="253" y="243" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="serif">II</text>
+        </g>
+
+        <!-- 书脊高光 -->
+        <rect x="165" y="16" width="10" height="236" rx="1" fill="none" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+        <line x1="168" y1="22" x2="168" y2="248" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+
+        <!-- 顶部装饰 -->
+        <text x="170" y="13" text-anchor="middle" font-size="14" fill="#FFD166" opacity=".9">📖</text>
+        <!-- 顶部光晕点 -->
+        <circle cx="152" cy="10" r="2" fill="#A78BFA" opacity=".7"/>
+        <circle cx="188" cy="8" r="1.5" fill="#06D6A0" opacity=".6"/>
+        <circle cx="140" cy="14" r="1" fill="#FFD166" opacity=".5"/>
+        <circle cx="200" cy="14" r="1" fill="#EF476F" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="bubble" style="margin:8px auto;background:#FFF9E3;font-size:12px">
+      太棒了！快带我去找那位神奇的可画魔法师吧！ 🎉
+    </div>
+    <button class="btn btn-primary pulse" onclick="goTo(4)" style="margin-top:6px;font-size:14px;padding:10px 28px">
+      去找可画魔法师 ✨
+    </button>
+  </div>
+</div>
+
+<!-- ===================== 页面3：角色互动 ===================== -->
+<div class="page hidden" id="page3">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">🎭 你面前出现了一只猴子…</div>
+    <div style="animation:float 2.5s ease-in-out infinite" id="p3Monkey"></div>
+    <div class="bubble" style="margin:8px auto;font-size:12px">
+      嗨嗨！我是阿画~ 听说你就是可画魔法师<br>
+      帮我搭配穿搭？快教教我穿什么嘛！😄
+    </div>
+
+    <div style="background:rgba(255,255,255,.06);border-radius:14px;padding:8px;margin:10px 0;border:1px dashed rgba(255,255,255,.2)">
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px">💡 试试说：</div>
+      <div class="hint-rotate" id="hintRotate">给我穿套帅气的蓝色西装吧！</div>
+    </div>
+
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0">
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:6px 10px;font-size:12px;color:rgba(255,255,255,.7)">🧑‍⚖️ 霸道总裁</div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:6px 10px;font-size:12px;color:rgba(255,255,255,.7)">👕 舒适程序猿</div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:6px 10px;font-size:12px;color:rgba(255,255,255,.7)">🎲 命运盲盒</div>
+    </div>
+
+    <button class="btn btn-primary" onclick="goTo(4)" style="margin-top:6px;padding:10px 32px">
+      我要念咒语 🪄
+    </button>
+  </div>
+</div>
+
+<!-- ===================== 页面4：六大方案选择 ===================== -->
+<div class="page hidden" id="page4">
+  <div style="text-align:center;padding:8px 12px 10px;width:100%;max-width:420px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px">🪄 可画魔法师施法台</div>
+    <div id="p4Monkey"></div>
+    <div class="bubble left" style="margin:2px auto 8px;font-size:12px;max-width:240px">
+      选一套穿搭吧～ 我都听你的！😊
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:360px;margin:0 auto">
+      <!-- 方案一：霸道总裁 -->
+      <div class="outfit-card" onclick="selectOutfit('霸道总裁')">
+        <div class="outfit-card-icon" data-icon="霸道总裁"></div>
+        <div class="outfit-card-name">霸道总裁猴</div>
+        <div class="outfit-card-desc">双排扣西装 · 金表</div>
+      </div>
+      <!-- 方案二：格子程序猿 -->
+      <div class="outfit-card" onclick="selectOutfit('格子程序猿')">
+        <div class="outfit-card-icon" data-icon="格子程序猿"></div>
+        <div class="outfit-card-name">格子衫程序猿</div>
+        <div class="outfit-card-desc">格子衫 · 牛仔裤 · 眼镜</div>
+      </div>
+      <!-- 方案三：艺术总监 -->
+      <div class="outfit-card" onclick="selectOutfit('艺术总监')">
+        <div class="outfit-card-icon" data-icon="艺术总监"></div>
+        <div class="outfit-card-name">艺术总监猴</div>
+        <div class="outfit-card-desc">高领毛衣 · 贝雷帽</div>
+      </div>
+      <!-- 方案四：夏威夷度假 -->
+      <div class="outfit-card" onclick="selectOutfit('夏威夷度假')">
+        <div class="outfit-card-icon" data-icon="夏威夷度假"></div>
+        <div class="outfit-card-name">夏威夷度假猴</div>
+        <div class="outfit-card-desc">花衬衫 · 短裤 · 草帽</div>
+      </div>
+      <!-- 方案五：香蕉狂热粉 -->
+      <div class="outfit-card" onclick="selectOutfit('香蕉狂热粉')">
+        <div class="outfit-card-icon" data-icon="香蕉狂热粉"></div>
+        <div class="outfit-card-name">香蕉狂热粉</div>
+        <div class="outfit-card-desc">香蕉印花 · 黄领结</div>
+      </div>
+      <!-- 方案六：超人外穿 -->
+      <div class="outfit-card" onclick="selectOutfit('超人外穿')">
+        <div class="outfit-card-icon" data-icon="超人外穿"></div>
+        <div class="outfit-card-name">超人内裤外穿</div>
+        <div class="outfit-card-desc">紧身衣 · 披风 · M标志</div>
+      </div>
+    </div>
+
+    <!-- 命运盲盒 -->
+    <button class="blind-box-btn" onclick="triggerBlindBox()">
+      <span class="blind-box-dice">🎲</span>
+      <span>命运盲盒</span>
+      <span class="blind-box-sub">随机穿搭 · 隐藏款待解锁</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===================== 页面5：AI生成中 ===================== -->
+<div class="page hidden" id="page5">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:6px">⚡ 魔法生效中…</div>
+    <div class="loading-clothes" id="loadingClothes"></div>
+    <div style="margin:4px 0;animation:pulse .6s infinite" id="p5Monkey"></div>
+    <div class="load-text" id="loadText">阿画正在认真准备，稍等哦…</div>
+    <div class="monkey-tail-bar">
+      <div class="tail-fill" id="tailFill" style="width:0%">
+        <div class="tail-tip"></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5)" id="loadPercent">0%</div>
+  </div>
+</div>
+
+<!-- ===================== 页面6：变装结果 ===================== -->
+<div class="page hidden" id="page6">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">✨ 变装完成！</div>
+
+    <div class="compare-wrap">
+      <div class="compare-card">
+        <div class="compare-label">变装前</div>
+        <div class="outfit-display" id="beforeMonkey"></div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:24px;color:#FFD166;margin:0 2px">▶</div>
+      <div class="compare-card new-card">
+        <div class="compare-label" style="color:#FFD166">变装后</div>
+        <div class="outfit-display" id="resultMonkey"></div>
+      </div>
+    </div>
+
+    <div class="bubble" style="margin:8px auto;font-size:12px;background:#FFF9E3" id="monkeyComment">
+      哇哦！快看看效果怎么样～
+    </div>
+
+    <div class="result-btns">
+      <button class="btn btn-secondary" onclick="goTo(4)" style="font-size:12px;padding:8px">
+        🔄 重新选一套
+      </button>
+      <button class="btn btn-secondary" onclick="goTo(7)" style="font-size:12px;padding:8px">
+        ✏️ 稍微调整细节
+      </button>
+      <button class="btn btn-primary" onclick="goTo(8)" style="font-size:13px;padding:8px">
+        🎨 我满意！生成工牌照
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页面7：微调 ===================== -->
+<div class="page hidden" id="page7">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px">🤔 微调工坊</div>
+    <div id="p7Monkey"></div>
+    <div class="bubble" style="margin:8px auto;font-size:12px">
+      想再调调细节吗？没问题～<br>
+      跟我说你想改哪里就好 😊
+    </div>
+
+    <div class="input-area">
+      <textarea class="cmd-input" id="adjustInput" placeholder="比如：把领带换成红色波点 / 加一副黑框眼镜" style="height:52px"></textarea>
+
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin:6px 0 4px">快捷调整：</div>
+      <div class="adjust-btns">
+        <button class="adjust-btn" onclick="setAdjust('加一件黑色外套')">🧥 加外套</button>
+        <button class="adjust-btn" onclick="setAdjust('把颜色换成红色')">🎨 换颜色</button>
+        <button class="adjust-btn" onclick="setAdjust('加一副圆框眼镜和一顶礼帽')">🕶️ 加配饰</button>
+      </div>
+
+      <button class="btn btn-danger" onclick="doAdjust()" style="width:100%;margin-top:8px">
+        🪄 调整！
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页面8：生成海报 ===================== -->
+<div class="page hidden" id="page8">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">🏆 阿画的面试战袍</div>
+
+    <div class="poster-card" id="posterCard">
+      <div class="poster-title">阿画的面试战袍</div>
+      <div style="font-size:10px;color:#999;margin-bottom:6px;text-align:center">📅 2026 · Canva可画出品</div>
+
+      <div class="poster-monkey" id="posterMonkey"></div>
+
+      <div class="poster-id-card">
+        <div class="id-avatar" id="idAvatar"></div>
+        <div class="id-info">
+          <p>阿画（A-Draw）</p>
+          <span>设计部实习生 · 今日正式入职</span>
+        </div>
+      </div>
+
+      <div class="poster-quote" id="posterQuote" onclick="refreshQuote()" title="点击换一句">
+        "只要穿得对，猴子也能当总监"<br>
+        <span style="font-size:10px;color:#999">👆 点击换一句毒鸡汤</span>
+      </div>
+
+      <div class="poster-brand">
+        <strong style="color:#00B4D8;font-size:13px">Canva 可画</strong><br>
+        <span style="font-size:10px">内容创作，从这里开始</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:10px;justify-content:center">
+      <button class="btn btn-secondary" onclick="savePoster()" style="font-size:12px;padding:8px 16px">💾 保存海报</button>
+      <button class="btn btn-primary" onclick="showEasterEgg()" style="font-size:12px;padding:8px 16px">🎬 点击看阿画入职彩蛋</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:6px;justify-content:center">
+      <button class="btn btn-secondary" onclick="goTo(9)" style="font-size:11px;padding:6px 12px">📱 分享给朋友</button>
+      <button class="btn btn-secondary" onclick="goTo(10)" style="font-size:11px;padding:6px 12px">📖 了解可画</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页面9：分享页 ===================== -->
+<div class="page hidden" id="page9">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px">📱 分享给朋友</div>
+    <div style="font-size:48px;animation:bounce 1s infinite">🎉</div>
+
+    <div class="share-copy" onclick="copyText()" id="shareCopy">
+      <div class="copy-badge" id="copyBadge">✓ 已复制</div>
+      我用一句话帮猴子搞定了面试穿搭！太好玩了！<br>
+      你也来试试 #可画大广赛 #猴子变白领 🐒✨<br>
+      <span style="font-size:11px;opacity:.6">👆 点击复制分享文案</span>
+    </div>
+
+    <div style="margin:8px 0;font-size:13px;color:rgba(255,255,255,.7);font-weight:600">
+      🎭 随机获取阿画表情包
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px">（点击任意表情获取）</div>
+
+    <div class="sticker-grid" id="stickerGrid"></div>
+    <div class="shake-tip">晃动手机可随机切换表情包</div>
+
+    <div style="display:flex;gap:8px;margin-top:10px;justify-content:center">
+      <button class="btn btn-secondary" onclick="goTo(1)" style="font-size:12px;padding:8px 14px">🏠 返回首页</button>
+      <button class="btn btn-primary" onclick="goTo(8)" style="font-size:12px;padding:8px 14px">🎨 查看海报</button>
+      <button class="btn btn-secondary" onclick="goTo(10)" style="font-size:12px;padding:8px 14px">📱 了解可画</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页面10：了解可画 ===================== -->
+<div class="page hidden" id="page10">
+  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
+    <div style="font-size:18px;font-weight:900;color:#FFD166;text-align:center;margin-bottom:2px">Canva 可画</div>
+    <div style="font-size:11px;color:#00B4D8;margin-bottom:8px;text-align:center">全球领先的在线设计平台</div>
+
+    <div style="font-size:11px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6;padding:0 8px;margin-bottom:8px">
+      无需设计基础，一句话即可创作<br>
+      20万+ 专业模板 · AI智能设计<br>
+      图片·视频·PPT·海报·一站搞定
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:340px;margin:0 auto 12px">
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:10px 8px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:28px;margin-bottom:4px">🤖</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">AI设计</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5)">一句话生成</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:10px 8px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:28px;margin-bottom:4px">📋</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">20万+模板</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5)">专业设计素材</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:10px 8px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:28px;margin-bottom:4px">🎬</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">视频剪辑</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5)">AI自动生成</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:10px 8px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:28px;margin-bottom:4px">☁️</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">多端同步</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5)">随时随地创作</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" style="margin:6px auto 0;display:block;padding:10px 28px;font-size:13px" onclick="showToast('正在跳转到应用商店，马上见到你啦～')">
+      📲 立即下载可画
+    </button>
+
+    <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.25);text-align:center">
+      Canva可画 © 2026 · 用心创作，让世界更美
+    </div>
+  </div>
+</div>
+
+<!-- 盲盒揭晓弹窗 -->
+<div class="blind-reveal-overlay" id="blindRevealOverlay">
+  <div class="blind-reveal-icon" id="blindRevealIcon">🎲</div>
+  <div class="blind-reveal-text" id="blindRevealText">✨ 命运选中了：</div>
+  <div class="blind-reveal-name" id="blindRevealName">???</div>
+</div>
+
+<!-- 彩蛋弹窗 -->
+<div class="easter-overlay" id="easterOverlay">
+  <div class="easter-scene" id="easterScene">
+    <!-- 动画内容 -->
+  </div>
+  <button class="btn btn-primary easter-close" onclick="closeEasterEgg()">
+    好感动呀！✨ 关闭
+  </button>
+</div>
+
+</div><!-- #app -->
+    <!-- 底部横条 -->
+    <div class="phone-home-bar"></div>
+  </div><!-- phone-screen -->
+</div><!-- phone-frame -->
+
+<script>
+// ===================== 全局状态 =====================
+let currentPage = 1;
+let userCmd = '';
+let resultData = {};
+let resultOutfitKey = '';
+const totalPages = 10;
+
+const quotes = [
+  '"只要穿得对，猴子也能当总监"',
+  '"你的穿搭，决定你的底薪"',
+  '"老板说：这猴子比实习生还精神"',
+  '"HR看见我，当场录取"',
+  '"穿对一套衣，省下三年班"',
+  '"西装加身，猴气全无"'
+];
+
+const hints = [
+  '给我穿套帅气的蓝色西装吧！',
+  '我想穿得像个靠谱的小CEO',
+  '程序员格子衫风格，要舒服的那种',
+  '给我一套会让HR眼前一亮的穿搭',
+  '我要穿得精神又有活力！',
+  '优雅知性的职场精英风格'
+];
+
+// 六大方案预设
+const outfitPresets = {
+  '霸道总裁': { emoji: '🧑‍⚖️🐒', desc: '深灰色双排扣西装\n白衬衫、银色领带夹\n黑西裤、金表', comment: '嗯，这气场，明天董事会我坐C位！', type: 'pro' },
+  '格子程序猿': { emoji: '🐵👕', desc: '红黑格子长袖衬衫\n深蓝牛仔裤\n黑框眼镜、双肩包', comment: '嗯…听说穿这个的月薪都五万，很划算嘛 😆', type: 'casual' },
+  '艺术总监': { emoji: '🎨🐒', desc: '黑色高领毛衣\n灰色阔腿裤\n黑色贝雷帽、小圆墨镜', comment: '嗯～很有艺术感！就是不知道面试官能不能欣赏… 😅', type: 'pro' },
+  '夏威夷度假': { emoji: '🌴🐵', desc: '亮黄色夏威夷花衬衫\n白色短裤\n草帽、人字拖', comment: '面试官要是问我为什么穿这样，我就说：这叫个性！🏖️', type: 'funny' },
+  '香蕉狂热粉': { emoji: '🍌🙈', desc: '白底香蕉印花西装\n黄色领结\n浅黄西裤、香蕉皮鞋', comment: '虽然像水果摊老板，但香蕉是我的信仰，我接受。', type: 'funny' },
+  '超人外穿': { emoji: '🦸🐒', desc: '蓝色紧身衣\n红色内裤外穿\n红色披风、胸前M标志', comment: '噗！这身…至少很有勇气！面试官应该会记住我的 😂', type: 'weird' }
+};
+
+// 隐藏款（30%概率触发）
+const hiddenOutfits = {
+  '女装大佬': { emoji: '👗😅', desc: '粉色格子连衣裙\n金色假发\n小皮鞋', comment: '呃…这个嘛…咱们要不要换一个方案 😅', type: 'weird' },
+  '香蕉人套装': { emoji: '🍌🙊', desc: '全身香蕉形状连体衣\n只露脸和尾巴', comment: '现在我真的是一根香蕉了。', type: 'funny' },
+  '皇帝新装': { emoji: '👑🙈', desc: '什么都不穿\n只戴一顶金色王冠', comment: '我悟了，真正的职场穿搭，是无形的。', type: 'weird' }
+};
+
+// 兼容旧代码
+const outfits = { ...outfitPresets, ...hiddenOutfits };
+
+// ===================== 阿画SVG角色渲染系统 =====================
+// 基于参考图：暖棕毛色、大圆耳朵、无辜大眼睛、蓬松尾巴、手插口袋
+function renderMonkeySVG(opts = {}) {
+  const {
+    expression = 'happy',  // happy | surprised | thinking | shy | excited | confused | wink
+    clothing = 'underwear', // underwear | none | outfit
+    outfit = '',            // 服装key，clothing='outfit'时生效
+    scale = 1,
+    spin = false,
+    shake = false,
+    bounce = false
+  } = opts;
+
+  // 表情参数映射
+  const exprMap = {
+    happy:   { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'smile', mouthOpen: false, blush: 0.3, browAngle: 0 },
+    surprised:{ eyeL: 'circle', eyeR: 'circle', eyeScale: 1.5, pupilDx: 0, pupilDy: 0, mouth: 'o',   mouthOpen: true, blush: 0, browAngle: -15 },
+    thinking:{ eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 0.9, pupilDx: 3, pupilDy: -4, mouth: 'smirk', mouthOpen: false, blush: 0, browAngle: -8 },
+    shy:     { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1, pupilDx: -2, pupilDy: 0, mouth: 'smile-small', mouthOpen: false, blush: 0.6, browAngle: 5 },
+    excited: { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1.2, pupilDx: 0, pupilDy: 0, mouth: 'grin', mouthOpen: true, blush: 0.5, browAngle: -10 },
+    confused:{ eyeL: 'ellipse', eyeR: 'ellipse-squint', eyeScale: 1, pupilDx: 1, pupilDy: 1, mouth: 'wavy', mouthOpen: false, blush: 0.2, browAngle: 8 },
+    wink:    { eyeL: 'ellipse', eyeR: 'close', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'grin', mouthOpen: true, blush: 0.4, browAngle: -5 }
+  };
+
+  const ex = exprMap[expression] || exprMap['happy'];
+
+  // ===== 服装SVG渲染 =====
+  function renderClothingSVG(key) {
+    switch (key) {
+      case '霸道总裁':
+        return `<!-- 深灰西装 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#2C2C34"/>
+          <path d="M68,132 L100,160 L132,132" fill="#FFFFFF"/>
+          <!-- 领带 -->
+          <path d="M97,132 L100,156 L103,132 Z" fill="#8B7355"/>
+          <path d="M99,132 L100,156 L101,132 Z" fill="#A08060"/>
+          <!-- 驳领 -->
+          <path d="M68,127 L80,148 Q100,158 120,148 L132,127" fill="none" stroke="#1A1A20" stroke-width="1.5"/>
+          <!-- 纽扣 -->
+          <circle cx="100" cy="150" r="2.5" fill="#555"/>
+          <circle cx="100" cy="170" r="2.5" fill="#555"/>
+          <!-- 金表 -->
+          <rect x="142" y="158" width="12" height="6" rx="2" fill="#D4A840" stroke="#A08020" stroke-width="0.8"/>
+          <rect x="145" y="156" width="6" height="2" rx="1" fill="#E8C860"/>
+          <!-- 裤线 -->
+          <line x1="88" y1="182" x2="88" y2="195" stroke="#222" stroke-width="0.8" opacity=".4"/>
+          <line x1="112" y1="182" x2="112" y2="195" stroke="#222" stroke-width="0.8" opacity=".4"/>
+        `;
+
+      case '格子程序猿':
+        return `<!-- 红黑格子衫 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#CC3333"/>
+          <!-- 横条纹 -->
+          <line x1="65" y1="138" x2="100" y2="138" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <line x1="65" y1="146" x2="100" y2="146" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <line x1="65" y1="154" x2="100" y2="154" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <line x1="65" y1="162" x2="100" y2="162" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <line x1="65" y1="170" x2="100" y2="170" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <line x1="65" y1="178" x2="100" y2="178" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
+          <!-- 竖条纹 -->
+          <line x1="73" y1="130" x2="73" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
+          <line x1="82" y1="130" x2="82" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
+          <line x1="91" y1="130" x2="91" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
+          <!-- 白色方块 -->
+          <rect x="66" y="135" width="7" height="5" rx="1" fill="#FFF" opacity=".5"/>
+          <rect x="82" y="143" width="8" height="5" rx="1" fill="#FFF" opacity=".5"/>
+          <rect x="66" y="159" width="7" height="6" rx="1" fill="#FFF" opacity=".4"/>
+          <rect x="82" y="167" width="8" height="5" rx="1" fill="#FFF" opacity=".5"/>
+          <!-- 纽扣 -->
+          <circle cx="96" cy="138" r="2" fill="#333"/>
+          <circle cx="96" cy="150" r="2" fill="#333"/>
+          <circle cx="96" cy="162" r="2" fill="#333"/>
+          <!-- 牛仔裤下摆 -->
+          <path d="M66,182 L66,195 Q66,198 76,198 L90,198 L90,182 Z" fill="#2B5B84"/>
+          <path d="M110,182 L110,198 L124,198 Q134,198 134,195 L134,182 Z" fill="#2B5B84"/>
+          <!-- 双肩包背带 -->
+          <path d="M70,135 L56,145 Q52,148 54,155" fill="none" stroke="#5A3A1A" stroke-width="4" opacity=".7"/>
+          <path d="M130,135 L144,145 Q148,148 146,155" fill="none" stroke="#5A3A1A" stroke-width="4" opacity=".7"/>
+        `;
+
+      case '艺术总监':
+        return `<!-- 高领黑毛衣 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#1A1A1A"/>
+          <!-- 高领 -->
+          <rect x="80" y="118" width="40" height="14" rx="5" fill="#222"/>
+          <!-- 阔腿裤 -->
+          <path d="M60,180 L60,198 Q60,200 74,200 L88,200 L88,180 Z" fill="#777"/>
+          <path d="M112,180 L112,200 L126,200 Q140,200 140,198 L140,180 Z" fill="#777"/>
+          <!-- 彩色围巾（脖子部分） -->
+          <path d="M82,118 L100,128 L118,118" fill="none" stroke="#E85D75" stroke-width="5" stroke-linecap="round"/>
+          <path d="M84,120 L100,132 L116,120" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round"/>
+          <path d="M86,122 L100,134 L114,122" fill="none" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round"/>
+        `;
+
+      case '夏威夷度假':
+        return `<!-- 花衬衫 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#FFD700"/>
+          <!-- 花朵图案 -->
+          <circle cx="78" cy="148" r="7" fill="#FF6B6B" opacity=".8"/>
+          <circle cx="78" cy="148" r="2.5" fill="#FFE135"/>
+          <circle cx="120" cy="155" r="6" fill="#FF6B6B" opacity=".8"/>
+          <circle cx="120" cy="155" r="2.2" fill="#FFE135"/>
+          <circle cx="92" cy="172" r="5" fill="#FF8C94" opacity=".8"/>
+          <circle cx="92" cy="172" r="2" fill="#FFE135"/>
+          <circle cx="108" cy="140" r="6.5" fill="#FF8C94" opacity=".8"/>
+          <circle cx="108" cy="140" r="2.3" fill="#FFE135"/>
+          <!-- 绿叶 -->
+          <ellipse cx="74" cy="142" rx="4" ry="2" fill="#4CAF50" transform="rotate(-30,74,142)" opacity=".7"/>
+          <ellipse cx="124" cy="150" rx="4" ry="2" fill="#4CAF50" transform="rotate(20,124,150)" opacity=".7"/>
+          <ellipse cx="98" cy="165" rx="3" ry="1.5" fill="#4CAF50" transform="rotate(-15,98,165)" opacity=".7"/>
+          <!-- 衬衫开襟 -->
+          <line x1="100" y1="130" x2="100" y2="182" stroke="#E8C800" stroke-width="1.5"/>
+          <!-- 白短裤 -->
+          <path d="M66,180 L66,196 Q66,198 76,198 L90,198 L90,180 Z" fill="#FAFAFA" stroke="#DDD" stroke-width="0.5"/>
+          <path d="M110,180 L110,198 L124,198 Q134,198 134,196 L134,180 Z" fill="#FAFAFA" stroke="#DDD" stroke-width="0.5"/>
+        `;
+
+      case '香蕉狂热粉':
+        return `<!-- 香蕉印花西装 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#F5E6B8"/>
+          <!-- 香蕉印花 -->
+          <path d="M78,148 Q85,140 92,148" fill="none" stroke="#E8C800" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="85" cy="146" rx="4" ry="2" fill="#FFE135" transform="rotate(-15,85,146)"/>
+          <path d="M108,155 Q115,147 122,155" fill="none" stroke="#E8C800" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="115" cy="153" rx="4" ry="2" fill="#FFE135" transform="rotate(-15,115,153)"/>
+          <path d="M88,170 Q95,163 102,170" fill="none" stroke="#E8C800" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="95" cy="168" rx="3.5" ry="1.8" fill="#FFE135" transform="rotate(-15,95,168)"/>
+          <!-- 黄色领结 -->
+          <ellipse cx="100" cy="128" rx="10" ry="6" fill="#FFC107"/>
+          <polygon points="90,128 100,128 95,135" fill="#FFC107"/>
+          <polygon points="110,128 100,128 105,135" fill="#FFC107"/>
+          <circle cx="100" cy="128" r="3" fill="#FFA000"/>
+          <!-- 黄西裤 -->
+          <path d="M66,182 L66,196 Q66,199 76,199 L90,199 L90,182 Z" fill="#E8D898"/>
+          <path d="M110,182 L110,199 L124,199 Q134,199 134,196 L134,182 Z" fill="#E8D898"/>
+          <!-- 香蕉皮鞋 -->
+          <ellipse cx="80" cy="208" rx="9" ry="5" fill="#FFE135"/>
+          <ellipse cx="120" cy="208" rx="9" ry="5" fill="#FFE135"/>
+          <!-- 鞋带 -->
+          <path d="M74,206 Q78,204 80,206" fill="none" stroke="#8B6914" stroke-width="1"/>
+          <path d="M114,206 Q118,204 120,206" fill="none" stroke="#8B6914" stroke-width="1"/>
+        `;
+
+      case '超人外穿':
+        return `<!-- 红色披风（在身后） -->
+          <path d="M68,130 Q40,100 30,85 Q25,75 32,80 Q42,90 62,115" fill="#CC2222" opacity=".9"/>
+          <path d="M132,130 Q160,100 170,85 Q175,75 168,80 Q158,90 138,115" fill="#CC2222" opacity=".9"/>
+          <!-- 蓝色紧身衣 -->
+          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#2255CC"/>
+          <!-- 红腰带 -->
+          <rect x="66" y="170" width="68" height="8" rx="2" fill="#CC2222"/>
+          <circle cx="100" cy="174" r="4" fill="#FFD700"/>
+          <!-- 红内裤外穿 -->
+          <path d="M74,178 L74,195 Q74,198 82,198 L118,198 Q126,198 126,195 L126,178 Z" fill="#CC2222"/>
+          <path d="M74,178 L74,195 Q74,198 82,198 L118,198 Q126,198 126,195 L126,178 Z" fill="none" stroke="#AA1111" stroke-width="1"/>
+          <!-- M标志 -->
+          <text x="100" y="158" text-anchor="middle" font-size="18" font-weight="900" fill="#FFD700" font-family="Arial,sans-serif">M</text>
+          <!-- 黄色腰带 -->
+          <rect x="66" y="170" width="68" height="8" rx="2" fill="#FFD700" opacity=".9"/>
+        `;
+
+      case '女装大佬':
+        return `<!-- 粉色连衣裙 -->
+          <path d="M65,128 L65,185 Q65,195 100,195 Q135,195 135,185 L135,128 L132,126 L68,126 Z" fill="#FF69B4"/>
+          <!-- 白色格子纹 -->
+          <line x1="75" y1="128" x2="75" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <line x1="90" y1="128" x2="90" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <line x1="110" y1="128" x2="110" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <line x1="125" y1="128" x2="125" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <line x1="65" y1="148" x2="135" y2="148" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <line x1="65" y1="168" x2="135" y2="168" stroke="#FFF" stroke-width="1" opacity=".3"/>
+          <!-- 裙摆 -->
+          <path d="M65,185 Q60,198 80,200 L120,200 Q140,198 135,185 Z" fill="#FF85C8"/>
+          <!-- 蝴蝶结 -->
+          <ellipse cx="100" cy="126" rx="8" ry="5" fill="#FFF"/>
+          <ellipse cx="94" cy="126" rx="4" ry="3" fill="#FFF"/>
+          <ellipse cx="106" cy="126" rx="4" ry="3" fill="#FFF"/>
+          <circle cx="100" cy="126" r="2.5" fill="#FF69B4"/>
+        `;
+
+      case '香蕉人套装':
+        return `<!-- 全身香蕉连体衣（身体部分） -->
+          <path d="M62,120 Q58,100 62,90 L70,82 Q75,78 80,82 L90,90 Q100,70 110,90 L120,82 Q125,78 130,82 L138,90 Q142,100 138,120 L138,185 Q140,195 120,200 L80,200 Q60,195 62,185 Z" fill="#FFE135"/>
+          <!-- 香蕉阴影纹路 -->
+          <path d="M100,90 L100,120" stroke="#E8C800" stroke-width="2" opacity=".5"/>
+          <path d="M70,140 Q100,148 130,140" stroke="#E8C800" stroke-width="1.5" opacity=".3"/>
+          <!-- 香蕉两端棕色 -->
+          <path d="M62,98 Q58,92 62,88 L68,84" fill="none" stroke="#8B6914" stroke-width="5" stroke-linecap="round"/>
+          <path d="M62,185 Q58,192 63,196 L70,198" fill="none" stroke="#8B6914" stroke-width="4" stroke-linecap="round"/>
+          <!-- 香蕉标签 -->
+          <rect x="88" y="155" width="24" height="16" rx="3" fill="#FFF" opacity=".8"/>
+          <text x="100" y="166" text-anchor="middle" font-size="8" fill="#8B6914" font-family="Arial">BANANA</text>
+        `;
+
+      case '皇帝新装':
+        return `<!-- 只有王冠，没有衣服 — 王冠在head层渲染 -->
+        `;
+
+      default:
+        return '';
+    }
+  }
+
+  // ===== 头部配饰SVG渲染（在头部之上绘制） =====
+  function renderHeadAccessoriesSVG(key) {
+    switch (key) {
+      case '格子程序猿':
+        return `<!-- 黑框眼镜 -->
+          <rect x="79" y="64" width="16" height="11" rx="4" fill="none" stroke="#111" stroke-width="2.5"/>
+          <rect x="105" y="64" width="16" height="11" rx="4" fill="none" stroke="#111" stroke-width="2.5"/>
+          <line x1="95" y1="68" x2="105" y2="68" stroke="#111" stroke-width="1.5"/>`;
+
+      case '艺术总监':
+        return `<!-- 贝雷帽 -->
+          <ellipse cx="100" cy="40" rx="30" ry="8" fill="#111"/>
+          <ellipse cx="100" cy="38" rx="26" ry="12" fill="#1A1A1A"/>
+          <circle cx="100" cy="30" r="3" fill="#333"/>
+          <!-- 小圆墨镜 -->
+          <circle cx="86" cy="70" r="9" fill="#1A1A2E" stroke="#DAA520" stroke-width="1.5"/>
+          <circle cx="114" cy="70" r="9" fill="#1A1A2E" stroke="#DAA520" stroke-width="1.5"/>
+          <line x1="95" y1="70" x2="105" y2="70" stroke="#DAA520" stroke-width="1"/>
+          <circle cx="83" cy="68" r="1.5" fill="#FFF" opacity=".3"/>
+          <circle cx="111" cy="68" r="1.5" fill="#FFF" opacity=".3"/>`;
+
+      case '夏威夷度假':
+        return `<!-- 草帽 -->
+          <ellipse cx="100" cy="40" rx="34" ry="10" fill="#D4A060"/>
+          <ellipse cx="100" cy="38" rx="22" ry="14" fill="#E8C880"/>
+          <ellipse cx="100" cy="50" rx="36" ry="5" fill="#C09040"/>
+          <!-- 墨镜 -->
+          <rect x="81" y="64" width="16" height="9" rx="4" fill="#222"/>
+          <rect x="103" y="64" width="16" height="9" rx="4" fill="#222"/>
+          <line x1="97" y1="68" x2="103" y2="68" stroke="#222" stroke-width="1.5"/>
+          <circle cx="85" cy="65" r="1" fill="#FFF" opacity=".2"/>
+          <circle cx="107" cy="65" r="1" fill="#FFF" opacity=".2"/>`;
+
+      case '女装大佬':
+        return `<!-- 金色假发 -->
+          <path d="M65,55 Q60,28 75,23 Q80,12 100,15 Q120,12 125,23 Q140,28 135,55" fill="#FFD700" opacity=".9"/>
+          <ellipse cx="100" cy="48" rx="30" ry="18" fill="#FFD700" opacity=".9"/>
+          <path d="M78,33 Q86,20 93,28" fill="none" stroke="#E8C000" stroke-width="2.5"/>
+          <path d="M107,28 Q114,20 122,33" fill="none" stroke="#E8C000" stroke-width="2.5"/>`;
+
+      case '皇帝新装':
+        return `<!-- 金色王冠 -->
+          <path d="M70,55 L72,30 L82,42 L92,20 L100,38 L108,20 L118,42 L128,30 L130,55 Z" fill="#FFD700"/>
+          <path d="M70,55 L72,30 L82,42 L92,20 L100,38 L108,20 L118,42 L128,30 L130,55 Z" fill="none" stroke="#DAA520" stroke-width="1.5"/>
+          <circle cx="100" cy="38" r="3" fill="#FF0000"/>
+          <circle cx="100" cy="38" r="1.5" fill="#FF6666"/>
+          <circle cx="82" cy="42" r="2" fill="#3366FF"/>
+          <circle cx="118" cy="42" r="2" fill="#3366FF"/>
+          <circle cx="92" cy="28" r="1.5" fill="#33CC33"/>
+          <circle cx="108" cy="28" r="1.5" fill="#33CC33"/>`;
+
+      default:
+        return '';
+    }
+  }
+
+  let cls = 'monkey-svg';
+  if (spin) cls += ' spin-in';
+  if (shake) cls += ' shake-monkey';
+  if (bounce) cls += ' bounce-monkey';
+
+  // 瞳孔偏移
+  const pdX = ex.pupilDx;
+  const pdY = ex.pupilDy;
+
+  // 眉毛
+  const browLift = ex.browAngle;
+
+  // 眼睛SVG
+  function renderEye(cx, cy, side) {
+    const r = 9 * ex.eyeScale;
+    let eyeShape = '';
+    const pupilCx = cx + pdX;
+    const pupilCy = cy + pdY;
+
+    if (side === 'R' && ex.eyeR === 'close') {
+      // 眨眼 - 弯线
+      return `<path d="M${cx-8},${cy} Q${cx},${cy-5} ${cx+8},${cy}" stroke="#4A2A15" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    }
+    if (side === 'R' && ex.eyeR === 'ellipse-squint') {
+      // 眯眼
+      return `<ellipse cx="${cx}" cy="${cy}" rx="${r*0.85}" ry="${r*0.45}" fill="#FFF"/><ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.42}" ry="${r*0.38}" fill="#5C3420"/><circle cx="${pupilCx-1.5}" cy="${pupilCy-2}" r="2.5" fill="#1A0A00"/><circle cx="${pupilCx+2}" cy="${pupilCy-3}" r="1" fill="#FFF" opacity=".7"/>`;
+    }
+    if (ex.eyeL === 'circle' && side === 'L') {
+      // 惊讶圆眼
+      eyeShape = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFF"/><circle cx="${pupilCx}" cy="${pupilCy}" r="${r*0.45}" fill="#5C3420"/>`;
+    } else {
+      eyeShape = `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*0.85}" fill="#FFF"/><ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.45}" ry="${r*0.38}" fill="#5C3420"/>`;
+    }
+
+    return eyeShape +
+      `<circle cx="${pupilCx-1.5}" cy="${pupilCy-2.5}" r="3" fill="#1A0A00"/>` +
+      `<circle cx="${pupilCx+2.5}" cy="${pupilCy-4}" r="1.8" fill="#FFF" opacity=".8"/>` +
+      `<circle cx="${pupilCx-1}" cy="${pupilCy+1.5}" r=".8" fill="#FFF" opacity=".4"/>`;
+  }
+
+  // 嘴巴SVG
+  function renderMouth() {
+    const mx = 100, my = 81;
+    switch (ex.mouth) {
+      case 'smile':
+        return `<path d="M${mx-12},${my} Q${mx},${my+9} ${mx+12},${my}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      case 'smile-small':
+        return `<path d="M${mx-8},${my} Q${mx},${my+5} ${mx+8},${my}" stroke="#B5653A" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+      case 'o':
+        return `<ellipse cx="${mx}" cy="${my+3}" rx="7" ry="9" fill="#4A2010"/>`;
+      case 'grin':
+        return `<path d="M${mx-14},${my} Q${mx},${my+12} ${mx+14},${my} Q${mx},${my+16} ${mx-14},${my}" fill="#4A2010"/>` +
+               `<path d="M${mx-10},${my+2} L${mx-6},${my-2} M${mx+6},${my-2} L${mx+10},${my+2}" stroke="#FFF" stroke-width="0.8" opacity=".3"/>`;
+      case 'smirk':
+        return `<path d="M${mx-10},${my} Q${mx},${my+2} ${mx+5},${my+3}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      case 'wavy':
+        return `<path d="M${mx-10},${my} Q${mx-5},${my-4} ${mx},${my+2} Q${mx+5},${my-2} ${mx+10},${my}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      default:
+        return `<path d="M${mx-12},${my} Q${mx},${my+9} ${mx+12},${my}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+    }
+  }
+
+  // 构建完整SVG
+  const svg = `
+  <svg class="${cls}" viewBox="0 0 200 240" width="${Math.round(200*scale)}" height="${Math.round(240*scale)}" xmlns="http://www.w3.org/2000/svg">
+    <!-- 尾部 -->
+    <g class="tail-path">
+      <path d="M68,175 Q30,190 20,160 Q8,130 30,108 Q45,95 58,105" fill="none" stroke="#C8804E" stroke-width="10" stroke-linecap="round"/>
+      <path d="M58,105 Q62,95 56,90" fill="none" stroke="#A5673B" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <!-- 身体阴影 -->
+    <ellipse cx="100" cy="185" rx="42" ry="12" fill="rgba(0,0,0,.08)"/>
+
+    <!-- 腿部 -->
+    <rect x="70" y="175" width="22" height="30" rx="10" fill="#D4A06A"/>
+    <rect x="108" y="175" width="22" height="30" rx="10" fill="#D4A06A"/>
+    <!-- 脚 -->
+    <ellipse cx="80" cy="207" rx="16" ry="9" fill="#C8804E"/>
+    <ellipse cx="120" cy="207" rx="16" ry="9" fill="#C8804E"/>
+    <!-- 脚趾 -->
+    <circle cx="72" cy="207" r="3.5" fill="#A5673B"/>
+    <circle cx="82" cy="209" r="3.5" fill="#A5673B"/>
+    <circle cx="112" cy="207" r="3.5" fill="#A5673B"/>
+    <circle cx="122" cy="209" r="3.5" fill="#A5673B"/>
+
+    <!-- 身体 -->
+    <ellipse cx="100" cy="158" rx="38" ry="38" fill="#C8804E"/>
+
+    <!-- 衣服渲染 -->
+    ${clothing === 'underwear' ? `
+    <!-- 白背心 -->
+    <path d="M68,138 L68,175 Q68,185 100,185 Q132,185 132,175 L132,138 Z" fill="#FFFFFF" opacity=".95"/>
+    <path d="M68,138 L68,175 Q68,185 100,185 Q132,185 132,175 L132,138 Z" fill="none" stroke="#E0E0E0" stroke-width="1"/>
+    <!-- 背心肩带 -->
+    <path d="M73,138 Q72,120 78,115" fill="none" stroke="#E0E0E0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M127,138 Q128,120 122,115" fill="none" stroke="#E0E0E0" stroke-width="3" stroke-linecap="round"/>
+    <!-- 内裤 -->
+    <rect x="74" y="178" width="52" height="12" rx="6" fill="#F0F0F0" stroke="#DDD" stroke-width=".5"/>
+    ` : clothing === 'outfit' ? renderClothingSVG(outfit) : ``}
+
+    <!-- 腹部浅色毛（仅裸体时显示） -->
+    ${clothing !== 'underwear' && clothing !== 'outfit' ? `<ellipse cx="100" cy="165" rx="24" ry="20" fill="#E8C4A0" opacity=".6"/>` : ''}
+
+    <!-- 左臂 -->
+    <path d="M64,142 Q50,150 52,168 Q54,170 58,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
+    <!-- 左手 -->
+    <ellipse cx="52" cy="170" rx="10" ry="8" fill="#D4A06A"/>
+    <circle cx="46" cy="166" r="3.5" fill="#D4A06A"/>
+    <circle cx="49" cy="174" r="3.5" fill="#D4A06A"/>
+
+    <!-- 右臂 -->
+    <path d="M136,142 Q150,150 148,168 Q146,170 142,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
+    <!-- 右手 -->
+    <ellipse cx="148" cy="170" rx="10" ry="8" fill="#D4A06A"/>
+    <circle cx="151" cy="174" r="3.5" fill="#D4A06A"/>
+    <circle cx="154" cy="166" r="3.5" fill="#D4A06A"/>
+
+    <!-- 头部阴影 -->
+    <ellipse cx="100" cy="112" rx="48" ry="16" fill="rgba(0,0,0,.05)"/>
+
+    <!-- 左耳 -->
+    <circle cx="44" cy="72" r="22" fill="#C8804E"/>
+    <circle cx="44" cy="72" r="14" fill="#F0B4A0"/>
+    <circle cx="44" cy="72" r="7" fill="#E89A8A"/>
+
+    <!-- 右耳 -->
+    <circle cx="156" cy="72" r="22" fill="#C8804E"/>
+    <circle cx="156" cy="72" r="14" fill="#F0B4A0"/>
+    <circle cx="156" cy="72" r="7" fill="#E89A8A"/>
+
+    <!-- 头部 -->
+    <ellipse cx="100" cy="78" rx="45" ry="42" fill="#C8804E"/>
+
+    <!-- 脸部浅色区域 -->
+    <ellipse cx="100" cy="80" rx="28" ry="24" fill="#FAD5B0"/>
+    <ellipse cx="100" cy="82" rx="26" ry="20" fill="#E8C4A0" opacity=".25"/>
+
+    <!-- 头发 / 顶部乱毛 -->
+    <path d="M72,50 Q75,30 80,42 Q84,22 90,38 Q94,20 100,36 Q106,18 110,38 Q116,22 120,42 Q125,30 128,50" fill="#8B4A2B"/>
+    <path d="M76,50 Q80,35 86,44" fill="#7A3E1F" opacity=".5"/>
+    <path d="M124,50 Q120,35 114,44" fill="#7A3E1F" opacity=".5"/>
+    <!-- 中间蓬松毛 -->
+    <ellipse cx="100" cy="46" rx="16" ry="10" fill="#8B4A2B"/>
+    <ellipse cx="94" cy="43" rx="8" ry="7" fill="#9B5A3B"/>
+    <ellipse cx="108" cy="44" rx="7" ry="6" fill="#9B5A3B"/>
+
+    <!-- 眉毛 -->
+    <path d="M${80+browLift*0.3},${58} Q${88+browLift},${54+browLift} ${96+browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M${120-browLift*0.3},${58} Q${112-browLift},${54+browLift} ${104-browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- 眼睛 -->
+    <g class="eye-group">
+      ${renderEye(86, 68, 'L')}
+      ${renderEye(114, 68, 'R')}
+    </g>
+
+    <!-- 鼻子 -->
+    <ellipse cx="100" cy="76" rx="6" ry="4.5" fill="#C47A4A"/>
+    <ellipse cx="100" cy="75" rx="4" ry="3" fill="#A06030"/>
+    <!-- 鼻孔 -->
+    <circle cx="98" cy="76" r="1.2" fill="#6B3020"/>
+    <circle cx="102" cy="76" r="1.2" fill="#6B3020"/>
+
+    <!-- 嘴巴 -->
+    <g class="mouth-group">
+      ${renderMouth()}
+    </g>
+
+    <!-- 腮红 -->
+    <ellipse cx="78" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
+    <ellipse cx="122" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
+
+    <!-- 面颊细节毛 -->
+    <path d="M72,70 Q76,68 78,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
+    <path d="M128,70 Q124,68 122,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
+
+    <!-- 头部配饰（眼镜/帽子/假发/王冠） -->
+    ${clothing === 'outfit' ? renderHeadAccessoriesSVG(outfit) : ''}
+
+  </svg>`;
+
+  return svg;
+}
+
+// ===================== SVG图标渲染系统 =====================
+function renderIconSVG(name, size = 44) {
+  const svgs = {
+    // --- 穿搭方案图标 ---
+    '霸道总裁': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="13" width="34" height="22" rx="3" fill="#252540"/>
+      <rect x="5" y="13" width="34" height="4" rx="1" fill="#353555"/>
+      <rect x="15" y="6" width="14" height="6" rx="2" fill="#6B5840"/>
+      <rect x="17" y="8" width="10" height="3" rx="1.5" fill="#8B7355"/>
+      <path d="M18,12 L22,32 L26,12" fill="#DAA520"/>
+      <path d="M20,12 L22,30 L24,12" fill="#FFD700"/>
+      <circle cx="22" cy="26" r="2.5" fill="#FFF" opacity=".7"/>
+      <path d="M5,15 L7,12 L37,12 L39,15" fill="none" stroke="#DAA520" stroke-width="1.5" opacity=".6"/>
+    </svg>`,
+    '格子程序猿': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="8" width="36" height="24" rx="3" fill="#3A4260"/>
+      <rect x="7" y="12" width="30" height="16" rx="1.5" fill="#1E2238"/>
+      <rect x="12" y="14" width="18" height="12" rx="1" fill="#2A3050"/>
+      <line x1="13" y1="17.5" x2="18" y2="17.5" stroke="#06D6A0" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="13" y1="20.5" x2="28" y2="20.5" stroke="#EF476F" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="13" y1="23.5" x2="16" y2="23.5" stroke="#FFD166" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M2,32 L22,40 L42,32" fill="#3A4260"/>
+      <path d="M2,32 L22,40 L42,32" fill="none" stroke="#5A6280" stroke-width="1"/>
+    </svg>`,
+    '艺术总监': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="22" cy="26" rx="16" ry="12" fill="#3A2010"/>
+      <ellipse cx="22" cy="26" rx="12" ry="8" fill="#4D2E18"/>
+      <circle cx="14" cy="20" r="3.5" fill="#EF476F"/>
+      <circle cx="22" cy="16" r="3.5" fill="#FFD166"/>
+      <circle cx="30" cy="22" r="3" fill="#06D6A0"/>
+      <circle cx="18" cy="30" r="3" fill="#00B4D8"/>
+      <circle cx="28" cy="30" r="2.5" fill="#7B2D8B"/>
+      <path d="M18,30 L22,18 L26,30" fill="none" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="22" cy="16" r="2" fill="#8B7355"/>
+      <path d="M26,30 L28,36" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`,
+    '夏威夷度假': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22,42 Q18,26 26,8 Q28,5 30,10 Q32,24 34,42" stroke="#8B6914" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M28,12 Q36,8 40,14" stroke="#228B22" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M28,18 Q38,14 41,22" stroke="#228B22" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M28,24 Q39,20 41,30" stroke="#32CD32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="22" cy="10" rx="9" ry="7" fill="#1B5E20"/>
+      <ellipse cx="20" cy="8" rx="5" ry="4.5" fill="#2E7D32"/>
+      <ellipse cx="16" cy="6" rx="3.5" ry="3" fill="#388E3C"/>
+      <circle cx="10" cy="5" r="5.5" fill="#FFD700"/>
+      <circle cx="10" cy="5" r="4.5" fill="#FFC107"/>
+      <path d="M4,5 L16,5 M10,-1 L10,11 M5,0 L15,10 M5,10 L15,0" stroke="#FF8F00" stroke-width="0.8" opacity=".5"/>
+    </svg>`,
+    '香蕉狂热粉': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12,38 Q8,24 18,12 Q22,5 26,12 Q36,24 32,38" fill="#FFE135"/>
+      <path d="M12,38 Q8,24 18,12 Q22,5 26,12 Q36,24 32,38" fill="none" stroke="#E8C800" stroke-width="1.5"/>
+      <path d="M18,16 Q22,8 26,12" fill="none" stroke="#D4B020" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+      <path d="M12,38 L12,42" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M32,38 L32,42" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M22,5 L20,1" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+    </svg>`,
+    '超人外穿': `<svg viewBox="0 0 44 44" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22,0 L28,14 L42,12 L32,24 L36,42 L22,32 L8,42 L12,24 L2,12 L16,14 Z" fill="#CC2222"/>
+      <path d="M22,6 L26,16 L38,14 L30,24 L34,40 L22,30 Z" fill="#DD3333"/>
+      <path d="M12,24 Q22,16 32,24" fill="#2255CC"/>
+      <path d="M14,24 L22,34 L30,24" fill="#2255CC"/>
+      <text x="22" y="30" text-anchor="middle" font-size="11" font-weight="900" fill="#FFD700" font-family="Arial,sans-serif">S</text>
+      <circle cx="22" cy="20" r="1.5" fill="#FFD700" opacity=".5"/>
+    </svg>`,
+    // --- 了解可画功能图标 ---
+    'AI设计': `<svg viewBox="0 0 36 36" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18,0 L21,12 L33,14 L23,22 L25,36 L18,28 L11,36 L13,22 L3,14 L15,12 Z" fill="#8B5CF6"/>
+      <path d="M18,5 L20,13 L28,14 L22,20 L23,30 L18,24 Z" fill="#A78BFA"/>
+      <circle cx="18" cy="18" r="2.5" fill="#C4B5FD"/>
+      <circle cx="11" cy="12" r="1.5" fill="#DDD6FE" opacity=".6"/>
+      <circle cx="26" cy="26" r="1" fill="#DDD6FE" opacity=".5"/>
+    </svg>`,
+    '模板': `<svg viewBox="0 0 36 36" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="14" height="14" rx="2" fill="#6366F1"/>
+      <rect x="20" y="2" width="14" height="14" rx="2" fill="#818CF8"/>
+      <rect x="2" y="20" width="14" height="14" rx="2" fill="#A5B4FC"/>
+      <rect x="20" y="20" width="14" height="14" rx="2" fill="#C7D2FE"/>
+      <rect x="5" y="5" width="5" height="3" rx="1" fill="#E0E7FF" opacity=".3"/>
+      <rect x="23" y="5" width="5" height="3" rx="1" fill="#E0E7FF" opacity=".3"/>
+      <rect x="5" y="23" width="5" height="3" rx="1" fill="#E0E7FF" opacity=".3"/>
+      <rect x="23" y="23" width="5" height="3" rx="1" fill="#E0E7FF" opacity=".3"/>
+    </svg>`,
+    '视频剪辑': `<svg viewBox="0 0 36 36" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="6" width="32" height="24" rx="3" fill="#1E1B4B"/>
+      <rect x="2" y="6" width="32" height="5" rx="2" fill="#3730A3"/>
+      <rect x="2" y="25" width="32" height="5" rx="2" fill="#3730A3"/>
+      <path d="M14,12 L26,18 L14,24 Z" fill="#F59E0B"/>
+      <circle cx="28" cy="30" r="3" fill="#EF4444"/>
+      <circle cx="6" cy="30" r="3" fill="#EF4444"/>
+      <line x1="9" y1="30" x2="25" y2="30" stroke="#3730A3" stroke-width="1"/>
+    </svg>`,
+    '多端同步': `<svg viewBox="0 0 36 36" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="7" width="18" height="24" rx="3" fill="#6366F1"/>
+      <rect x="11" y="11" width="12" height="14" rx="1" fill="#E0E7FF" opacity=".4"/>
+      <rect x="2" y="16" width="10" height="12" rx="2" fill="#A5B4FC"/>
+      <rect x="4" y="19" width="6" height="6" rx="1" fill="#E0E7FF" opacity=".3"/>
+      <path d="M13,18 Q18,12 22,18" fill="none" stroke="#06D6A0" stroke-width="2" stroke-dasharray="3,2"/>
+      <path d="M22,26 Q18,30 13,28" fill="none" stroke="#06D6A0" stroke-width="2" stroke-dasharray="3,2"/>
+      <path d="M21,18 L20,16 M21,18 L23,16" stroke="#06D6A0" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>`
+  };
+  return svgs[name] || '';
+}
+
+function initAllIcons() {
+  document.querySelectorAll('[data-icon]').forEach(el => {
+    const name = el.getAttribute('data-icon');
+    const svg = renderIconSVG(name, el.classList.contains('feature-icon') ? 28 : 40);
+    el.innerHTML = svg;
+  });
+}
+
+// ===================== 星星背景 =====================
+function createStars() {
+  const bg = document.getElementById('starBg');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*3}s;opacity:${Math.random()};`;
+    bg.appendChild(s);
+  }
+}
+
+// ===================== 页面导航 =====================
+function goTo(n) {
+  const old = document.getElementById('page'+currentPage);
+  const next = document.getElementById('page'+n);
+  if (!next) return;
+  old.classList.remove('active');
+  old.classList.add('prev');
+  next.classList.remove('hidden');
+  next.classList.add('active');
+  currentPage = n;
+  updateDots();
+  document.getElementById('backBtn').style.display = n > 1 ? 'block' : 'none';
+  onPageEnter(n);
+}
+
+function goBack() {
+  if (currentPage > 1) goTo(currentPage - 1);
+}
+
+function updateDots() {
+  const container = document.getElementById('pageDots');
+  container.innerHTML = '';
+  for (let i = 1; i <= totalPages; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === currentPage ? ' active' : '');
+    container.appendChild(d);
+  }
+}
+
+// ===================== 页面进入逻辑 =====================
+function onPageEnter(n) {
+  // 统一渲染SVG猴子
+  initAllMonkeys();
+  if (n === 2) animatePage2();
+  if (n === 3) startHintRotate();
+  if (n === 4) setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.55});
+  if (n === 5) startLoading();
+  if (n === 6) showResult();
+  if (n === 7) setMonkeySVG('p7Monkey', {expression:'thinking',clothing:'underwear',scale:0.6});
+  if (n === 8) initPoster();
+  if (n === 9) initStickerGrid();
+}
+
+// 设置SVG猴子
+function setMonkeySVG(id, opts) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = renderMonkeySVG(opts);
+}
+
+// 初始化所有页面的猴子
+function initAllMonkeys() {
+  setMonkeySVG('p1Monkey', {expression:'happy',clothing:'underwear',scale:0.55});
+  setMonkeySVG('p2Monkey', {expression:'surprised',clothing:'underwear',scale:0.75});
+  setMonkeySVG('p3Monkey', {expression:'excited',clothing:'underwear',scale:0.5});
+  setMonkeySVG('p5Monkey', {expression:'thinking',clothing:'underwear',scale:0.55});
+  setMonkeySVG('beforeMonkey', {expression:'shy',clothing:'underwear',scale:0.5});
+}
+
+// ===================== 页面2动画 =====================
+function animatePage2() {
+  const el = document.getElementById('p2Monkey');
+  const exprs = ['surprised','happy','thinking','excited','surprised'];
+  let i = 0;
+  el.innerHTML = renderMonkeySVG({expression:'surprised',clothing:'underwear',scale:0.75});
+  const t = setInterval(() => {
+    el.innerHTML = renderMonkeySVG({expression:exprs[i++ % exprs.length],clothing:'underwear',scale:0.75});
+    if (i > 8) clearInterval(t);
+  }, 400);
+}
+
+// ===================== 页面3提示轮播 =====================
+let hintIdx = 0, hintTimer;
+function startHintRotate() {
+  clearInterval(hintTimer);
+  const el = document.getElementById('hintRotate');
+  hintTimer = setInterval(() => {
+    el.style.opacity = 0;
+    setTimeout(() => {
+      hintIdx = (hintIdx + 1) % hints.length;
+      el.textContent = hints[hintIdx];
+      el.style.opacity = 1;
+    }, 300);
+  }, 3000);
+}
+
+// ===================== 页面4：方案选择 + 盲盒 =====================
+function selectOutfit(key) {
+  resultData = outfitPresets[key];
+  resultOutfitKey = key;
+  userCmd = key;
+  // 点击动画 - SVG表情变化
+  const monkey = document.getElementById('p4Monkey');
+  monkey.innerHTML = renderMonkeySVG({expression:'excited',clothing:'underwear',bounce:true,scale:0.5});
+  setTimeout(() => { monkey.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',bounce:true,scale:0.5}); }, 500);
+  setTimeout(() => goTo(5), 800);
+}
+
+function triggerBlindBox() {
+  const presets = Object.keys(outfitPresets);
+  const hiddens = Object.keys(hiddenOutfits);
+
+  // 30%概率触发隐藏款
+  const roll = Math.random();
+  let selectedKey, nameDisplay;
+
+  if (roll < 0.3) {
+    // 隐藏款
+    selectedKey = hiddens[Math.floor(Math.random() * hiddens.length)];
+    resultData = hiddenOutfits[selectedKey];
+  } else {
+    // 普通款
+    selectedKey = presets[Math.floor(Math.random() * presets.length)];
+    resultData = outfitPresets[selectedKey];
+  }
+  userCmd = selectedKey;
+  resultOutfitKey = selectedKey;
+
+  // 显示盲盒揭晓弹窗
+  const overlay = document.getElementById('blindRevealOverlay');
+  document.getElementById('blindRevealName').textContent = '【' + selectedKey + '】';
+  document.getElementById('blindRevealIcon').textContent = '🎲';
+  overlay.classList.add('show');
+
+  // 1.8秒后关闭弹窗 → 进入加载页
+  setTimeout(() => {
+    overlay.classList.remove('show');
+    const m = document.getElementById('p4Monkey');
+    m.innerHTML = renderMonkeySVG({expression:'surprised',clothing:'underwear',bounce:true,scale:0.5});
+    setTimeout(() => goTo(5), 400);
+  }, 1800);
+}
+
+// ===================== 分析指令（兼容微调页） =====================
+function analyzeCommand(cmd) {
+  // 先看是否匹配预设key
+  if (outfitPresets[cmd]) { resultData = { ...outfitPresets[cmd] }; return; }
+  if (hiddenOutfits[cmd]) { resultData = { ...hiddenOutfits[cmd] }; return; }
+  // 兜底：默认霸道总裁
+  resultData = { ...outfitPresets['霸道总裁'] };
+}
+
+// ===================== 页面5加载动画 =====================
+function startLoading() {
+  const clothEls = ['👔','👗','🧥','👒','🧣','👟','🎩','🧤'];
+  const container = document.getElementById('loadingClothes');
+  container.innerHTML = '';
+  clothEls.forEach((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'cloth';
+    el.textContent = c;
+    const tx = (Math.random() - 0.5) * 200;
+    const ty = (Math.random() - 0.5) * 160;
+    const r = (Math.random() - 0.5) * 60;
+    el.style.cssText = `left:${20+i*28}px;top:${40+Math.random()*100}px;--d:${1.2+Math.random()*.8}s;--delay:${i*0.15}s;--tx:${tx}px;--ty:${ty}px;--r:${r}deg`;
+    container.appendChild(el);
+  });
+
+  const exprs = ['thinking','confused','happy','excited','happy'];
+  const texts = ['阿画正在比对尺码，好认真哦…','哇这套好像还不错耶？','可画魔法师在精心调配颜色～','快好啦，阿画在开心地整理领结…','用可画AI设计，真的超方便！'];
+  let pct = 0;
+  let ti = 0;
+  const bar = document.getElementById('tailFill');
+  const pctEl = document.getElementById('loadPercent');
+  const textEl = document.getElementById('loadText');
+  const monkeyEl = document.getElementById('p5Monkey');
+
+  clearInterval(window._loadTimer);
+  window._loadTimer = setInterval(() => {
+    pct += Math.random() * 8 + 4;
+    if (pct > 100) pct = 100;
+    bar.style.width = pct + '%';
+    pctEl.textContent = Math.round(pct) + '%';
+
+    if (pct % 20 < 10) {
+      monkeyEl.innerHTML = renderMonkeySVG({expression:exprs[Math.floor(pct / 20) % exprs.length],clothing:'underwear',scale:0.55});
+    }
+
+    if (pct > ti * 25) {
+      textEl.style.opacity = 0;
+      setTimeout(() => {
+        textEl.textContent = texts[ti % texts.length];
+        textEl.style.opacity = 1;
+        ti++;
+      }, 200);
+    }
+
+    if (pct >= 100) {
+      clearInterval(window._loadTimer);
+      setTimeout(() => goTo(6), 600);
+    }
+  }, 180);
+}
+
+// ===================== 页面6展示结果 =====================
+function showResult() {
+  const resultEl = document.getElementById('resultMonkey');
+  const beforeEl = document.getElementById('beforeMonkey');
+  const comment = document.getElementById('monkeyComment');
+
+  if (!resultData.type) {
+    resultData = { ...outfitPresets['霸道总裁'] };
+  }
+
+  // 变装前 - 穿内衣的小猴子
+  beforeEl.innerHTML = renderMonkeySVG({expression:'shy',clothing:'underwear',scale:0.5});
+
+  // 变装后 - 带表情的穿衣猴子（表情根据类型变化）
+  let resultExpr = 'happy';
+  if (resultData.type === 'weird') resultExpr = 'confused';
+  else if (resultData.type === 'funny') resultExpr = 'excited';
+  else if (resultData.type === 'casual') resultExpr = 'wink';
+
+  resultEl.innerHTML = renderMonkeySVG({expression:resultExpr,clothing:'outfit',outfit:resultOutfitKey,scale:0.5,spin:true});
+  comment.textContent = resultData.comment || '嗯…还行吧？';
+
+  // 入场动画spin-in由SVG的class处理
+}
+
+// ===================== 页面7微调 =====================
+function setAdjust(text) {
+  document.getElementById('adjustInput').value = text;
+}
+
+function doAdjust() {
+  const adj = document.getElementById('adjustInput').value.trim();
+  if (!adj) { showToast('嗯？想改什么呢？说说看吧～'); return; }
+  // SVG表情动画
+  const m = document.getElementById('p7Monkey');
+  m.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',scale:0.6});
+  setTimeout(() => { m.innerHTML = renderMonkeySVG({expression:'happy',clothing:'underwear',scale:0.6,bounce:true}); }, 800);
+  setTimeout(() => goTo(5), 1500);
+}
+
+// ===================== 页面8海报 =====================
+function initPoster() {
+  const pm = document.getElementById('posterMonkey');
+  const ia = document.getElementById('idAvatar');
+
+  // 海报大猴子 - 穿好衣服的效果
+  pm.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.6});
+
+  // 工牌头像 - 小猴子脸部特写
+  ia.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.3});
+  refreshQuote();
+}
+
+let quoteIdx = 0;
+function refreshQuote() {
+  const el = document.getElementById('posterQuote');
+  quoteIdx = (quoteIdx + 1) % quotes.length;
+  el.innerHTML = quotes[quoteIdx] + '<br><span style="font-size:11px;color:#999">👆 点击换一句毒鸡汤</span>';
+  el.style.transform = 'scale(1.03)';
+  setTimeout(() => { el.style.transform = 'scale(1)'; }, 200);
+}
+
+function savePoster() {
+  showToast('海报已保存到相册！（演示版）');
+}
+
+// ===================== 页面9分享 =====================
+function initStickerGrid() {
+  const grid = document.getElementById('stickerGrid');
+  grid.innerHTML = '';
+  const stickerExprs = ['happy','excited','wink','shy','surprised','thinking','confused','happy','excited'];
+
+  stickerExprs.forEach((exp, i) => {
+    const div = document.createElement('div');
+    div.className = 'sticker-item';
+    const svg = renderMonkeySVG({expression:exp,clothing:'underwear',scale:0.5});
+    div.innerHTML = `${svg}<div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:4px">阿画表情包 #${i+1}</div>`;
+    div.onclick = function() {
+      div.classList.add('sticker-shake');
+      setTimeout(() => div.classList.remove('sticker-shake'), 400);
+      showToast('阿画表情包get！快去分享给朋友吧～（演示版）');
+    };
+    grid.appendChild(div);
+  });
+  // 摇一摇
+  window.addEventListener('devicemotion', onShake);
+}
+
+let lastShake = 0;
+function onShake(e) {
+  const a = e.accelerationIncludingGravity;
+  if (!a) return;
+  const total = Math.abs(a.x) + Math.abs(a.y) + Math.abs(a.z);
+  const now = Date.now();
+  if (total > 25 && now - lastShake > 800) {
+    lastShake = now;
+    const items = document.querySelectorAll('.sticker-item');
+    const r = Math.floor(Math.random() * items.length);
+    items[r].classList.add('sticker-shake');
+    setTimeout(() => items[r].classList.remove('sticker-shake'), 400);
+    showToast('随机获得阿画限定表情包！🎊');
+  }
+}
+
+function copyText() {
+  const text = '我用一句话帮猴子搞定了面试穿搭！太好玩了！你也来试试 #可画大广赛 #猴子变白领 🐒✨';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const badge = document.getElementById('copyBadge');
+      badge.classList.add('show');
+      setTimeout(() => badge.classList.remove('show'), 2000);
+      showToast('分享文案已复制！快去发给朋友吧～');
+    });
+  } else {
+    showToast('分享文案已复制！快去发给朋友吧～');
+  }
+}
+
+// ===================== 页面10彩蛋 =====================
+const easterFrames = [
+  '🚪 公司大门缓缓打开…',
+  '👔 阿画穿着你搭配的衣服，深吸一口气…',
+  '🚶 踏进大厅，所有同事都好奇地抬起头～',
+  '👏👏👏 哇！全场鼓掌！',
+  '🏅 HR开心地走上前，给阿画戴上工牌…',
+  '📋 工牌上写着：\n「设计部实习生——阿画」',
+  '🐒 阿画开心地回头对你说：',
+  '💬 "谢谢你帮我搭配！用可画，你也能像我一样创造奇迹！"',
+  '🎉🎊✨ 撒花庆祝！阿画正式入职啦！'
+];
+
+function showEasterEgg() {
+  const overlay = document.getElementById('easterOverlay');
+  const scene = document.getElementById('easterScene');
+  overlay.classList.add('show');
+  let fi = 0;
+  scene.innerHTML = '';
+  function nextFrame() {
+    if (fi >= easterFrames.length) return;
+    const p = document.createElement('p');
+    p.textContent = easterFrames[fi];
+    p.style.cssText = 'animation:fadeInUp .4s ease;white-space:pre-wrap;margin:6px 0;font-size:17px';
+    scene.appendChild(p);
+    fi++;
+    if (fi < easterFrames.length) setTimeout(nextFrame, 900);
+  }
+  nextFrame();
+}
+
+function closeEasterEgg() {
+  document.getElementById('easterOverlay').classList.remove('show');
+}
+
+// ===================== Toast =====================
+function showToast(msg, dur = 2000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur);
+}
+
+// ===================== 添加CSS动画（彩蛋） =====================
+const style = document.createElement('style');
+style.textContent = '@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}';
+document.head.appendChild(style);
+
+// ===================== 初始化 =====================
+createStars();
+updateDots();
+initAllIcons();
+initAllMonkeys();
+</script>
+</body>
+</html>
