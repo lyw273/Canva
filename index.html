@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>一句咒语，猴子变白领 | Canva可画</title>
+<title>可画一句咒语，猴子变成白领 | Canva可画</title>
 <style>
 :root{
   --canva-blue:#00B4D8;
@@ -16,11 +16,11 @@
   --bg-light:#FFF9F0;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#0a0a14}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:url('bg.jpg') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center}
 /* 手机框外层 */
 .phone-frame{
   position:relative;margin:0 auto;width:100%;max-width:412px;height:100vh;
-  background:#0B0828;overflow:hidden;box-shadow:0 0 60px rgba(108,60,224,.4),0 0 0 3px #1a1a2e,0 0 0 8px #0d0d1a,0 20px 60px rgba(0,0,0,.7);
+  background:transparent;overflow:hidden;box-shadow:0 0 60px rgba(80,100,220,.4),0 0 0 3px #1a1a3e,0 0 0 8px #0d0d2a,0 20px 60px rgba(0,0,0,.7);
   border-radius:32px;display:flex;flex-direction:column;
 }
 /* 顶部状态栏区域 */
@@ -93,12 +93,45 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .monkey-svg.spin-in{animation:spinIn .5s cubic-bezier(.175,.885,.32,1.275)}
 @keyframes spinIn{from{transform:scale(0) rotate(-30deg)}to{transform:scale(1) rotate(0)}}
 
+/* 新增动作动画 */
+.monkey-svg.wave-arm .left-arm{animation:waveArm .6s ease-in-out infinite}
+@keyframes waveArm{0%,100%{transform:rotate(0) translate(0,0)}30%{transform:rotate(-25deg) translate(-6px,-8px)}60%{transform:rotate(-10deg) translate(-2px,-3px)}}
+.monkey-svg.nod-head .head-group{animation:nodHead .8s ease-in-out infinite}
+@keyframes nodHead{0%,100%{transform:translateY(0)}30%{transform:translateY(4px)}60%{transform:translateY(2px)}}
+.monkey-svg.dance-monkey{animation:danceBody .5s ease-in-out infinite}
+@keyframes danceBody{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-8px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-6px) rotate(4deg)}}
+.monkey-svg.wiggle-ears .left-ear,.monkey-svg.wiggle-ears .right-ear{animation:wiggleEar .4s ease-in-out infinite}
+.monkey-svg.wiggle-ears .right-ear{animation-delay:.2s}
+@keyframes wiggleEar{0%,100%{transform:rotate(0)}30%{transform:rotate(-8deg)}60%{transform:rotate(6deg)}}
+.monkey-svg.hop-monkey{animation:hopUp .45s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes hopUp{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-25px) scale(1.08)}70%{transform:translateY(-8px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+
+/* 爱心眼闪烁 */
+.monkey-svg .heart-eye{animation:heartPulse .8s ease-in-out infinite}
+@keyframes heartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* 泪滴动画 */
+.monkey-svg .tear-drop{animation:tearFall 1.2s ease-in infinite}
+@keyframes tearFall{0%{transform:translateY(0);opacity:1}100%{transform:translateY(18px);opacity:0}}
+
+/* 星星眼旋转 */
+.monkey-svg .star-eye{animation:starSpin 2s linear infinite;transform-origin:center}
+@keyframes starSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* 连续眨眼 */
+.monkey-svg .blink-group{animation:autoBlink 3s ease-in-out infinite}
+@keyframes autoBlink{0%,90%,100%{transform:scaleY(1)}93%{transform:scaleY(.05)}96%{transform:scaleY(1)}}
+
+/* 吐舌 */
+.monkey-svg .tongue-out{animation:tongueWag .5s ease-in-out infinite}
+@keyframes tongueWag{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+
 /* ===== 进度条 ===== */
 .progress-bar{width:80%;height:12px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin:16px auto}
 .progress-fill{height:100%;background:linear-gradient(90deg,#FFD166,#FF9A3C);border-radius:20px;transition:width .3s ease}
 
 /* ===== 页面1 启动页 ===== */
-#page1{background:linear-gradient(170deg,#0B0828 0%,#1C1368 50%,#3B1FA0 100%)}
+#page1{background:url('bg.jpg') center/cover no-repeat}
 .p1-title{font-size:32px;font-weight:900;color:#FFD166;text-align:center;text-shadow:0 2px 20px rgba(255,209,102,.4);line-height:1.2;margin:12px 0}
 .p1-sub{font-size:14px;color:rgba(255,255,255,.7);text-align:center;margin-bottom:24px}
 .star-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -106,14 +139,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
 
 /* ===== 页面2 ===== */
-#page2{background:linear-gradient(160deg,#0B0828,#18124A,#2B1F88)}
+#page2{background:url('bg.jpg') center/cover no-repeat}
 
 /* ===== 页面3 ===== */
-#page3{background:linear-gradient(150deg,#120830,#281A78,#3B28A0)}
+#page3{background:url('bg.jpg') center/cover no-repeat}
 .hint-rotate{font-size:13px;color:rgba(255,255,255,.7);text-align:center;padding:8px 20px;min-height:40px}
 
 /* ===== 页面4 ===== */
-#page4{background:linear-gradient(145deg,#0A0628,#1C1468,#3428A8)}
+#page4{background:url('bg.jpg') center/cover no-repeat}
 
 /* 方案卡片 */
 .outfit-card{
@@ -165,7 +198,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .blind-reveal-name{font-size:26px;color:#fff;font-weight:900;text-align:center;animation:fadeInUp .5s ease}
 
 /* ===== 页面5 加载 ===== */
-#page5{background:linear-gradient(135deg,#0B0828,#1A1060,#3628A0)}
+#page5{background:url('bg.jpg') center/cover no-repeat}
 .loading-clothes{position:relative;width:260px;height:200px;margin:0 auto}
 .cloth{position:absolute;font-size:28px;animation:flyCloth var(--d) var(--delay) ease-in-out infinite alternate}
 @keyframes flyCloth{0%{transform:translate(0,0) rotate(0deg);opacity:0}50%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) rotate(var(--r));opacity:.6}}
@@ -175,7 +208,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .tail-tip{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;background:#8B4513;border-radius:50%}
 
 /* ===== 页面6 结果 ===== */
-#page6{background:linear-gradient(150deg,#0B0828,#1A1260,#2C2088)}
+#page6{background:url('bg.jpg') center/cover no-repeat}
 .compare-wrap{display:flex;gap:12px;align-items:flex-start;justify-content:center;width:100%;padding:0 16px}
 .compare-card{
   flex:1;max-width:150px;background:rgba(255,255,255,.08);border-radius:14px;
@@ -187,7 +220,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .result-btns{display:flex;flex-direction:column;gap:10px;width:90%;max-width:320px;margin:16px auto 0}
 
 /* ===== 页面7 海报 ===== */
-#page7{background:linear-gradient(160deg,#080420,#18125A,#251880)}
+#page7{background:url('bg.jpg') center/cover no-repeat}
 .poster-card{
   background:linear-gradient(145deg,#fff,#f0f8ff);border-radius:16px;
   width:90%;max-width:320px;padding:16px;margin:0 auto;
@@ -210,7 +243,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .poster-brand{text-align:center;font-size:11px;color:#999;margin-top:8px}
 
 /* ===== 页面8 分享 ===== */
-#page8{background:linear-gradient(150deg,#0B0828,#1A1260,#221878)}
+#page8{background:url('bg.jpg') center/cover no-repeat}
 .share-copy{
   background:rgba(255,255,255,.08);border-radius:16px;padding:16px;
   color:rgba(255,255,255,.85);font-size:14px;line-height:1.8;
@@ -235,7 +268,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .shake-tip{font-size:12px;color:rgba(255,255,255,.5);text-align:center;margin-top:4px}
 
 /* ===== 页面9 品牌 ===== */
-#page9{background:linear-gradient(160deg,#080420,#1A1060,#221878)}
+#page9{background:url('bg.jpg') center/cover no-repeat}
 .brand-logo{font-size:36px;font-weight:900;color:#FFD166;text-align:center;margin-bottom:4px}
 .brand-desc{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.8;padding:0 20px;margin-bottom:16px}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:90%;max-width:340px;margin:0 auto}
@@ -273,18 +306,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s}
 .dot.active{background:#FFD166;width:20px;border-radius:3px}
 
-/* 返回按钮 */
-.back-btn{
-  position:absolute;top:8px;left:8px;z-index:200;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;
-  transition:all .2s;backdrop-filter:blur(8px);
-}
-.back-btn:hover{background:rgba(255,255,255,.2)}
-
 /* 阿画SVG容器 */
-.monkey-big{display:flex;align-items:center;justify-content:center;min-height:180px}
-.monkey-big .monkey-svg{width:170px;height:204px}
+.monkey-big{display:flex;align-items:center;justify-content:center;min-height:220px}
+.monkey-big .monkey-svg{width:210px;height:252px}
 .monkey-med{display:flex;align-items:center;justify-content:center}
 .monkey-expression{display:inline-block;transition:all .3s}
 #p2Monkey,#p3Monkey,#p4Monkey,#p5Monkey{display:flex;align-items:center;justify-content:center}
@@ -323,9 +347,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 <!-- 页面指示点 -->
 <div class="page-dots" id="pageDots"></div>
 
-<!-- 返回按钮 -->
-<button class="back-btn" id="backBtn" onclick="goBack()" style="display:none">← 返回</button>
-
 <!-- ===================== 页面1：启动页 ===================== -->
 <div class="page active" id="page1">
   <div style="text-align:center;padding:10px;width:100%;max-width:400px">
@@ -333,7 +354,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
     <div class="bubble" style="margin:8px auto 0;font-size:13px">
       明天就要面试啦，我还没衣服穿呜呜… 救救我！🙏
     </div>
-    <div style="font-size:28px;font-weight:800;color:#fff;line-height:1.2;text-shadow:0 2px 12px rgba(108,60,224,.4);margin-top:14px">一句咒语<br>猴子变白领</div>
+    <div style="font-size:28px;font-weight:800;color:#fff;line-height:1.2;text-shadow:0 2px 12px rgba(108,60,224,.4);margin-top:14px">可画一句咒语<br>猴子变成白领</div>
     <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">你的设计，从一句话开始 — Canva 可画</div>
     <button class="btn btn-primary shake" onclick="goTo(2)" style="margin-top:8px;font-size:15px;padding:12px 36px">
       🚀 拯救阿画
@@ -769,7 +790,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
     <div class="share-copy" onclick="copyText()" id="shareCopy">
       <div class="copy-badge" id="copyBadge">✓ 已复制</div>
       我用一句话帮猴子搞定了面试穿搭！太好玩了！<br>
-      你也来试试 #可画大广赛 #猴子变白领 🐒✨<br>
+      你也来试试 #可画大广赛 #猴子变成白领 🐒✨<br>
       <span style="font-size:11px;opacity:.6">👆 点击复制分享文案</span>
     </div>
 
@@ -907,13 +928,14 @@ const outfits = { ...outfitPresets, ...hiddenOutfits };
 // 基于参考图：暖棕毛色、大圆耳朵、无辜大眼睛、蓬松尾巴、手插口袋
 function renderMonkeySVG(opts = {}) {
   const {
-    expression = 'happy',  // happy | surprised | thinking | shy | excited | confused | wink
+    expression = 'happy',  // happy|surprised|thinking|shy|excited|confused|wink|love|cool|cry|angry|tongue|sleepy
     clothing = 'underwear', // underwear | none | outfit
     outfit = '',            // 服装key，clothing='outfit'时生效
     scale = 1,
     spin = false,
     shake = false,
-    bounce = false
+    bounce = false,
+    action = ''             // 动作: 'wave','nod','dance','wiggleEars','hop'
   } = opts;
 
   // 表情参数映射
@@ -924,7 +946,13 @@ function renderMonkeySVG(opts = {}) {
     shy:     { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1, pupilDx: -2, pupilDy: 0, mouth: 'smile-small', mouthOpen: false, blush: 0.6, browAngle: 5 },
     excited: { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1.2, pupilDx: 0, pupilDy: 0, mouth: 'grin', mouthOpen: true, blush: 0.5, browAngle: -10 },
     confused:{ eyeL: 'ellipse', eyeR: 'ellipse-squint', eyeScale: 1, pupilDx: 1, pupilDy: 1, mouth: 'wavy', mouthOpen: false, blush: 0.2, browAngle: 8 },
-    wink:    { eyeL: 'ellipse', eyeR: 'close', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'grin', mouthOpen: true, blush: 0.4, browAngle: -5 }
+    wink:    { eyeL: 'ellipse', eyeR: 'close', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'grin', mouthOpen: true, blush: 0.4, browAngle: -5 },
+    love:    { eyeL: 'heart', eyeR: 'heart', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'smile', mouthOpen: false, blush: 0.7, browAngle: -6 },
+    cool:    { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 0.7, pupilDx: 2, pupilDy: -3, mouth: 'smirk', mouthOpen: false, blush: 0, browAngle: -12 },
+    cry:     { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 1, pupilDx: 0, pupilDy: 3, mouth: 'frown', mouthOpen: true, blush: 0.3, browAngle: 12 },
+    angry:   { eyeL: 'ellipse', eyeR: 'ellipse', eyeScale: 0.8, pupilDx: -1, pupilDy: -2, mouth: 'teeth', mouthOpen: false, blush: 0.5, browAngle: -18 },
+    tongue:  { eyeL: 'close', eyeR: 'ellipse', eyeScale: 1, pupilDx: 0, pupilDy: 0, mouth: 'tongue-out', mouthOpen: true, blush: 0.5, browAngle: -5 },
+    sleepy:  { eyeL: 'half', eyeR: 'half', eyeScale: 0.8, pupilDx: 0, pupilDy: 3, mouth: 'smile-small', mouthOpen: false, blush: 0.1, browAngle: 6 }
   };
 
   const ex = exprMap[expression] || exprMap['happy'];
@@ -1166,6 +1194,11 @@ function renderMonkeySVG(opts = {}) {
   if (spin) cls += ' spin-in';
   if (shake) cls += ' shake-monkey';
   if (bounce) cls += ' bounce-monkey';
+  if (action === 'wave') cls += ' wave-arm';
+  if (action === 'nod') cls += ' nod-head';
+  if (action === 'dance') cls += ' dance-monkey';
+  if (action === 'wiggleEars') cls += ' wiggle-ears';
+  if (action === 'hop') cls += ' hop-monkey';
 
   // 瞳孔偏移
   const pdX = ex.pupilDx;
@@ -1184,6 +1217,23 @@ function renderMonkeySVG(opts = {}) {
     if (side === 'R' && ex.eyeR === 'close') {
       // 眨眼 - 弯线
       return `<path d="M${cx-8},${cy} Q${cx},${cy-5} ${cx+8},${cy}" stroke="#4A2A15" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    }
+    if (ex.eyeL === 'heart' || (side === 'R' && ex.eyeR === 'heart')) {
+      // 爱心眼
+      return `<g class="heart-eye" transform="translate(${cx-8},${cy-7}) scale(.7)">
+                <path d="M8,6 Q0,0 4,0 Q8,0 8,6 Q8,0 12,0 Q16,0 8,6Z" fill="#E83E59"/>
+                <circle cx="5" cy="2" r="1.5" fill="#FFF" opacity=".8"/>
+              </g>`;
+    }
+    if (ex.eyeL === 'half' || (side === 'R' && ex.eyeR === 'half')) {
+      // 半闭眼（困）
+      return `<path d="M${cx-8},${cy} Q${cx},${cy+3} ${cx+8},${cy}" stroke="#4A2A15" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    }
+    if (ex.eyeL === 'star' || (side === 'R' && ex.eyeR === 'star')) {
+      // 星星眼（酷）
+      return `<g class="star-eye" transform="translate(${cx-9},${cy-9})">
+                <polygon points="9,0 11,6 18,6 13,10 15,17 9,13 3,17 5,10 0,6 7,6" fill="#FFD700"/>
+              </g>`;
     }
     if (side === 'R' && ex.eyeR === 'ellipse-squint') {
       // 眯眼
@@ -1219,6 +1269,16 @@ function renderMonkeySVG(opts = {}) {
         return `<path d="M${mx-10},${my} Q${mx},${my+2} ${mx+5},${my+3}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
       case 'wavy':
         return `<path d="M${mx-10},${my} Q${mx-5},${my-4} ${mx},${my+2} Q${mx+5},${my-2} ${mx+10},${my}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      case 'frown':
+        return `<path d="M${mx-12},${my+2} Q${mx},${my-6} ${mx+12},${my+2}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      case 'teeth':
+        return `<path d="M${mx-14},${my} Q${mx},${my+12} ${mx+14},${my}" fill="#4A2010" stroke="#B5653A" stroke-width="1"/>
+                <line x1="${mx-8}" y1="${my+1}" x2="${mx-8}" y2="${my+7}" stroke="#FFF" stroke-width="1" opacity=".5"/>
+                <line x1="${mx}" y1="${my+1}" x2="${mx}" y2="${my+9}" stroke="#FFF" stroke-width="1" opacity=".5"/>
+                <line x1="${mx+8}" y1="${my+1}" x2="${mx+8}" y2="${my+7}" stroke="#FFF" stroke-width="1" opacity=".5"/>`;
+      case 'tongue-out':
+        return `<path d="M${mx-10},${my} Q${mx},${my+6} ${mx+10},${my}" fill="#4A2010"/>
+                <ellipse cx="${mx+2}" cy="${my+8}" rx="5" ry="3" fill="#E85050" opacity=".8"/>`;
       default:
         return `<path d="M${mx-12},${my} Q${mx},${my+9} ${mx+12},${my}" stroke="#B5653A" stroke-width="2" fill="none" stroke-linecap="round"/>`;
     }
@@ -1267,11 +1327,13 @@ function renderMonkeySVG(opts = {}) {
     ${clothing !== 'underwear' && clothing !== 'outfit' ? `<ellipse cx="100" cy="165" rx="24" ry="20" fill="#E8C4A0" opacity=".6"/>` : ''}
 
     <!-- 左臂 -->
+    <g class="left-arm">
     <path d="M64,142 Q50,150 52,168 Q54,170 58,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
     <!-- 左手 -->
     <ellipse cx="52" cy="170" rx="10" ry="8" fill="#D4A06A"/>
     <circle cx="46" cy="166" r="3.5" fill="#D4A06A"/>
     <circle cx="49" cy="174" r="3.5" fill="#D4A06A"/>
+    </g>
 
     <!-- 右臂 -->
     <path d="M136,142 Q150,150 148,168 Q146,170 142,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
@@ -1284,16 +1346,21 @@ function renderMonkeySVG(opts = {}) {
     <ellipse cx="100" cy="112" rx="48" ry="16" fill="rgba(0,0,0,.05)"/>
 
     <!-- 左耳 -->
+    <g class="left-ear">
     <circle cx="44" cy="72" r="22" fill="#C8804E"/>
     <circle cx="44" cy="72" r="14" fill="#F0B4A0"/>
     <circle cx="44" cy="72" r="7" fill="#E89A8A"/>
+    </g>
 
     <!-- 右耳 -->
+    <g class="right-ear">
     <circle cx="156" cy="72" r="22" fill="#C8804E"/>
     <circle cx="156" cy="72" r="14" fill="#F0B4A0"/>
     <circle cx="156" cy="72" r="7" fill="#E89A8A"/>
+    </g>
 
-    <!-- 头部 -->
+    <!-- 头部 + 脸部 + 五官 -->
+    <g class="head-group">
     <ellipse cx="100" cy="78" rx="45" ry="42" fill="#C8804E"/>
 
     <!-- 脸部浅色区域 -->
@@ -1313,10 +1380,12 @@ function renderMonkeySVG(opts = {}) {
     <path d="M${80+browLift*0.3},${58} Q${88+browLift},${54+browLift} ${96+browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
     <path d="M${120-browLift*0.3},${58} Q${112-browLift},${54+browLift} ${104-browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
 
-    <!-- 眼睛 -->
+    <!-- 眼睛（自动眨眼） -->
+    <g class="blink-group">
     <g class="eye-group">
       ${renderEye(86, 68, 'L')}
       ${renderEye(114, 68, 'R')}
+    </g>
     </g>
 
     <!-- 鼻子 -->
@@ -1335,12 +1404,24 @@ function renderMonkeySVG(opts = {}) {
     <ellipse cx="78" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
     <ellipse cx="122" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
 
+    <!-- 泪滴（哭表情） -->
+    ${expression === 'cry' ? `
+    <g class="tear-drop" style="animation:tearFall 1.2s ease-in infinite">
+      <circle cx="80" cy="92" r="2.5" fill="#85C8F5" opacity=".7"/>
+      <ellipse cx="80" cy="94.5" rx="1.8" ry="2.5" fill="#85C8F5" opacity=".5"/>
+    </g>
+    <g class="tear-drop" style="animation:tearFall 1.2s ease-in infinite;animation-delay:.6s">
+      <circle cx="122" cy="92" r="2.5" fill="#85C8F5" opacity=".7"/>
+      <ellipse cx="122" cy="94.5" rx="1.8" ry="2.5" fill="#85C8F5" opacity=".5"/>
+    </g>` : ''}
+
     <!-- 面颊细节毛 -->
     <path d="M72,70 Q76,68 78,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
     <path d="M128,70 Q124,68 122,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
 
     <!-- 头部配饰（眼镜/帽子/假发/王冠） -->
     ${clothing === 'outfit' ? renderHeadAccessoriesSVG(outfit) : ''}
+    </g>
 
   </svg>`;
 
@@ -1481,12 +1562,7 @@ function goTo(n) {
   next.classList.add('active');
   currentPage = n;
   updateDots();
-  document.getElementById('backBtn').style.display = n > 1 ? 'block' : 'none';
   onPageEnter(n);
-}
-
-function goBack() {
-  if (currentPage > 1) goTo(currentPage - 1);
 }
 
 function updateDots() {
@@ -1501,15 +1577,58 @@ function updateDots() {
 
 // ===================== 页面进入逻辑 =====================
 function onPageEnter(n) {
+  // 清除上一页的定时器
+  clearInterval(window._p2Timer);
+  clearInterval(window._loadTimer);
+  clearInterval(hintTimer);
+  clearInterval(window._idleTimer);
+
   // 统一渲染SVG猴子
   initAllMonkeys();
   if (n === 2) animatePage2();
   if (n === 3) startHintRotate();
-  if (n === 4) setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.55});
+  if (n === 4) setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.7});
   if (n === 5) startLoading();
   if (n === 6) showResult();
   if (n === 7) initPoster();
   if (n === 8) initStickerGrid();
+
+  // 全局待机动画：每3秒随机变换当前页猴子的表情
+  const idleMap = {
+    1: 'p1Monkey',
+    2: 'p2Monkey',
+    3: 'p3Monkey',
+    4: 'p4Monkey',
+    5: 'p5Monkey',
+    6: 'resultMonkey',
+    7: 'posterMonkey',
+    8: null
+  };
+  const idleId = idleMap[n];
+  if (!idleId) return;
+  const idleExprs = ['happy','excited','wink','love','cool','tongue','sleepy','surprised'];
+  const idleActions = ['','bounce','wiggleEars','hop'];
+  window._idleTimer = setInterval(() => {
+    const el = document.getElementById(idleId);
+    if (!el) return;
+    const ie = idleExprs[Math.floor(Math.random()*idleExprs.length)];
+    const ia = idleActions[Math.floor(Math.random()*idleActions.length)];
+    // 20%概率保持当前不动
+    if (Math.random() < 0.2) return;
+    // 穿衣服的页面用对应参数
+    if (n === 6) {
+      let rx = 'happy';
+      if (resultData.type === 'weird') rx = 'cry';
+      else if (resultData.type === 'funny') rx = 'tongue';
+      else if (resultData.type === 'casual') rx = 'wink';
+      else rx = 'love';
+      el.innerHTML = renderMonkeySVG({expression:rx,clothing:'outfit',outfit:resultOutfitKey,scale:0.7,spin:true});
+    } else if (n === 7) {
+      el.innerHTML = renderMonkeySVG({expression:ie,clothing:'outfit',outfit:resultOutfitKey,scale:0.8,action:'nod'});
+    } else {
+      el.innerHTML = renderMonkeySVG({expression:ie,clothing:'underwear',scale:n===2?1.0:n===1?0.75:n===5?0.75:0.7,action:ia});
+    }
+  }, 3000);
 }
 
 // 设置SVG猴子
@@ -1521,23 +1640,26 @@ function setMonkeySVG(id, opts) {
 
 // 初始化所有页面的猴子
 function initAllMonkeys() {
-  setMonkeySVG('p1Monkey', {expression:'happy',clothing:'underwear',scale:0.55});
-  setMonkeySVG('p2Monkey', {expression:'surprised',clothing:'underwear',scale:0.75});
-  setMonkeySVG('p3Monkey', {expression:'excited',clothing:'underwear',scale:0.5});
-  setMonkeySVG('p5Monkey', {expression:'thinking',clothing:'underwear',scale:0.55});
-  setMonkeySVG('beforeMonkey', {expression:'shy',clothing:'underwear',scale:0.5});
+  setMonkeySVG('p1Monkey', {expression:'happy',clothing:'underwear',scale:0.75,action:'wave'});
+  setMonkeySVG('p2Monkey', {expression:'surprised',clothing:'underwear',scale:1.0,action:'dance'});
+  setMonkeySVG('p3Monkey', {expression:'excited',clothing:'underwear',scale:0.7,action:'wiggleEars'});
+  setMonkeySVG('p5Monkey', {expression:'thinking',clothing:'underwear',scale:0.75,action:'shake'});
+  setMonkeySVG('beforeMonkey', {expression:'shy',clothing:'underwear',scale:0.7,action:'wiggleEars'});
 }
 
 // ===================== 页面2动画 =====================
+const allExpr = ['happy','surprised','thinking','excited','wink','confused','love','cool','tongue','sleepy'];
 function animatePage2() {
   const el = document.getElementById('p2Monkey');
-  const exprs = ['surprised','happy','thinking','excited','surprised'];
   let i = 0;
-  el.innerHTML = renderMonkeySVG({expression:'surprised',clothing:'underwear',scale:0.75});
-  const t = setInterval(() => {
-    el.innerHTML = renderMonkeySVG({expression:exprs[i++ % exprs.length],clothing:'underwear',scale:0.75});
-    if (i > 8) clearInterval(t);
-  }, 400);
+  el.innerHTML = renderMonkeySVG({expression:allExpr[0],clothing:'underwear',scale:1.0,action:'dance'});
+  window._p2Timer = setInterval(() => {
+    i++;
+    const ex = allExpr[i % allExpr.length];
+    const acts = ['','wave','bounce','hop'];
+    const a = acts[i % acts.length];
+    el.innerHTML = renderMonkeySVG({expression:ex,clothing:'underwear',scale:1.0,action:a});
+  }, 900);
 }
 
 // ===================== 页面3提示轮播 =====================
@@ -1560,10 +1682,10 @@ function selectOutfit(key) {
   resultData = outfitPresets[key];
   resultOutfitKey = key;
   userCmd = key;
-  // 点击动画 - SVG表情变化
+  // 点击动画 - SVG表情变化（更丰富）
   const monkey = document.getElementById('p4Monkey');
-  monkey.innerHTML = renderMonkeySVG({expression:'excited',clothing:'underwear',bounce:true,scale:0.5});
-  setTimeout(() => { monkey.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',bounce:true,scale:0.5}); }, 500);
+  monkey.innerHTML = renderMonkeySVG({expression:'love',clothing:'underwear',bounce:true,scale:0.7,action:'hop'});
+  setTimeout(() => { monkey.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',bounce:true,scale:0.7}); }, 500);
   setTimeout(() => goTo(5), 800);
 }
 
@@ -1597,7 +1719,7 @@ function triggerBlindBox() {
   setTimeout(() => {
     overlay.classList.remove('show');
     const m = document.getElementById('p4Monkey');
-    m.innerHTML = renderMonkeySVG({expression:'surprised',clothing:'underwear',bounce:true,scale:0.5});
+    m.innerHTML = renderMonkeySVG({expression:'love',clothing:'underwear',bounce:true,scale:0.7,action:'wave'});
     setTimeout(() => goTo(5), 400);
   }, 1800);
 }
@@ -1627,8 +1749,8 @@ function startLoading() {
     container.appendChild(el);
   });
 
-  const exprs = ['thinking','confused','happy','excited','happy'];
-  const texts = ['阿画正在比对尺码，好认真哦…','哇这套好像还不错耶？','可画魔法师在精心调配颜色～','快好啦，阿画在开心地整理领结…','用可画AI设计，真的超方便！'];
+  const exprs = ['thinking','confused','happy','excited','wink','love','cool','tongue'];
+  const texts = ['阿画正在比对尺码，好认真哦…','哇这套好像还不错耶？','可画魔法师在精心调配颜色～','快好啦，阿画在开心地整理领结…','用可画AI设计，真的超方便！','阿画偷偷在衣服上画了个小香蕉🍌','这套穿搭阿画自己也想穿！','马上就好，阿画在练习走秀步～'];
   let pct = 0;
   let ti = 0;
   const bar = document.getElementById('tailFill');
@@ -1644,7 +1766,7 @@ function startLoading() {
     pctEl.textContent = Math.round(pct) + '%';
 
     if (pct % 20 < 10) {
-      monkeyEl.innerHTML = renderMonkeySVG({expression:exprs[Math.floor(pct / 20) % exprs.length],clothing:'underwear',scale:0.55});
+      monkeyEl.innerHTML = renderMonkeySVG({expression:exprs[Math.floor(pct / 20) % exprs.length],clothing:'underwear',scale:0.75});
     }
 
     if (pct > ti * 25) {
@@ -1673,16 +1795,17 @@ function showResult() {
     resultData = { ...outfitPresets['霸道总裁'] };
   }
 
-  // 变装前 - 穿内衣的小猴子
-  beforeEl.innerHTML = renderMonkeySVG({expression:'shy',clothing:'underwear',scale:0.5});
+  // 变装前 - 穿内衣的小猴子（跳跃动画）
+  beforeEl.innerHTML = renderMonkeySVG({expression:'shy',clothing:'underwear',scale:0.7,action:'hop'});
 
   // 变装后 - 带表情的穿衣猴子（表情根据类型变化）
   let resultExpr = 'happy';
-  if (resultData.type === 'weird') resultExpr = 'confused';
-  else if (resultData.type === 'funny') resultExpr = 'excited';
+  if (resultData.type === 'weird') resultExpr = 'cry';
+  else if (resultData.type === 'funny') resultExpr = 'tongue';
   else if (resultData.type === 'casual') resultExpr = 'wink';
+  else resultExpr = 'love';  // 默认霸道总裁用爱心眼
 
-  resultEl.innerHTML = renderMonkeySVG({expression:resultExpr,clothing:'outfit',outfit:resultOutfitKey,scale:0.5,spin:true});
+  resultEl.innerHTML = renderMonkeySVG({expression:resultExpr,clothing:'outfit',outfit:resultOutfitKey,scale:0.7,spin:true});
   comment.textContent = resultData.comment || '嗯…还行吧？';
 
   // 入场动画spin-in由SVG的class处理
@@ -1693,11 +1816,11 @@ function initPoster() {
   const pm = document.getElementById('posterMonkey');
   const ia = document.getElementById('idAvatar');
 
-  // 海报大猴子 - 穿好衣服的效果
-  pm.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.6});
+  // 海报大猴子 - 点头动画
+  pm.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.8,action:'nod'});
 
-  // 工牌头像 - 小猴子脸部特写
-  ia.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.3});
+  // 工牌头像 - 爱心眼
+  ia.innerHTML = renderMonkeySVG({expression:'love',clothing:'outfit',outfit:resultOutfitKey,scale:0.4});
   refreshQuote();
 }
 
@@ -1718,12 +1841,14 @@ function savePoster() {
 function initStickerGrid() {
   const grid = document.getElementById('stickerGrid');
   grid.innerHTML = '';
-  const stickerExprs = ['happy','excited','wink','shy','surprised','thinking','confused','happy','excited'];
+  const stickerExprs = ['happy','excited','wink','shy','surprised','thinking','love','cool','tongue','cry','sleepy','confused'];
 
   stickerExprs.forEach((exp, i) => {
     const div = document.createElement('div');
     div.className = 'sticker-item';
-    const svg = renderMonkeySVG({expression:exp,clothing:'underwear',scale:0.5});
+    const acts = ['','wiggleEars','hop'];
+    const a = acts[i % acts.length];
+    const svg = renderMonkeySVG({expression:exp,clothing:'underwear',scale:0.65,action:a});
     div.innerHTML = `${svg}<div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:4px">阿画表情包 #${i+1}</div>`;
     div.onclick = function() {
       div.classList.add('sticker-shake');
@@ -1753,7 +1878,7 @@ function onShake(e) {
 }
 
 function copyText() {
-  const text = '我用一句话帮猴子搞定了面试穿搭！太好玩了！你也来试试 #可画大广赛 #猴子变白领 🐒✨';
+  const text = '我用一句话帮猴子搞定了面试穿搭！太好玩了！你也来试试 #可画大广赛 #猴子变成白领 🐒✨';
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text).then(() => {
       const badge = document.getElementById('copyBadge');
