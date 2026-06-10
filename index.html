@@ -44,6 +44,10 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .page.prev{transform:translateX(-100%);pointer-events:none;opacity:0}
 .page.active{transform:translateX(0);pointer-events:all;opacity:1}
 
+/* page4 穿搭选择页 - 隐藏滚动条 */
+#page4{scrollbar-width:none}
+#page4::-webkit-scrollbar{display:none}
+
 /* ===== 通用样式 ===== */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
@@ -169,6 +173,28 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .outfit-card-name{font-size:13px;font-weight:700;color:#FFD166;position:relative;z-index:1}
 .outfit-card-desc{font-size:11px;color:rgba(255,255,255,.55);position:relative;z-index:1;line-height:1.4}
 
+/* 穿搭卡片网格容器 */
+#outfitGrid{
+  overflow-y:auto;
+  max-height:calc(100dvh - 240px);
+  padding:2px 4px 4px;
+  scrollbar-width:none;
+}
+#outfitGrid::-webkit-scrollbar{display:none}
+/* 两列布局下加大卡片 */
+#outfitGrid .outfit-card{
+  min-height:130px;
+  padding:10px 8px;
+}
+#outfitGrid .outfit-card-icon{
+  height:80px;
+}
+/* 下拉提示淡入淡出 */
+@keyframes hintFade{
+  0%,100%{opacity:.45}
+  50%{opacity:.18}
+}
+
 /* 命运盲盒按钮 */
 .blind-box-btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -284,13 +310,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .easter-scene{font-size:18px;color:#fff;text-align:center;line-height:2;padding:30px}
 .easter-close{margin-top:20px}
 
-/* 导航提示 */
-.page-dots{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  display:flex;gap:6px;z-index:100;
-}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s}
-.dot.active{background:#FFD166;width:20px;border-radius:3px}
+/* 导航提示（已隐藏） */
+.page-dots{display:none !important}
 
 /* 阿画SVG容器 */
 .monkey-big{display:flex;align-items:center;justify-content:center;min-height:220px}
@@ -621,110 +642,53 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
   </div>
 </div>
 
-<!-- ===================== 页面4：六大方案选择 ===================== -->
+<!-- ===================== 页面4：穿搭选择（卡片网格） ===================== -->
 <div class="page hidden" id="page4">
-  <div style="text-align:center;padding:8px 12px 10px;width:100%;max-width:420px">
+  <div style="text-align:center;padding:6px 0 10px;width:100%;max-width:420px">
+    <!-- 顶部横幅 -->
+    <div style="background:linear-gradient(135deg,#6C3CE0,#00B4D8);border-radius:12px;padding:10px 16px;margin:0 4px 10px;box-shadow:0 4px 16px rgba(108,60,224,.4)">
+      <div style="font-size:15px;font-weight:800;color:#fff">🎨 可画AI已变装</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:2px">请选择你最喜欢的穿搭 ✨</div>
+    </div>
     <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px">🪄 可画魔法师施法台</div>
-    <div id="p4Monkey"></div>
+    <div id="p4Monkey" style="height:72px;display:flex;align-items:center;justify-content:center"></div>
     <div class="bubble left" style="margin:2px auto 8px;font-size:12px;max-width:240px">
       选一套穿搭吧～ 我都听你的！😊
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:360px;margin:0 auto">
-      <!-- 方案一：霸道总裁 -->
-      <div class="outfit-card" onclick="selectOutfit('霸道总裁')">
-        <div class="outfit-card-icon" data-icon="霸道总裁"></div>
-        <div class="outfit-card-name">霸道总裁猴</div>
-        <div class="outfit-card-desc">双排扣西装 · 金表</div>
-      </div>
-      <!-- 方案二：格子程序猿 -->
-      <div class="outfit-card" onclick="selectOutfit('格子程序猿')">
-        <div class="outfit-card-icon" data-icon="格子程序猿"></div>
-        <div class="outfit-card-name">格子衫程序猿</div>
-        <div class="outfit-card-desc">格子衫 · 牛仔裤 · 眼镜</div>
-      </div>
-      <!-- 方案三：艺术总监 -->
-      <div class="outfit-card" onclick="selectOutfit('艺术总监')">
-        <div class="outfit-card-icon" data-icon="艺术总监"></div>
-        <div class="outfit-card-name">艺术总监猴</div>
-        <div class="outfit-card-desc">高领毛衣 · 贝雷帽</div>
-      </div>
-      <!-- 方案四：夏威夷度假 -->
-      <div class="outfit-card" onclick="selectOutfit('夏威夷度假')">
-        <div class="outfit-card-icon" data-icon="夏威夷度假"></div>
-        <div class="outfit-card-name">夏威夷度假猴</div>
-        <div class="outfit-card-desc">花衬衫 · 短裤 · 草帽</div>
-      </div>
-      <!-- 方案五：香蕉狂热粉 -->
-      <div class="outfit-card" onclick="selectOutfit('香蕉狂热粉')">
-        <div class="outfit-card-icon" data-icon="香蕉狂热粉"></div>
-        <div class="outfit-card-name">香蕉狂热粉</div>
-        <div class="outfit-card-desc">香蕉印花 · 黄领结</div>
-      </div>
-      <!-- 方案六：超人外穿 -->
-      <div class="outfit-card" onclick="selectOutfit('超人外穿')">
-        <div class="outfit-card-icon" data-icon="超人外穿"></div>
-        <div class="outfit-card-name">超人内裤外穿</div>
-        <div class="outfit-card-desc">紧身衣 · 披风 · M标志</div>
-      </div>
+    <!-- 穿搭卡片网格 -->
+    <div id="outfitGrid" style="
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      width:100%;
+      max-width:360px;
+      margin:0 auto 0;
+    "></div>
+
+    <!-- 下拉提示 -->
+    <div id="scrollHint" style="
+      display:flex;align-items:center;justify-content:center;gap:5px;
+      margin:6px 0 8px;
+      font-size:11px;color:rgba(255,255,255,.45);
+      animation:hintFade 1.6s ease-in-out infinite;
+    ">
+      <span style="font-size:14px">↕</span> 上下滑动查看全部穿搭
     </div>
 
-    <!-- 命运盲盒 -->
-    <button class="blind-box-btn" onclick="triggerBlindBox()">
-      <span class="blind-box-dice">🎲</span>
-      <span>命运盲盒</span>
-      <span class="blind-box-sub">随机穿搭 · 隐藏款待解锁</span>
+    <!-- 确定按钮 -->
+    <button class="btn btn-primary" id="outfitConfirmBtn" onclick="confirmOutfit()"
+      style="margin:0 auto;font-size:14px;padding:12px 36px;width:90%;max-width:300px;opacity:.4;pointer-events:none">
+      ✅ 确定穿上这套！
     </button>
   </div>
 </div>
 
 <!-- ===================== 页面5：AI生成中 ===================== -->
-<div class="page hidden" id="page5">
-  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
-    <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:6px">⚡ 魔法生效中…</div>
-    <div class="loading-clothes" id="loadingClothes"></div>
-    <div style="margin:4px 0;animation:pulse .6s infinite" id="p5Monkey"></div>
-    <div class="load-text" id="loadText">阿画正在认真准备，稍等哦…</div>
-    <div class="monkey-tail-bar">
-      <div class="tail-fill" id="tailFill" style="width:0%">
-        <div class="tail-tip"></div>
-      </div>
-    </div>
-    <div style="font-size:12px;color:rgba(255,255,255,.5)" id="loadPercent">0%</div>
-  </div>
-</div>
+<!-- 已删除 - 直接跳转至海报页 -->
 
 <!-- ===================== 页面6：变装结果 ===================== -->
-<div class="page hidden" id="page6">
-  <div style="text-align:center;padding:10px;width:100%;max-width:400px">
-    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">✨ 变装完成！</div>
-
-    <div class="compare-wrap">
-      <div class="compare-card">
-        <div class="compare-label">变装前</div>
-        <div class="outfit-display" id="beforeMonkey"></div>
-      </div>
-      <div style="display:flex;align-items:center;font-size:24px;color:#FFD166;margin:0 2px">▶</div>
-      <div class="compare-card new-card">
-        <div class="compare-label" style="color:#FFD166">变装后</div>
-        <div class="outfit-display" id="resultMonkey"></div>
-      </div>
-    </div>
-
-    <div class="bubble" style="margin:8px auto;font-size:12px;background:#FFF9E3" id="monkeyComment">
-      哇哦！快看看效果怎么样～
-    </div>
-
-    <div class="result-btns">
-      <button class="btn btn-secondary" onclick="goTo(4)" style="font-size:12px;padding:8px">
-        🔄 重新选一套
-      </button>
-      <button class="btn btn-primary" onclick="goTo(7)" style="font-size:13px;padding:8px">
-        🎨 我满意！生成工牌照
-      </button>
-    </div>
-  </div>
-</div>
+<!-- 已删除 - 直接跳转至海报页 -->
 
 <!-- ===================== 页面7：生成海报 ===================== -->
 <div class="page hidden" id="page7">
@@ -754,6 +718,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
         <strong style="color:#00B4D8;font-size:13px">Canva 可画</strong><br>
         <span style="font-size:10px">内容创作，从这里开始</span>
       </div>
+    </div>
+
+    <!-- 阿画吐槽气泡 -->
+    <div class="bubble" id="monkeyComment" style="margin:8px auto;font-size:12px;background:#FFF9E3;max-width:280px">
+      哇哦！快看看效果怎么样～
     </div>
 
     <div style="display:flex;gap:8px;margin-top:10px;justify-content:center">
@@ -825,7 +794,7 @@ let currentPage = 1;
 let userCmd = '';
 let resultData = {};
 let resultOutfitKey = '';
-const totalPages = 9;
+const totalPages = 8;
 
 const quotes = [
   '"只要穿得对，猴子也能当总监"',
@@ -1507,13 +1476,10 @@ function goTo(n) {
 }
 
 function updateDots() {
+  // 全部页面均不显示指示点
   const container = document.getElementById('pageDots');
   container.innerHTML = '';
-  for (let i = 1; i <= totalPages; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === currentPage ? ' active' : '');
-    container.appendChild(d);
-  }
+  container.style.display = 'none';
 }
 
 // ===================== 页面进入逻辑 =====================
@@ -1528,9 +1494,20 @@ function onPageEnter(n) {
   initAllMonkeys();
   if (n === 2) animatePage2();
   if (n === 3) startHintRotate();
-  if (n === 4) setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.7});
-  if (n === 5) startLoading();
-  if (n === 6) showResult();
+  if (n === 4) {
+    setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',bounce:true,scale:0.55});
+    // 生成卡片网格（含全部9套穿搭）
+    buildOutfitGrid();
+    // 重置确认按钮
+    const btn = document.getElementById('outfitConfirmBtn');
+    btn.style.opacity = '.4';
+    btn.style.pointerEvents = 'none';
+    resultOutfitKey = '';
+    resultData = {};
+    // 重置滚动提示
+    const hint = document.getElementById('scrollHint');
+    if (hint) hint.style.opacity = '1';
+  }
   if (n === 7) initPoster();
   if (n === 8) initStickerGrid();
 
@@ -1540,8 +1517,6 @@ function onPageEnter(n) {
     2: 'p2Monkey',
     3: 'p3Monkey',
     4: 'p4Monkey',
-    5: 'p5Monkey',
-    6: 'resultMonkey',
     7: 'posterMonkey',
     8: null
   };
@@ -1557,17 +1532,10 @@ function onPageEnter(n) {
     // 20%概率保持当前不动
     if (Math.random() < 0.2) return;
     // 穿衣服的页面用对应参数
-    if (n === 6) {
-      let rx = 'happy';
-      if (resultData.type === 'weird') rx = 'cry';
-      else if (resultData.type === 'funny') rx = 'tongue';
-      else if (resultData.type === 'casual') rx = 'wink';
-      else rx = 'love';
-      el.innerHTML = renderMonkeySVG({expression:rx,clothing:'outfit',outfit:resultOutfitKey,scale:0.7,spin:true});
-    } else if (n === 7) {
+    if (n === 7) {
       el.innerHTML = renderMonkeySVG({expression:ie,clothing:'outfit',outfit:resultOutfitKey,scale:0.8,action:'nod'});
     } else {
-      el.innerHTML = renderMonkeySVG({expression:ie,clothing:'underwear',scale:n===2?1.0:n===1?0.75:n===5?0.75:0.7,action:ia});
+      el.innerHTML = renderMonkeySVG({expression:ie,clothing:'underwear',scale:n===2?1.0:n===1?0.75:n===4?0.7:0.7,action:ia});
     }
   }, 3000);
 }
@@ -1584,8 +1552,7 @@ function initAllMonkeys() {
   setMonkeySVG('p1Monkey', {expression:'happy',clothing:'underwear',scale:0.75,action:'wave'});
   setMonkeySVG('p2Monkey', {expression:'surprised',clothing:'underwear',scale:1.0,action:'dance'});
   setMonkeySVG('p3Monkey', {expression:'excited',clothing:'underwear',scale:0.7,action:'wiggleEars'});
-  setMonkeySVG('p5Monkey', {expression:'thinking',clothing:'underwear',scale:0.75,action:'shake'});
-  setMonkeySVG('beforeMonkey', {expression:'shy',clothing:'underwear',scale:0.7,action:'wiggleEars'});
+  setMonkeySVG('p4Monkey', {expression:'thinking',clothing:'underwear',scale:0.7});
 }
 
 // ===================== 页面2动画 =====================
@@ -1618,51 +1585,97 @@ function startHintRotate() {
   }, 3000);
 }
 
-// ===================== 页面4：方案选择 + 盲盒 =====================
-function selectOutfit(key) {
-  resultData = outfitPresets[key];
-  resultOutfitKey = key;
-  userCmd = key;
-  // 点击动画 - SVG表情变化（更丰富）
-  const monkey = document.getElementById('p4Monkey');
-  monkey.innerHTML = renderMonkeySVG({expression:'love',clothing:'underwear',bounce:true,scale:0.7,action:'hop'});
-  setTimeout(() => { monkey.innerHTML = renderMonkeySVG({expression:'thinking',clothing:'underwear',bounce:true,scale:0.7}); }, 500);
-  setTimeout(() => goTo(5), 800);
+// ===================== 页面4：卡片选择 + 确认 =====================
+
+// 所有穿搭（普通款 + 原隐藏款全部展示）
+const allOutfits = {
+  ...outfitPresets,
+  ...hiddenOutfits
+};
+
+// 每套穿搭的显示名称和emoji（用于卡片标签）
+const outfitMeta = {
+  '霸道总裁':   { label: '霸道总裁', emoji: '🧑‍⚖️', tag: '' },
+  '格子程序猿': { label: '格子程序猿', emoji: '🐵', tag: '' },
+  '艺术总监':   { label: '艺术总监', emoji: '🎨', tag: '' },
+  '夏威夷度假': { label: '夏威夷度假', emoji: '🌺', tag: '' },
+  '香蕉狂热粉': { label: '香蕉狂热粉', emoji: '🍌', tag: '' },
+  '超人外穿':   { label: '超人外穿', emoji: '🦸', tag: '' },
+  '女装大佬':   { label: '女装大佬', emoji: '👗', tag: '✨隐藏' },
+  '香蕉人套装': { label: '香蕉人套装', emoji: '🍌', tag: '✨隐藏' },
+  '皇帝新装':   { label: '皇帝新装', emoji: '👑', tag: '✨隐藏' }
+};
+
+// 生成卡片网格
+function buildOutfitGrid() {
+  const grid = document.getElementById('outfitGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  Object.keys(allOutfits).forEach(key => {
+    const data = allOutfits[key];
+    const meta = outfitMeta[key] || { label: key, emoji: '🐵', tag: '' };
+
+    const card = document.createElement('div');
+    card.className = 'outfit-card';
+    card.dataset.key = key;
+    card.onclick = () => onOutfitSelect(key);
+
+    // 猴子预览SVG（适配两列大卡片）
+    const svgHtml = renderMonkeySVG({
+      expression: 'happy',
+      clothing: 'outfit',
+      outfit: key,
+      scale: 0.52
+    });
+
+    card.innerHTML = `
+      ${meta.tag ? `<div style="position:absolute;top:4px;left:4px;font-size:9px;background:linear-gradient(135deg,#FF6B35,#FFD166);color:#fff;border-radius:6px;padding:1px 5px;z-index:2;white-space:nowrap">${meta.tag}</div>` : ''}
+      <div class="outfit-card-icon">${svgHtml}</div>
+      <div class="outfit-card-name" style="font-size:11px">${meta.emoji} ${meta.label}</div>
+    `;
+
+    grid.appendChild(card);
+  });
 }
 
-function triggerBlindBox() {
-  const presets = Object.keys(outfitPresets);
-  const hiddens = Object.keys(hiddenOutfits);
+function onOutfitSelect(key) {
+  resultOutfitKey = key;
+  resultData = allOutfits[key] || {};
+  userCmd = key;
 
-  // 30%概率触发隐藏款
-  const roll = Math.random();
-  let selectedKey, nameDisplay;
+  // 高亮选中卡片，取消其他
+  document.querySelectorAll('#outfitGrid .outfit-card').forEach(c => {
+    const isSelected = c.dataset.key === key;
+    c.style.borderColor = isSelected ? '#FFD166' : 'rgba(255,255,255,.12)';
+    c.style.background  = isSelected ? 'rgba(255,209,102,.15)' : 'rgba(255,255,255,.07)';
+    c.style.transform   = isSelected ? 'translateY(-3px) scale(1.04)' : '';
+    c.style.boxShadow   = isSelected ? '0 6px 20px rgba(255,209,102,.3)' : '';
+  });
 
-  if (roll < 0.3) {
-    // 隐藏款
-    selectedKey = hiddens[Math.floor(Math.random() * hiddens.length)];
-    resultData = hiddenOutfits[selectedKey];
-  } else {
-    // 普通款
-    selectedKey = presets[Math.floor(Math.random() * presets.length)];
-    resultData = outfitPresets[selectedKey];
-  }
-  userCmd = selectedKey;
-  resultOutfitKey = selectedKey;
+  // 选中后淡出下拉提示
+  const hint = document.getElementById('scrollHint');
+  if (hint) hint.style.opacity = '0';
 
-  // 显示盲盒揭晓弹窗
-  const overlay = document.getElementById('blindRevealOverlay');
-  document.getElementById('blindRevealName').textContent = '【' + selectedKey + '】';
-  document.getElementById('blindRevealIcon').textContent = '🎲';
-  overlay.classList.add('show');
+  // 顶部猴子切换为选中穿搭预览
+  const monkey = document.getElementById('p4Monkey');
+  monkey.innerHTML = renderMonkeySVG({expression:'love', clothing:'outfit', outfit:key, scale:0.55, action:'bounce'});
 
-  // 1.8秒后关闭弹窗 → 进入加载页
-  setTimeout(() => {
-    overlay.classList.remove('show');
-    const m = document.getElementById('p4Monkey');
-    m.innerHTML = renderMonkeySVG({expression:'love',clothing:'underwear',bounce:true,scale:0.7,action:'wave'});
-    setTimeout(() => goTo(5), 400);
-  }, 1800);
+  // 启用确定按钮
+  const btn = document.getElementById('outfitConfirmBtn');
+  btn.style.opacity = '1';
+  btn.style.pointerEvents = 'auto';
+}
+
+function confirmOutfit() {
+  if (!resultOutfitKey) return;
+
+  // 点击动画
+  const monkey = document.getElementById('p4Monkey');
+  monkey.innerHTML = renderMonkeySVG({expression:'excited', clothing:'outfit', outfit:resultOutfitKey, scale:0.6, action:'hop'});
+
+  // 0.8秒后直接进入海报页
+  setTimeout(() => goTo(7), 800);
 }
 
 // ===================== 分析指令（兼容微调页） =====================
@@ -1675,93 +1688,28 @@ function analyzeCommand(cmd) {
 }
 
 // ===================== 页面5加载动画 =====================
-function startLoading() {
-  const clothEls = ['👔','👗','🧥','👒','🧣','👟','🎩','🧤'];
-  const container = document.getElementById('loadingClothes');
-  container.innerHTML = '';
-  clothEls.forEach((c, i) => {
-    const el = document.createElement('div');
-    el.className = 'cloth';
-    el.textContent = c;
-    const tx = (Math.random() - 0.5) * 200;
-    const ty = (Math.random() - 0.5) * 160;
-    const r = (Math.random() - 0.5) * 60;
-    el.style.cssText = `left:${20+i*28}px;top:${40+Math.random()*100}px;--d:${1.2+Math.random()*.8}s;--delay:${i*0.15}s;--tx:${tx}px;--ty:${ty}px;--r:${r}deg`;
-    container.appendChild(el);
-  });
-
-  const exprs = ['thinking','confused','happy','excited','wink','love','cool','tongue'];
-  const texts = ['阿画正在比对尺码，好认真哦…','哇这套好像还不错耶？','可画魔法师在精心调配颜色～','快好啦，阿画在开心地整理领结…','用可画AI设计，真的超方便！','阿画偷偷在衣服上画了个小香蕉🍌','这套穿搭阿画自己也想穿！','马上就好，阿画在练习走秀步～'];
-  let pct = 0;
-  let ti = 0;
-  const bar = document.getElementById('tailFill');
-  const pctEl = document.getElementById('loadPercent');
-  const textEl = document.getElementById('loadText');
-  const monkeyEl = document.getElementById('p5Monkey');
-
-  clearInterval(window._loadTimer);
-  window._loadTimer = setInterval(() => {
-    pct += Math.random() * 8 + 4;
-    if (pct > 100) pct = 100;
-    bar.style.width = pct + '%';
-    pctEl.textContent = Math.round(pct) + '%';
-
-    if (pct % 20 < 10) {
-      monkeyEl.innerHTML = renderMonkeySVG({expression:exprs[Math.floor(pct / 20) % exprs.length],clothing:'underwear',scale:0.75});
-    }
-
-    if (pct > ti * 25) {
-      textEl.style.opacity = 0;
-      setTimeout(() => {
-        textEl.textContent = texts[ti % texts.length];
-        textEl.style.opacity = 1;
-        ti++;
-      }, 200);
-    }
-
-    if (pct >= 100) {
-      clearInterval(window._loadTimer);
-      setTimeout(() => goTo(6), 600);
-    }
-  }, 180);
-}
+// 已删除 - 直接跳转至海报页
 
 // ===================== 页面6展示结果 =====================
-function showResult() {
-  const resultEl = document.getElementById('resultMonkey');
-  const beforeEl = document.getElementById('beforeMonkey');
-  const comment = document.getElementById('monkeyComment');
-
-  if (!resultData.type) {
-    resultData = { ...outfitPresets['霸道总裁'] };
-  }
-
-  // 变装前 - 穿内衣的小猴子（跳跃动画）
-  beforeEl.innerHTML = renderMonkeySVG({expression:'shy',clothing:'underwear',scale:0.7,action:'hop'});
-
-  // 变装后 - 带表情的穿衣猴子（表情根据类型变化）
-  let resultExpr = 'happy';
-  if (resultData.type === 'weird') resultExpr = 'cry';
-  else if (resultData.type === 'funny') resultExpr = 'tongue';
-  else if (resultData.type === 'casual') resultExpr = 'wink';
-  else resultExpr = 'love';  // 默认霸道总裁用爱心眼
-
-  resultEl.innerHTML = renderMonkeySVG({expression:resultExpr,clothing:'outfit',outfit:resultOutfitKey,scale:0.7,spin:true});
-  comment.textContent = resultData.comment || '嗯…还行吧？';
-
-  // 入场动画spin-in由SVG的class处理
-}
+// 已删除 - 直接跳转至海报页
 
 // ===================== 页面7海报 =====================
 function initPoster() {
   const pm = document.getElementById('posterMonkey');
   const ia = document.getElementById('idAvatar');
+  const comment = document.getElementById('monkeyComment');
 
   // 海报大猴子 - 点头动画
   pm.innerHTML = renderMonkeySVG({expression:'happy',clothing:'outfit',outfit:resultOutfitKey,scale:0.8,action:'nod'});
 
   // 工牌头像 - 爱心眼
   ia.innerHTML = renderMonkeySVG({expression:'love',clothing:'outfit',outfit:resultOutfitKey,scale:0.4});
+  
+  // 显示阿画吐槽
+  if (comment) {
+    comment.textContent = resultData.comment || '嗯…还行吧？';
+  }
+  
   refreshQuote();
 }
 
