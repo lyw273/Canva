@@ -44,8 +44,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 .page.prev{transform:translateX(-100%);pointer-events:none;opacity:0}
 .page.active{transform:translateX(0);pointer-events:all;opacity:1}
 
-/* page4 穿搭选择页 - 隐藏滚动条 */
-#page4{scrollbar-width:none}
+/* page4 穿搭选择页 - 隐藏滚动条，内容从顶部开始 */
+#page4{scrollbar-width:none;overflow-x:visible !important;justify-content:flex-start !important;padding-top:10px}
 #page4::-webkit-scrollbar{display:none}
 
 /* ===== 通用样式 ===== */
@@ -644,9 +644,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'PingFang SC','Hira
 
 <!-- ===================== 页面4：穿搭选择（卡片网格） ===================== -->
 <div class="page hidden" id="page4">
-  <div style="text-align:center;padding:6px 0 10px;width:100%;max-width:420px">
+  <div style="text-align:center;padding:20px 0 10px;width:100%;max-width:420px">
     <!-- 顶部横幅 -->
-    <div style="background:linear-gradient(135deg,#6C3CE0,#00B4D8);border-radius:12px;padding:10px 16px;margin:0 4px 10px;box-shadow:0 4px 16px rgba(108,60,224,.4)">
+    <div style="background:linear-gradient(135deg,#6C3CE0,#00B4D8);border-radius:12px;padding:10px 16px;margin:0 auto 10px;width:calc(100% - 8px);box-sizing:border-box">
       <div style="font-size:15px;font-weight:800;color:#fff">🎨 可画AI已变装</div>
       <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:2px">请选择你最喜欢的穿搭 ✨</div>
     </div>
