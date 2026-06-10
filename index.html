@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>可画一咒语，猴子变时尚 | Canva可画</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 :root{
   --canva-blue:#00B4D8;
@@ -1707,7 +1708,57 @@ function refreshQuote() {
 }
 
 function savePoster() {
-  showToast('海报已保存到相册！（演示版）');
+  const card = document.getElementById('posterCard');
+  const btn = document.querySelector('#page8 .btn-secondary');
+  if (btn) { btn.textContent = '生成中…'; btn.disabled = true; }
+
+  html2canvas(card, {
+    backgroundColor: '#0B0828',
+    scale: 2,
+    useCORS: true,
+    allowTaint: true
+  }).then(canvas => {
+    canvas.toBlob(blob => {
+      const file = new File([blob], '阿画的时尚变身.png', { type: 'image/png' });
+
+      // 优先：系统分享面板（iOS/Android 可选择「保存图片」）
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: '阿画的时尚变身' }).then(() => {
+          showToast('已保存到相册！');
+        }).catch(() => {
+          showImageForSave(canvas);
+        });
+      } else {
+        showImageForSave(canvas);
+      }
+      if (btn) { btn.textContent = '💾 保存海报'; btn.disabled = false; }
+    }, 'image/png');
+  }).catch(() => {
+    if (btn) { btn.textContent = '💾 保存海报'; btn.disabled = false; }
+    showToast('生成失败，请重试');
+  });
+}
+
+function showImageForSave(canvas) {
+  // 降级：全屏显示图片，引导长按保存
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center';
+  const img = document.createElement('img');
+  img.src = canvas.toDataURL('image/png');
+  img.style.cssText = 'width:90%;max-width:400px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.5)';
+  const tip = document.createElement('p');
+  tip.textContent = '👆 长按图片 → 保存到相册';
+  tip.style.cssText = 'color:#fff;font-size:15px;margin-top:16px;animation:pulse 2s infinite';
+  const close = document.createElement('button');
+  close.textContent = '✕ 关闭';
+  close.style.cssText = 'margin-top:12px;padding:8px 24px;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:transparent;color:#fff;font-size:14px;cursor:pointer';
+  close.onclick = () => overlay.remove();
+  overlay.appendChild(img);
+  overlay.appendChild(tip);
+  overlay.appendChild(close);
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  document.body.appendChild(overlay);
+  showToast('长按图片即可保存到相册');
 }
 
 // ===================== 页面8分享 =====================
