@@ -872,168 +872,486 @@ function renderMonkeySVG(opts = {}) {
   function renderClothingSVG(key) {
     switch (key) {
       case '霸道总裁':
-        return `<!-- 深灰西装 -->
-          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#2C2C34"/>
-          <path d="M68,132 L100,160 L132,132" fill="#FFFFFF"/>
-          <!-- 领带 -->
-          <path d="M97,132 L100,156 L103,132 Z" fill="#8B7355"/>
-          <path d="M99,132 L100,156 L101,132 Z" fill="#A08060"/>
-          <!-- 驳领 -->
-          <path d="M68,127 L80,148 Q100,158 120,148 L132,127" fill="none" stroke="#1A1A20" stroke-width="1.5"/>
-          <!-- 纽扣 -->
-          <circle cx="100" cy="150" r="2.5" fill="#555"/>
-          <circle cx="100" cy="170" r="2.5" fill="#555"/>
-          <!-- 金表 -->
-          <rect x="142" y="158" width="12" height="6" rx="2" fill="#D4A840" stroke="#A08020" stroke-width="0.8"/>
-          <rect x="145" y="156" width="6" height="2" rx="1" fill="#E8C860"/>
-          <!-- 裤线 -->
-          <line x1="88" y1="182" x2="88" y2="195" stroke="#222" stroke-width="0.8" opacity=".4"/>
-          <line x1="112" y1="182" x2="112" y2="195" stroke="#222" stroke-width="0.8" opacity=".4"/>
+        return `<!-- 霸总西装 - 三层结构：衬衫+马甲+西装外套 -->
+          <!-- 外裤／黑西裤 -->
+          <path d="M66,180 L66,198 Q66,202 76,202 L90,202 L90,180 Z" fill="#1A1A22"/>
+          <path d="M110,180 L110,202 L124,202 Q134,202 134,198 L134,180 Z" fill="#1A1A22"/>
+          <!-- 裤线高光 -->
+          <line x1="79" y1="184" x2="79" y2="198" stroke="#3A3A44" stroke-width="0.8" opacity=".5"/>
+          <line x1="121" y1="184" x2="121" y2="198" stroke="#3A3A44" stroke-width="0.8" opacity=".5"/>
+          <!-- 皮带 -->
+          <rect x="66" y="176" width="68" height="6" rx="1.5" fill="#1A1A1A"/>
+          <rect x="96" y="175" width="8" height="8" rx="1.5" fill="#C9A84C"/>
+          <!-- 白衬衫（V领开口可见） -->
+          <path d="M82,128 L76,158 Q100,168 124,158 L118,128 L114,127 L86,127 Z" fill="#F8F8FC"/>
+          <!-- 衬衫纹理线 -->
+          <line x1="85" y1="130" x2="80" y2="158" stroke="#E0E0E8" stroke-width="0.6" opacity=".5"/>
+          <line x1="115" y1="130" x2="120" y2="158" stroke="#E0E0E8" stroke-width="0.6" opacity=".5"/>
+          <!-- 深灰马甲（waistcoat） -->
+          <path d="M68,127 L65,130 L65,180 Q65,186 76,184 L90,184 L90,176 L110,176 L110,184 L124,184 Q135,186 135,180 L135,130 L132,127 Z" fill="#3A3A44"/>
+          <!-- 马甲纽扣 -->
+          <circle cx="100" cy="143" r="2" fill="#C9A84C"/>
+          <circle cx="100" cy="158" r="2" fill="#C9A84C"/>
+          <circle cx="100" cy="173" r="2" fill="#C9A84C"/>
+          <!-- 马甲纹理 -->
+          <path d="M68,135 Q100,140 132,135" fill="none" stroke="#444" stroke-width="0.5" opacity=".3"/>
+          <!-- 西装外套（两边翻开） -->
+          <!-- 左前片 -->
+          <path d="M65,130 L62,127 L72,144 Q90,146 100,144 L100,180 Q100,192 68,190 Z" fill="#2C2C34"/>
+          <!-- 右前片 -->
+          <path d="M135,130 L138,127 L128,144 Q110,146 100,144 L100,180 Q100,192 132,190 Z" fill="#2C2C34"/>
+          <!-- 肩垫结构 -->
+          <path d="M65,130 Q56,126 52,122 Q56,130 62,128" fill="#222" opacity=".3"/>
+          <path d="M135,130 Q144,126 148,122 Q144,130 138,128" fill="#222" opacity=".3"/>
+          <!-- 西装翻领（剑领） -->
+          <path d="M72,126 L78,145 Q90,152 100,146" fill="none" stroke="#1A1A24" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M128,126 L122,145 Q110,152 100,146" fill="none" stroke="#1A1A24" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- 翻领内侧纹理 -->
+          <path d="M74,128 L79,143 Q87,148 94,144" fill="none" stroke="#3A3A44" stroke-width="1" opacity=".5"/>
+          <path d="M126,128 L121,143 Q113,148 106,144" fill="none" stroke="#3A3A44" stroke-width="1" opacity=".5"/>
+          <!-- 口袋方巾（左侧胸口） -->
+          <path d="M76,144 L84,146 L82,136 L78,138 Z" fill="#8B2252" opacity=".8"/>
+          <path d="M78,141 L82,142 L81,138 L78,138 Z" fill="#C44B7A" opacity=".6"/>
+          <!-- 领带（丝绸质感 - 多层渐变） -->
+          <path d="M97,130 L100,157 L103,130 Z" fill="#7B5B38"/>
+          <path d="M98.5,130 L100,157 L101.5,130 Z" fill="#9B7B58" opacity=".6"/>
+          <!-- 领带结 -->
+          <ellipse cx="100" cy="132" rx="4" ry="3" fill="#6B4B28"/>
+          <circle cx="100" cy="131" r="1.5" fill="#9B7B58" opacity=".5"/>
+          <!-- 西装外套纽扣 -->
+          <circle cx="100" cy="148" r="2.5" fill="#2A2A32" stroke="#444" stroke-width="0.5"/>
+          <!-- 面料纹理暗纹（细条纹） -->
+          <line x1="70" y1="158" x2="70" y2="188" stroke="#333" stroke-width="0.3" opacity=".25"/>
+          <line x1="78" y1="158" x2="78" y2="188" stroke="#333" stroke-width="0.3" opacity=".25"/>
+          <line x1="122" y1="158" x2="122" y2="188" stroke="#333" stroke-width="0.3" opacity=".25"/>
+          <line x1="130" y1="158" x2="130" y2="188" stroke="#333" stroke-width="0.3" opacity=".25"/>
+          <!-- 金表（更精致） -->
+          <rect x="142" y="158" width="14" height="7" rx="2.5" fill="#D4A843"/>
+          <rect x="142" y="158" width="14" height="7" rx="2.5" fill="none" stroke="#A08020" stroke-width="0.6"/>
+          <circle cx="149" cy="161.5" r="3" fill="#F0F0F0" stroke="#C9A84C" stroke-width="0.5"/>
+          <circle cx="149" cy="161.5" r="1.5" fill="#2C2C34" opacity=".3"/>
+          <!-- 表带 -->
+          <rect x="144" y="160" width="3" height="5" rx="1" fill="#5A4A2A"/>
+          <rect x="151" y="160" width="3" height="5" rx="1" fill="#5A4A2A"/>
         `;
 
       case '格子程序猿':
-        return `<!-- 红黑格子衫 -->
-          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#CC3333"/>
-          <!-- 横条纹 -->
-          <line x1="65" y1="138" x2="100" y2="138" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <line x1="65" y1="146" x2="100" y2="146" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <line x1="65" y1="154" x2="100" y2="154" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <line x1="65" y1="162" x2="100" y2="162" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <line x1="65" y1="170" x2="100" y2="170" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <line x1="65" y1="178" x2="100" y2="178" stroke="#1A1A1A" stroke-width="2.5" opacity=".7"/>
-          <!-- 竖条纹 -->
-          <line x1="73" y1="130" x2="73" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
-          <line x1="82" y1="130" x2="82" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
-          <line x1="91" y1="130" x2="91" y2="182" stroke="#1A1A1A" stroke-width="2.5" opacity=".5"/>
-          <!-- 白色方块 -->
-          <rect x="66" y="135" width="7" height="5" rx="1" fill="#FFF" opacity=".5"/>
-          <rect x="82" y="143" width="8" height="5" rx="1" fill="#FFF" opacity=".5"/>
-          <rect x="66" y="159" width="7" height="6" rx="1" fill="#FFF" opacity=".4"/>
-          <rect x="82" y="167" width="8" height="5" rx="1" fill="#FFF" opacity=".5"/>
-          <!-- 纽扣 -->
-          <circle cx="96" cy="138" r="2" fill="#333"/>
-          <circle cx="96" cy="150" r="2" fill="#333"/>
-          <circle cx="96" cy="162" r="2" fill="#333"/>
-          <!-- 牛仔裤下摆 -->
-          <path d="M66,182 L66,195 Q66,198 76,198 L90,198 L90,182 Z" fill="#2B5B84"/>
-          <path d="M110,182 L110,198 L124,198 Q134,198 134,195 L134,182 Z" fill="#2B5B84"/>
-          <!-- 双肩包背带 -->
-          <path d="M70,135 L56,145 Q52,148 54,155" fill="none" stroke="#5A3A1A" stroke-width="4" opacity=".7"/>
-          <path d="M130,135 L144,145 Q148,148 146,155" fill="none" stroke="#5A3A1A" stroke-width="4" opacity=".7"/>
+        return `<!-- 程序猿 - 内搭T恤+格子衫+牛仔裤+双肩包 -->
+          <!-- 牛仔裤 -->
+          <path d="M66,180 L66,198 Q66,202 76,202 L90,202 L90,180 Z" fill="#2B5B84"/>
+          <path d="M110,180 L110,202 L124,202 Q134,202 134,198 L134,180 Z" fill="#2B5B84"/>
+          <!-- 牛仔裤缝线 -->
+          <line x1="79" y1="184" x2="79" y2="198" stroke="#3A6B94" stroke-width="0.6" stroke-dasharray="3,3"/>
+          <line x1="121" y1="184" x2="121" y2="198" stroke="#3A6B94" stroke-width="0.6" stroke-dasharray="3,3"/>
+          <!-- 牛仔裤口袋 -->
+          <path d="M68,186 L74,188 L74,193 L70,193 Z" fill="#1F4A6E" opacity=".4"/>
+          <path d="M126,186 L132,188 L132,193 L128,193 Z" fill="#1F4A6E" opacity=".4"/>
+          <!-- 内搭灰色T恤 -->
+          <path d="M74,128 L72,180 Q72,190 100,190 Q128,190 128,180 L126,128 L122,127 L78,127 Z" fill="#3A3A3A"/>
+          <!-- T恤圆领 -->
+          <ellipse cx="100" cy="130" rx="14" ry="6" fill="none" stroke="#2A2A2A" stroke-width="1.5"/>
+          <!-- T恤纹理 -->
+          <path d="M80,140 Q100,148 120,140" fill="none" stroke="#333" stroke-width="0.4" opacity=".4"/>
+          <path d="M78,155 Q100,163 122,155" fill="none" stroke="#333" stroke-width="0.4" opacity=".4"/>
+          <!-- 红黑格子衬衫（敞开穿） -->
+          <!-- 左前片 -->
+          <path d="M61,127 L58,132 L58,182 Q58,192 80,188 L100,188 L100,146 Q100,132 85,128 Z" fill="#CC3333"/>
+          <!-- 右前片 -->
+          <path d="M139,127 L142,132 L142,182 Q142,192 120,188 L100,188 L100,146 Q100,132 115,128 Z" fill="#CC3333"/>
+          <!-- 格子横线 -->
+          <line x1="58" y1="138" x2="100" y2="138" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="58" y1="148" x2="100" y2="148" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="58" y1="158" x2="100" y2="158" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="58" y1="168" x2="100" y2="168" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="58" y1="178" x2="100" y2="178" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="100" y1="138" x2="142" y2="138" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="100" y1="148" x2="142" y2="148" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="100" y1="158" x2="142" y2="158" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="100" y1="168" x2="142" y2="168" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <line x1="100" y1="178" x2="142" y2="178" stroke="#1A1A1A" stroke-width="2" opacity=".65"/>
+          <!-- 格子竖线 -->
+          <line x1="70" y1="127" x2="70" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <line x1="82" y1="127" x2="82" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <line x1="94" y1="127" x2="94" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <line x1="106" y1="127" x2="106" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <line x1="118" y1="127" x2="118" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <line x1="130" y1="127" x2="130" y2="188" stroke="#1A1A1A" stroke-width="1.5" opacity=".45"/>
+          <!-- 格子白色方块点缀 -->
+          <rect x="59" y="134" width="8" height="5" rx="1" fill="#FFF" opacity=".45"/>
+          <rect x="83" y="142" width="9" height="5" rx="1" fill="#FFF" opacity=".4"/>
+          <rect x="107" y="135" width="8" height="5" rx="1" fill="#FFF" opacity=".45"/>
+          <rect x="131" y="142" width="8" height="5" rx="1" fill="#FFF" opacity=".4"/>
+          <rect x="59" y="162" width="8" height="5" rx="1" fill="#FFF" opacity=".4"/>
+          <rect x="83" y="170" width="9" height="5" rx="1" fill="#FFF" opacity=".45"/>
+          <rect x="107" y="163" width="8" height="5" rx="1" fill="#FFF" opacity=".4"/>
+          <rect x="131" y="171" width="8" height="5" rx="1" fill="#FFF" opacity=".45"/>
+          <!-- 衬衫领子 -->
+          <path d="M82,127 L74,117 L68,125" fill="none" stroke="#CC3333" stroke-width="3" stroke-linecap="round"/>
+          <path d="M118,127 L126,117 L132,125" fill="none" stroke="#CC3333" stroke-width="3" stroke-linecap="round"/>
+          <!-- 左胸口袋 -->
+          <rect x="66" y="142" width="12" height="10" rx="1.5" fill="#CC3333" stroke="#AA2222" stroke-width="0.8"/>
+          <line x1="66" y1="145" x2="78" y2="145" stroke="#1A1A1A" stroke-width="1.5" opacity=".5"/>
+          <!-- 工牌挂绳 -->
+          <path d="M88,127 L88,142 Q88,152 94,156" fill="none" stroke="#2255CC" stroke-width="3" stroke-linecap="round"/>
+          <!-- 工牌 -->
+          <rect x="84" y="156" width="20" height="14" rx="2.5" fill="#FFF" stroke="#DDD" stroke-width="0.8"/>
+          <rect x="86" y="158" width="16" height="6" rx="1" fill="#2255CC" opacity=".15"/>
+          <text x="94" y="164" text-anchor="middle" font-size="4.5" fill="#2255CC" font-weight="700" font-family="Arial">STAFF</text>
+          <rect x="88" y="153" width="12" height="4" rx="1" fill="#DDD"/>
+          <circle cx="94" cy="155" r="1.5" fill="#666"/>
+          <!-- 双肩包（背后可见） -->
+          <path d="M52,142 Q46,148 46,165 L46,185 Q46,190 54,190 L66,190 L66,182 L66,142 Z" fill="#5A3A1A"/>
+          <path d="M148,142 Q154,148 154,165 L154,185 Q154,190 146,190 L134,190 L134,182 L134,142 Z" fill="#5A3A1A"/>
+          <!-- 背包口袋 -->
+          <rect x="49" y="150" width="12" height="10" rx="1.5" fill="#4A2A0A"/>
+          <rect x="139" y="150" width="12" height="10" rx="1.5" fill="#4A2A0A"/>
+          <!-- 背包拉链 -->
+          <line x1="48" y1="160" x2="60" y2="160" stroke="#C9A84C" stroke-width="1" opacity=".7"/>
+          <line x1="140" y1="160" x2="152" y2="160" stroke="#C9A84C" stroke-width="1" opacity=".7"/>
+          <!-- 背带 -->
+          <path d="M70,132 L54,142 Q50,146 54,152" fill="none" stroke="#4A2A0A" stroke-width="4.5"/>
+          <path d="M130,132 L146,142 Q150,146 146,152" fill="none" stroke="#4A2A0A" stroke-width="4.5"/>
         `;
 
       case '艺术总监':
-        return `<!-- 高领黑毛衣 -->
-          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#1A1A1A"/>
-          <!-- 高领 -->
-          <rect x="80" y="118" width="40" height="14" rx="5" fill="#222"/>
-          <!-- 阔腿裤 -->
-          <path d="M60,180 L60,198 Q60,200 74,200 L88,200 L88,180 Z" fill="#777"/>
-          <path d="M112,180 L112,200 L126,200 Q140,200 140,198 L140,180 Z" fill="#777"/>
-          <!-- 彩色围巾（脖子部分） -->
-          <path d="M82,118 L100,128 L118,118" fill="none" stroke="#E85D75" stroke-width="5" stroke-linecap="round"/>
-          <path d="M84,120 L100,132 L116,120" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round"/>
-          <path d="M86,122 L100,134 L114,122" fill="none" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round"/>
+        return `<!-- 艺术总监 - 高领黑毛衣+不对称阔腿裤+飘逸围巾 -->
+          <!-- 阔腿裤（不对称设计） -->
+          <path d="M58,178 L58,198 Q58,203 72,203 L90,203 L90,178 Z" fill="#585858"/>
+          <path d="M110,178 L110,203 L128,203 Q142,203 142,198 L142,178 Z" fill="#585858"/>
+          <!-- 裤脚宽口线 -->
+          <path d="M56,196 Q65,204 74,200" fill="none" stroke="#4A4A4A" stroke-width="1" opacity=".5"/>
+          <path d="M126,196 Q135,204 144,200" fill="none" stroke="#4A4A4A" stroke-width="1" opacity=".5"/>
+          <!-- 高领黑毛衣主体 -->
+          <path d="M65,130 L63,182 Q63,192 100,192 Q137,192 137,182 L135,130 L132,128 L68,128 Z" fill="#1C1C1C"/>
+          <!-- 毛衣针织纹理（横向罗纹） -->
+          <path d="M65,138 Q100,143 135,138" fill="none" stroke="#2A2A2A" stroke-width="0.6" opacity=".5"/>
+          <path d="M65,148 Q100,153 135,148" fill="none" stroke="#2A2A2A" stroke-width="0.6" opacity=".5"/>
+          <path d="M65,158 Q100,163 135,158" fill="none" stroke="#2A2A2A" stroke-width="0.6" opacity=".5"/>
+          <path d="M65,168 Q100,173 135,168" fill="none" stroke="#2A2A2A" stroke-width="0.6" opacity=".5"/>
+          <path d="M65,178 Q100,183 135,178" fill="none" stroke="#2A2A2A" stroke-width="0.6" opacity=".5"/>
+          <!-- 毛衣纵向编织纹 -->
+          <path d="M80,130 L80,182" stroke="#262626" stroke-width="0.8" opacity=".35"/>
+          <path d="M100,130 L100,182" stroke="#262626" stroke-width="0.8" opacity=".35"/>
+          <path d="M120,130 L120,182" stroke="#262626" stroke-width="0.8" opacity=".35"/>
+          <!-- 高领（包裹脖子） -->
+          <rect x="82" y="116" width="36" height="16" rx="6" fill="#242424"/>
+          <path d="M82,122 Q82,116 90,116 L110,116 Q118,116 118,122" fill="none" stroke="#2E2E2E" stroke-width="1.5"/>
+          <!-- 领口翻边 -->
+          <path d="M84,120 Q100,126 116,120" fill="none" stroke="#333" stroke-width="1" opacity=".5"/>
+          <!-- 围巾（三色交织 - 飘逸效果） -->
+          <!-- 粉 -->
+          <path d="M84,116 L68,112 Q60,114 58,122 Q56,130 64,128 Q70,124 76,120" fill="none" stroke="#E85D75" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M84,118 L64,132 Q56,136 58,146" fill="none" stroke="#E85D75" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+          <!-- 金 -->
+          <path d="M86,118 L74,108 Q66,106 60,112 Q56,118 62,118" fill="none" stroke="#FFD700" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M86,120 L68,128 Q60,130 56,138" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity=".65"/>
+          <!-- 青 -->
+          <path d="M88,120 L80,110 Q72,104 66,108" fill="none" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M88,122 L72,130 Q64,128 60,134" fill="none" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+          <!-- 围巾垂坠（右侧） -->
+          <path d="M116,116 L128,120 Q136,124 134,136 Q132,148 142,144" fill="none" stroke="#E85D75" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+          <path d="M116,118 L124,126 Q132,132 128,144" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
         `;
 
       case '夏威夷度假':
-        return `<!-- 花衬衫 -->
-          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#FFD700"/>
-          <!-- 花朵图案 -->
-          <circle cx="78" cy="148" r="7" fill="#FF6B6B" opacity=".8"/>
-          <circle cx="78" cy="148" r="2.5" fill="#FFE135"/>
-          <circle cx="120" cy="155" r="6" fill="#FF6B6B" opacity=".8"/>
-          <circle cx="120" cy="155" r="2.2" fill="#FFE135"/>
-          <circle cx="92" cy="172" r="5" fill="#FF8C94" opacity=".8"/>
-          <circle cx="92" cy="172" r="2" fill="#FFE135"/>
-          <circle cx="108" cy="140" r="6.5" fill="#FF8C94" opacity=".8"/>
-          <circle cx="108" cy="140" r="2.3" fill="#FFE135"/>
-          <!-- 绿叶 -->
-          <ellipse cx="74" cy="142" rx="4" ry="2" fill="#4CAF50" transform="rotate(-30,74,142)" opacity=".7"/>
-          <ellipse cx="124" cy="150" rx="4" ry="2" fill="#4CAF50" transform="rotate(20,124,150)" opacity=".7"/>
-          <ellipse cx="98" cy="165" rx="3" ry="1.5" fill="#4CAF50" transform="rotate(-15,98,165)" opacity=".7"/>
-          <!-- 衬衫开襟 -->
-          <line x1="100" y1="130" x2="100" y2="182" stroke="#E8C800" stroke-width="1.5"/>
+        return `<!-- 夏威夷度假 - 大面积花卉衬衫+白短裤+人字拖 -->
           <!-- 白短裤 -->
-          <path d="M66,180 L66,196 Q66,198 76,198 L90,198 L90,180 Z" fill="#FAFAFA" stroke="#DDD" stroke-width="0.5"/>
-          <path d="M110,180 L110,198 L124,198 Q134,198 134,196 L134,180 Z" fill="#FAFAFA" stroke="#DDD" stroke-width="0.5"/>
+          <path d="M66,180 L66,196 Q66,199 76,199 L90,199 L90,180 Z" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+          <path d="M110,180 L110,199 L124,199 Q134,199 134,196 L134,180 Z" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+          <!-- 短裤口袋 -->
+          <path d="M70,183 L78,184 L78,189 L72,189 Z" fill="#EEE" opacity=".5"/>
+          <path d="M122,183 L130,184 L130,189 L128,189 Z" fill="#EEE" opacity=".5"/>
+          <!-- 皮带（编织麻绳） -->
+          <path d="M67,178 L133,179" stroke="#C9A84C" stroke-width="3" stroke-dasharray="3,2" opacity=".7"/>
+          <!-- 花衬衫主体 -->
+          <path d="M65,130 L63,182 Q63,192 100,192 Q137,192 137,182 L135,130 L132,127 L68,127 Z" fill="#FFD700"/>
+          <!-- 衬衫渐变阴影 -->
+          <path d="M65,130 L63,182 Q63,192 100,192 Q137,192 137,182 L135,130 L132,127 L68,127 Z" fill="url(#hawaiiGrad)" opacity=".15"/>
+          <!-- 花卉: 大红花1 -->
+          <g transform="translate(78,148)">
+            <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FF4466" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FF4466" transform="rotate(72)"/>
+            <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FF4466" transform="rotate(144)"/>
+            <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FF4466" transform="rotate(216)"/>
+            <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FF4466" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="2.5" fill="#FFE135"/>
+            <circle cx="0" cy="0" r="1" fill="#FFA000"/>
+          </g>
+          <!-- 花卉: 大黄花2 -->
+          <g transform="translate(120,155)">
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-4.5" rx="3" ry="4.5" fill="#FF8C42" transform="rotate(300)"/>
+            <circle cx="0" cy="0" r="2" fill="#FFF5DC"/>
+            <circle cx="0" cy="0" r="0.8" fill="#8B6914"/>
+          </g>
+          <!-- 花卉: 小红花3 -->
+          <g transform="translate(92,168)">
+            <ellipse cx="0" cy="-4" rx="2.8" ry="4" fill="#FF6B8A" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-4" rx="2.8" ry="4" fill="#FF6B8A" transform="rotate(72)"/>
+            <ellipse cx="0" cy="-4" rx="2.8" ry="4" fill="#FF6B8A" transform="rotate(144)"/>
+            <ellipse cx="0" cy="-4" rx="2.8" ry="4" fill="#FF6B8A" transform="rotate(216)"/>
+            <ellipse cx="0" cy="-4" rx="2.8" ry="4" fill="#FF6B8A" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="2" fill="#FFE135"/>
+          </g>
+          <!-- 花卉: 小白花4 -->
+          <g transform="translate(108,140)">
+            <ellipse cx="0" cy="-3.5" rx="2.5" ry="3.5" fill="#FFF" opacity=".9" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-3.5" rx="2.5" ry="3.5" fill="#FFF" opacity=".9" transform="rotate(72)"/>
+            <ellipse cx="0" cy="-3.5" rx="2.5" ry="3.5" fill="#FFF" opacity=".9" transform="rotate(144)"/>
+            <ellipse cx="0" cy="-3.5" rx="2.5" ry="3.5" fill="#FFF" opacity=".9" transform="rotate(216)"/>
+            <ellipse cx="0" cy="-3.5" rx="2.5" ry="3.5" fill="#FFF" opacity=".9" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="1.8" fill="#FFE135"/>
+          </g>
+          <!-- 绿叶（热带棕榈风格） -->
+          <g transform="translate(70,142) rotate(-30)">
+            <ellipse cx="0" cy="0" rx="6" ry="2.5" fill="#4CAF50" opacity=".75"/>
+            <line x1="-5" y1="0" x2="5" y2="0" stroke="#388E3C" stroke-width="0.5"/>
+          </g>
+          <g transform="translate(130,150) rotate(20)">
+            <ellipse cx="0" cy="0" rx="6" ry="2.5" fill="#4CAF50" opacity=".75"/>
+            <line x1="-5" y1="0" x2="5" y2="0" stroke="#388E3C" stroke-width="0.5"/>
+          </g>
+          <g transform="translate(98,162) rotate(-15)">
+            <ellipse cx="0" cy="0" rx="5" ry="2" fill="#66BB6A" opacity=".7"/>
+            <line x1="-4" y1="0" x2="4" y2="0" stroke="#388E3C" stroke-width="0.5"/>
+          </g>
+          <g transform="translate(85,178) rotate(40)">
+            <ellipse cx="0" cy="0" rx="5" ry="2" fill="#66BB6A" opacity=".7"/>
+          </g>
+          <g transform="translate(115,176) rotate(-40)">
+            <ellipse cx="0" cy="0" rx="5" ry="2" fill="#4CAF50" opacity=".7"/>
+          </g>
+          <!-- 衬衫前开襟 -->
+          <line x1="100" y1="130" x2="100" y2="182" stroke="#E8C800" stroke-width="1.5" opacity=".8"/>
+          <!-- 衬衫开领 -->
+          <path d="M82,127 L100,140 L118,127" fill="none" stroke="#D4A800" stroke-width="1.5"/>
+          <!-- 衬衫口袋 -->
+          <rect x="70" y="142" width="14" height="12" rx="2" fill="#FFD700" stroke="#E8C800" stroke-width="0.6"/>
+          <!-- 口袋小花 -->
+          <circle cx="77" cy="148" r="3" fill="#FF4466" opacity=".7"/>
+          <circle cx="77" cy="148" r="1.2" fill="#FFE135"/>
+          <!-- 人字拖 -->
+          <ellipse cx="80" cy="205" rx="10" ry="4" fill="#8B4513"/>
+          <path d="M78,205 L76,199 L74,205" fill="none" stroke="#5A2D0A" stroke-width="1.5"/>
+          <ellipse cx="120" cy="205" rx="10" ry="4" fill="#8B4513"/>
+          <path d="M122,205 L124,199 L126,205" fill="none" stroke="#5A2D0A" stroke-width="1.5"/>
         `;
 
       case '香蕉狂热粉':
-        return `<!-- 香蕉印花西装 -->
-          <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#F5E6B8"/>
-          <!-- 香蕉印花 -->
-          <path d="M78,148 Q85,140 92,148" fill="none" stroke="#E8C800" stroke-width="2.5" stroke-linecap="round"/>
-          <ellipse cx="85" cy="146" rx="4" ry="2" fill="#FFE135" transform="rotate(-15,85,146)"/>
-          <path d="M108,155 Q115,147 122,155" fill="none" stroke="#E8C800" stroke-width="2.5" stroke-linecap="round"/>
-          <ellipse cx="115" cy="153" rx="4" ry="2" fill="#FFE135" transform="rotate(-15,115,153)"/>
-          <path d="M88,170 Q95,163 102,170" fill="none" stroke="#E8C800" stroke-width="2" stroke-linecap="round"/>
-          <ellipse cx="95" cy="168" rx="3.5" ry="1.8" fill="#FFE135" transform="rotate(-15,95,168)"/>
-          <!-- 黄色领结 -->
-          <ellipse cx="100" cy="128" rx="10" ry="6" fill="#FFC107"/>
-          <polygon points="90,128 100,128 95,135" fill="#FFC107"/>
-          <polygon points="110,128 100,128 105,135" fill="#FFC107"/>
-          <circle cx="100" cy="128" r="3" fill="#FFA000"/>
+        return `<!-- 香蕉狂热粉 - 象牙白双排扣西装+精致香蕉暗纹+全套配饰 -->
           <!-- 黄西裤 -->
-          <path d="M66,182 L66,196 Q66,199 76,199 L90,199 L90,182 Z" fill="#E8D898"/>
-          <path d="M110,182 L110,199 L124,199 Q134,199 134,196 L134,182 Z" fill="#E8D898"/>
+          <path d="M66,182 L66,198 Q66,202 76,202 L90,202 L90,182 Z" fill="#E8D898"/>
+          <path d="M110,182 L110,202 L124,202 Q134,202 134,198 L134,182 Z" fill="#E8D898"/>
+          <!-- 裤线 -->
+          <line x1="79" y1="185" x2="79" y2="198" stroke="#D4C080" stroke-width="0.6" opacity=".5"/>
+          <line x1="121" y1="185" x2="121" y2="198" stroke="#D4C080" stroke-width="0.6" opacity=".5"/>
+          <!-- 浅金皮带 -->
+          <rect x="66" y="178" width="68" height="5" rx="1.5" fill="#C9A84C"/>
+          <rect x="96" y="177" width="8" height="7" rx="1.5" fill="#E8C860"/>
+          <!-- 衬衫底（V领可见） -->
+          <path d="M84,129 L80,156 Q100,166 120,156 L116,129 Z" fill="#FFFEF5"/>
+          <!-- 象牙白双排扣西装 -->
+          <path d="M65,130 L65,182 Q65,192 88,192 L100,192 L100,146 Q100,132 85,128 Z" fill="#F5E6B8"/>
+          <path d="M135,130 L135,182 Q135,192 112,192 L100,192 L100,146 Q100,132 115,128 Z" fill="#F5E6B8"/>
+          <!-- 西装翻领 -->
+          <path d="M72,126 L78,145 Q88,150 100,146" fill="none" stroke="#E0C898" stroke-width="2" stroke-linecap="round"/>
+          <path d="M128,126 L122,145 Q112,150 100,146" fill="none" stroke="#E0C898" stroke-width="2" stroke-linecap="round"/>
+          <!-- 双排扣（6颗） -->
+          <circle cx="86" cy="140" r="2" fill="#D4A843"/>
+          <circle cx="86" cy="155" r="2" fill="#D4A843"/>
+          <circle cx="86" cy="170" r="2" fill="#D4A843"/>
+          <circle cx="114" cy="140" r="2" fill="#D4A843"/>
+          <circle cx="114" cy="155" r="2" fill="#D4A843"/>
+          <circle cx="114" cy="170" r="2" fill="#D4A843"/>
+          <!-- 香蕉暗纹（绣花质感） -->
+          <g transform="translate(78,148)" opacity=".55">
+            <path d="M0,-5 Q8,-14 14,-5" fill="none" stroke="#D4A843" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="7" cy="-7" rx="3" ry="1.5" fill="#E8C860" transform="rotate(-15,7,-7)"/>
+            <ellipse cx="7" cy="-7" rx="3" ry="1.5" fill="none" stroke="#C9982A" stroke-width="0.4" transform="rotate(-15,7,-7)"/>
+          </g>
+          <g transform="translate(108,155)" opacity=".5">
+            <path d="M0,-5 Q8,-14 14,-5" fill="none" stroke="#D4A843" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="7" cy="-7" rx="3" ry="1.5" fill="#E8C860" transform="rotate(-15,7,-7)"/>
+          </g>
+          <g transform="translate(93,173)" opacity=".45">
+            <path d="M0,-4.5 Q7,-12 12,-4.5" fill="none" stroke="#D4A843" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="6" cy="-6.5" rx="2.5" ry="1.3" fill="#E8C860" transform="rotate(-15,6,-6.5)"/>
+          </g>
+          <!-- 西装口袋 -->
+          <path d="M70,146 L84,148 L84,155 L72,154 Z" fill="none" stroke="#E0C898" stroke-width="0.8"/>
+          <!-- 口袋方巾（香蕉黄） -->
+          <path d="M72,146 L80,148 L78,141 L74,142 Z" fill="#FFE135" opacity=".8"/>
+          <path d="M74,143 L78,144 L77,142 L74,142 Z" fill="#FFF" opacity=".5"/>
+          <!-- 黄色蝴蝶领结（更精致） -->
+          <ellipse cx="100" cy="126" rx="9" ry="5.5" fill="#FFC107"/>
+          <ellipse cx="100" cy="126" rx="9" ry="5.5" fill="none" stroke="#E8A000" stroke-width="0.6"/>
+          <polygon points="91,126 100,126 96,134" fill="#FFC107"/>
+          <polygon points="109,126 100,126 104,134" fill="#FFC107"/>
+          <circle cx="100" cy="126" r="2.8" fill="#FFA000"/>
+          <circle cx="99" cy="125" r="0.8" fill="#FFC107" opacity=".6"/>
           <!-- 香蕉皮鞋 -->
-          <ellipse cx="80" cy="208" rx="9" ry="5" fill="#FFE135"/>
-          <ellipse cx="120" cy="208" rx="9" ry="5" fill="#FFE135"/>
-          <!-- 鞋带 -->
-          <path d="M74,206 Q78,204 80,206" fill="none" stroke="#8B6914" stroke-width="1"/>
-          <path d="M114,206 Q118,204 120,206" fill="none" stroke="#8B6914" stroke-width="1"/>
+          <ellipse cx="80" cy="207" rx="9" ry="5" fill="#FFE135"/>
+          <ellipse cx="80" cy="207" rx="9" ry="5" fill="none" stroke="#E8C800" stroke-width="0.8"/>
+          <path d="M75,207 L78,200 L81,207" fill="none" stroke="#8B6914" stroke-width="1.2"/>
+          <path d="M77,204 Q79,203 81,205" fill="none" stroke="#8B6914" stroke-width="0.8"/>
+          <ellipse cx="120" cy="207" rx="9" ry="5" fill="#FFE135"/>
+          <ellipse cx="120" cy="207" rx="9" ry="5" fill="none" stroke="#E8C800" stroke-width="0.8"/>
+          <path d="M115,207 L118,200 L121,207" fill="none" stroke="#8B6914" stroke-width="1.2"/>
+          <path d="M117,204 Q119,203 121,205" fill="none" stroke="#8B6914" stroke-width="0.8"/>
         `;
 
       case '超人外穿':
-        return `<!-- 红色披风（在身后） -->
-          <path d="M68,130 Q40,100 30,85 Q25,75 32,80 Q42,90 62,115" fill="#CC2222" opacity=".9"/>
-          <path d="M132,130 Q160,100 170,85 Q175,75 168,80 Q158,90 138,115" fill="#CC2222" opacity=".9"/>
+        return `<!-- 超人外穿 - 披风+紧身衣+肌肉线条+经典M标志 -->
+          <!-- 披风（流线飘逸感） -->
+          <path d="M68,130 Q36,94 24,76 Q18,66 26,72 Q38,84 58,110 Q48,94 36,78 Q30,66 40,74 Q52,88 64,114" fill="#CC2222" opacity=".85"/>
+          <path d="M132,130 Q164,94 176,76 Q182,66 174,72 Q162,84 142,110 Q152,94 164,78 Q170,66 160,74 Q148,88 136,114" fill="#CC2222" opacity=".85"/>
+          <!-- 披风高光 -->
+          <path d="M66,128 Q44,100 36,84" fill="none" stroke="#EE4444" stroke-width="2" opacity=".35" stroke-linecap="round"/>
+          <path d="M134,128 Q156,100 164,84" fill="none" stroke="#EE4444" stroke-width="2" opacity=".35" stroke-linecap="round"/>
+          <!-- 披风阴影疊层 -->
+          <path d="M70,130 Q38,98 28,80" fill="none" stroke="#881111" stroke-width="1.5" opacity=".3"/>
+          <path d="M130,130 Q162,98 172,80" fill="none" stroke="#881111" stroke-width="1.5" opacity=".3"/>
           <!-- 蓝色紧身衣 -->
           <path d="M65,130 L65,182 Q65,192 100,192 Q135,192 135,182 L135,130 L132,127 L68,127 Z" fill="#2255CC"/>
-          <!-- 红腰带 -->
-          <rect x="66" y="170" width="68" height="8" rx="2" fill="#CC2222"/>
-          <circle cx="100" cy="174" r="4" fill="#FFD700"/>
+          <!-- 紧身衣高光 -->
+          <path d="M72,132 Q100,138 128,132" fill="none" stroke="#4488EE" stroke-width="1.5" opacity=".3"/>
+          <!-- 胸肌阴影线 -->
+          <path d="M82,138 Q94,150 100,145" fill="none" stroke="#1A3D88" stroke-width="1.5" opacity=".35"/>
+          <path d="M118,138 Q106,150 100,145" fill="none" stroke="#1A3D88" stroke-width="1.5" opacity=".35"/>
+          <!-- 腹肌线 -->
+          <path d="M90,152 Q100,156 110,152" fill="none" stroke="#1A3D88" stroke-width="1.2" opacity=".3"/>
+          <path d="M92,158 Q100,162 108,158" fill="none" stroke="#1A3D88" stroke-width="1.2" opacity=".3"/>
+          <!-- 黄金M标志 -->
+          <text x="100" y="155" text-anchor="middle" font-size="20" font-weight="900" fill="#FFD700" font-family="Arial,Helvetica,sans-serif" stroke="#C9A84C" stroke-width="0.8">M</text>
+          <!-- M标志光晕 -->
+          <text x="100" y="155" text-anchor="middle" font-size="20" font-weight="900" fill="#FFF" font-family="Arial,Helvetica,sans-serif" opacity=".25">M</text>
           <!-- 红内裤外穿 -->
-          <path d="M74,178 L74,195 Q74,198 82,198 L118,198 Q126,198 126,195 L126,178 Z" fill="#CC2222"/>
-          <path d="M74,178 L74,195 Q74,198 82,198 L118,198 Q126,198 126,195 L126,178 Z" fill="none" stroke="#AA1111" stroke-width="1"/>
-          <!-- M标志 -->
-          <text x="100" y="158" text-anchor="middle" font-size="18" font-weight="900" fill="#FFD700" font-family="Arial,sans-serif">M</text>
-          <!-- 黄色腰带 -->
-          <rect x="66" y="170" width="68" height="8" rx="2" fill="#FFD700" opacity=".9"/>
+          <path d="M74,178 L74,196 Q74,200 82,200 L118,200 Q126,200 126,196 L126,178 Z" fill="#CC2222"/>
+          <path d="M74,178 L74,196 Q74,200 82,200 L118,200 Q126,200 126,196 L126,178 Z" fill="none" stroke="#AA1111" stroke-width="1.2"/>
+          <!-- 红内裤高光 -->
+          <path d="M78,182 Q100,190 122,182" fill="none" stroke="#EE4444" stroke-width="1" opacity=".3"/>
+          <!-- 红色腰带 -->
+          <rect x="66" y="170" width="68" height="9" rx="2.5" fill="#CC2222"/>
+          <rect x="66" y="170" width="68" height="9" rx="2.5" fill="none" stroke="#AA1111" stroke-width="0.5"/>
+          <!-- 金色腰带扣 -->
+          <circle cx="100" cy="174.5" r="4.5" fill="#FFD700"/>
+          <circle cx="100" cy="174.5" r="4.5" fill="none" stroke="#C9A84C" stroke-width="0.8"/>
+          <circle cx="100" cy="174.5" r="2" fill="#E8C860"/>
+          <!-- 蓝色长靴 -->
+          <path d="M66,198 L66,210 Q66,212 74,212 L90,212 L90,198 Z" fill="#1A3D88"/>
+          <path d="M110,198 L110,212 L126,212 Q134,212 134,210 L134,198 Z" fill="#1A3D88"/>
+          <!-- 靴口 -->
+          <path d="M66,200 L90,200" stroke="#2255CC" stroke-width="2"/>
+          <path d="M110,200 L134,200" stroke="#2255CC" stroke-width="2"/>
         `;
 
       case '女装大佬':
-        return `<!-- 粉色连衣裙 -->
-          <path d="M65,128 L65,185 Q65,195 100,195 Q135,195 135,185 L135,128 L132,126 L68,126 Z" fill="#FF69B4"/>
-          <!-- 白色格子纹 -->
-          <line x1="75" y1="128" x2="75" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <line x1="90" y1="128" x2="90" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <line x1="110" y1="128" x2="110" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <line x1="125" y1="128" x2="125" y2="185" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <line x1="65" y1="148" x2="135" y2="148" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <line x1="65" y1="168" x2="135" y2="168" stroke="#FFF" stroke-width="1" opacity=".3"/>
-          <!-- 裙摆 -->
-          <path d="M65,185 Q60,198 80,200 L120,200 Q140,198 135,185 Z" fill="#FF85C8"/>
-          <!-- 蝴蝶结 -->
-          <ellipse cx="100" cy="126" rx="8" ry="5" fill="#FFF"/>
-          <ellipse cx="94" cy="126" rx="4" ry="3" fill="#FFF"/>
-          <ellipse cx="106" cy="126" rx="4" ry="3" fill="#FFF"/>
-          <circle cx="100" cy="126" r="2.5" fill="#FF69B4"/>
+        return `<!-- 女装大佬 - 粉白格子连衣裙+蕾丝领+珍珠项链+多层裙摆 -->
+          <!-- 连衣裙主体 -->
+          <path d="M65,128 L63,185 Q63,195 100,195 Q137,195 137,185 L135,128 L132,126 L68,126 Z" fill="#FF69B4"/>
+          <!-- 连衣裙暗调渐变 -->
+          <path d="M65,128 L63,185 Q63,195 100,195 Q137,195 137,185 L135,128 L132,126 L68,126 Z" fill="#CC3388" opacity=".12"/>
+          <!-- 白色格子纹（更细腻） -->
+          <line x1="72" y1="128" x2="72" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="83" y1="128" x2="83" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="94" y1="128" x2="94" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="106" y1="128" x2="106" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="117" y1="128" x2="117" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="128" y1="128" x2="128" y2="185" stroke="#FFF" stroke-width="0.8" opacity=".25"/>
+          <line x1="65" y1="140" x2="135" y2="140" stroke="#FFF" stroke-width="0.8" opacity=".2"/>
+          <line x1="65" y1="152" x2="135" y2="152" stroke="#FFF" stroke-width="0.8" opacity=".2"/>
+          <line x1="65" y1="164" x2="135" y2="164" stroke="#FFF" stroke-width="0.8" opacity=".2"/>
+          <line x1="65" y1="176" x2="135" y2="176" stroke="#FFF" stroke-width="0.8" opacity=".2"/>
+          <!-- 腰部收腰线 -->
+          <path d="M72,158 Q100,162 128,158" fill="none" stroke="#DD5599" stroke-width="1" opacity=".4"/>
+          <!-- 腰带（细金链） -->
+          <path d="M74,160 Q100,165 126,160" fill="none" stroke="#FFD700" stroke-width="2" stroke-dasharray="4,3" opacity=".6"/>
+          <circle cx="100" cy="163" r="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+          <!-- 裙摆底边（多层褶皱） -->
+          <path d="M63,185 Q60,196 72,200 L128,200 Q140,196 137,185 Z" fill="#FF85C8"/>
+          <path d="M65,188 Q64,196 75,198 L125,198 Q136,196 135,188 Z" fill="#FFA0D8" opacity=".4"/>
+          <!-- 裙摆褶皱线 -->
+          <path d="M72,194 Q84,200 96,196" fill="none" stroke="#FF69B4" stroke-width="0.8" opacity=".5"/>
+          <path d="M104,196 Q116,200 128,194" fill="none" stroke="#FF69B4" stroke-width="0.8" opacity=".5"/>
+          <!-- 蕾丝花边领（花瓣形） -->
+          <path d="M82,126 Q84,120 92,118 Q100,114 108,118 Q116,120 118,126" fill="none" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+          <path d="M82,126 Q84,120 92,118 Q100,114 108,118 Q116,120 118,126" fill="none" stroke="#FFD1E8" stroke-width="6" stroke-linecap="round" opacity=".4"/>
+          <!-- 领口小波浪 -->
+          <path d="M84,122 Q86,118 88,120" fill="none" stroke="#FFF" stroke-width="1.5" opacity=".6"/>
+          <path d="M90,119 Q92,115 94,117" fill="none" stroke="#FFF" stroke-width="1.5" opacity=".6"/>
+          <path d="M100,117 Q102,113 104,115" fill="none" stroke="#FFF" stroke-width="1.5" opacity=".6"/>
+          <path d="M108,117 Q110,113 112,115" fill="none" stroke="#FFF" stroke-width="1.5" opacity=".6"/>
+          <!-- 珍珠项链 -->
+          <circle cx="86" cy="130" r="1.8" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <circle cx="91" cy="131" r="1.8" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <circle cx="96" cy="132" r="2" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <circle cx="101" cy="132" r="2" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <circle cx="106" cy="131" r="1.8" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <circle cx="111" cy="130" r="1.8" fill="#FFF" stroke="#E8E8E8" stroke-width="0.3"/>
+          <!-- 胸口蝴蝶结（精致版） -->
+          <ellipse cx="100" cy="126" rx="9" ry="5.5" fill="#FFF"/>
+          <ellipse cx="100" cy="126" rx="9" ry="5.5" fill="none" stroke="#FFD1E8" stroke-width="0.6"/>
+          <ellipse cx="93" cy="126" rx="4.5" ry="3.5" fill="#FFF"/>
+          <ellipse cx="107" cy="126" rx="4.5" ry="3.5" fill="#FFF"/>
+          <circle cx="100" cy="126" r="2.8" fill="#FF69B4"/>
+          <circle cx="99" cy="125" r="1" fill="#FFAACA" opacity=".6"/>
+          <!-- 小皮鞋 -->
+          <ellipse cx="82" cy="203" rx="8" ry="4.5" fill="#222"/>
+          <ellipse cx="82" cy="203" rx="8" ry="4.5" fill="none" stroke="#444" stroke-width="0.5"/>
+          <circle cx="86" cy="200" r="1.2" fill="#FFF" opacity=".3"/>
+          <ellipse cx="118" cy="203" rx="8" ry="4.5" fill="#222"/>
+          <ellipse cx="118" cy="203" rx="8" ry="4.5" fill="none" stroke="#444" stroke-width="0.5"/>
+          <circle cx="114" cy="200" r="1.2" fill="#FFF" opacity=".3"/>
         `;
 
       case '香蕉人套装':
-        return `<!-- 全身香蕉连体衣（身体部分） -->
+        return `<!-- 香蕉人套装 - 全身香蕉连体衣+皮纹质感+立体阴影+趣味标签 -->
+          <!-- 香蕉连体衣主体 -->
           <path d="M62,120 Q58,100 62,90 L70,82 Q75,78 80,82 L90,90 Q100,70 110,90 L120,82 Q125,78 130,82 L138,90 Q142,100 138,120 L138,185 Q140,195 120,200 L80,200 Q60,195 62,185 Z" fill="#FFE135"/>
-          <!-- 香蕉阴影纹路 -->
-          <path d="M100,90 L100,120" stroke="#E8C800" stroke-width="2" opacity=".5"/>
-          <path d="M70,140 Q100,148 130,140" stroke="#E8C800" stroke-width="1.5" opacity=".3"/>
-          <!-- 香蕉两端棕色 -->
-          <path d="M62,98 Q58,92 62,88 L68,84" fill="none" stroke="#8B6914" stroke-width="5" stroke-linecap="round"/>
-          <path d="M62,185 Q58,192 63,196 L70,198" fill="none" stroke="#8B6914" stroke-width="4" stroke-linecap="round"/>
-          <!-- 香蕉标签 -->
-          <rect x="88" y="155" width="24" height="16" rx="3" fill="#FFF" opacity=".8"/>
-          <text x="100" y="166" text-anchor="middle" font-size="8" fill="#8B6914" font-family="Arial">BANANA</text>
+          <!-- 香蕉渐变立体感 -->
+          <path d="M62,120 Q58,100 62,90 L70,82 Q75,78 80,82 L90,90 Q100,70 110,90 L120,82 Q125,78 130,82 L138,90 Q142,100 138,120 L138,185 Q140,195 120,200 L80,200 Q60,195 62,185 Z" fill="url(#bananaGrad)" opacity=".3"/>
+          <!-- 香蕉纵向弧度线 -->
+          <path d="M75,86 Q80,140 78,196" fill="none" stroke="#E8C800" stroke-width="1.8" opacity=".4"/>
+          <path d="M100,72 Q100,140 100,198" fill="none" stroke="#E8C800" stroke-width="1.8" opacity=".4"/>
+          <path d="M125,86 Q120,140 122,196" fill="none" stroke="#E8C800" stroke-width="1.8" opacity=".4"/>
+          <!-- 香蕉横向纹理线 -->
+          <path d="M64,110 Q100,118 136,110" fill="none" stroke="#E8C800" stroke-width="1.2" opacity=".25"/>
+          <path d="M62,130 Q100,138 138,130" fill="none" stroke="#E8C800" stroke-width="1.2" opacity=".25"/>
+          <path d="M62,150 Q100,158 138,150" fill="none" stroke="#E8C800" stroke-width="1.2" opacity=".25"/>
+          <path d="M62,170 Q100,178 138,170" fill="none" stroke="#E8C800" stroke-width="1.2" opacity=".25"/>
+          <!-- 香蕉顶端棕色蒂（头） -->
+          <path d="M62,98 Q56,90 62,84 L68,80" fill="none" stroke="#8B6914" stroke-width="5" stroke-linecap="round"/>
+          <path d="M62,98 Q56,90 62,84 L68,80" fill="none" stroke="#A07820" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+          <!-- 香蕉底端棕色（脚） -->
+          <path d="M62,185 Q56,194 63,198 L72,200" fill="none" stroke="#8B6914" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M62,185 Q56,194 63,198 L72,200" fill="none" stroke="#A07820" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+          <!-- 香蕉斑点（成熟度细节） -->
+          <circle cx="78" cy="108" r="1.5" fill="#C99820" opacity=".35"/>
+          <circle cx="122" cy="115" r="1.2" fill="#C99820" opacity=".3"/>
+          <circle cx="85" cy="145" r="1.8" fill="#C99820" opacity=".3"/>
+          <circle cx="115" cy="152" r="1.3" fill="#C99820" opacity=".3"/>
+          <circle cx="72" cy="165" r="1" fill="#C99820" opacity=".3"/>
+          <circle cx="128" cy="162" r="1.4" fill="#C99820" opacity=".3"/>
+          <circle cx="95" cy="178" r="1.2" fill="#C99820" opacity=".3"/>
+          <!-- 香蕉高光（左侧亮面） -->
+          <path d="M68,105 Q72,140 70,185" fill="none" stroke="#FFF5C0" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+          <path d="M72,100 Q76,140 74,188" fill="none" stroke="#FFF" stroke-width="1.5" opacity=".2" stroke-linecap="round"/>
+          <!-- 香蕉标签（精致版） -->
+          <rect x="86" y="150" width="28" height="20" rx="3" fill="#FFF" opacity=".85"/>
+          <rect x="86" y="150" width="28" height="20" rx="3" fill="none" stroke="#E8E8E8" stroke-width="0.5"/>
+          <!-- 标签边框 -->
+          <rect x="88" y="152" width="24" height="16" rx="1.5" fill="none" stroke="#FFE135" stroke-width="0.8"/>
+          <!-- 迷你香蕉图标 -->
+          <ellipse cx="100" cy="157" rx="5" ry="2.5" fill="#FFE135"/>
+          <path d="M96,156 Q100,153 104,156" fill="none" stroke="#D4A843" stroke-width="0.6"/>
+          <!-- BANANA文字 -->
+          <text x="100" y="167" text-anchor="middle" font-size="6" fill="#8B6914" font-weight="700" font-family="Arial,Helvetica,sans-serif">BANANA</text>
+          <!-- 标签绳孔 -->
+          <circle cx="100" cy="149" r="1" fill="#888"/>
         `;
 
       default:
@@ -1045,41 +1363,102 @@ function renderMonkeySVG(opts = {}) {
   function renderHeadAccessoriesSVG(key) {
     switch (key) {
       case '格子程序猿':
-        return `<!-- 黑框眼镜 -->
-          <rect x="79" y="64" width="16" height="11" rx="4" fill="none" stroke="#111" stroke-width="2.5"/>
-          <rect x="105" y="64" width="16" height="11" rx="4" fill="none" stroke="#111" stroke-width="2.5"/>
-          <line x1="95" y1="68" x2="105" y2="68" stroke="#111" stroke-width="1.5"/>`;
+        return `<!-- 黑框眼镜（精致版）+ 镜片反光 -->
+          <!-- 左镜框 -->
+          <rect x="78" y="63" width="17" height="12" rx="4.5" fill="none" stroke="#1A1A1A" stroke-width="2.8"/>
+          <rect x="78" y="63" width="17" height="12" rx="4.5" fill="#E8F0FF" opacity=".12"/>
+          <!-- 右镜框 -->
+          <rect x="105" y="63" width="17" height="12" rx="4.5" fill="none" stroke="#1A1A1A" stroke-width="2.8"/>
+          <rect x="105" y="63" width="17" height="12" rx="4.5" fill="#E8F0FF" opacity=".12"/>
+          <!-- 鼻梁 -->
+          <line x1="95" y1="68" x2="105" y2="68" stroke="#1A1A1A" stroke-width="2"/>
+          <!-- 镜片反光 -->
+          <path d="M81,65 L86,65 L83,71 L80,70 Z" fill="#FFF" opacity=".25"/>
+          <path d="M108,65 L113,65 L110,71 L107,70 Z" fill="#FFF" opacity=".25"/>
+          <!-- 镜腿 -->
+          <path d="M78,67 L70,64" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M122,67 L130,64" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>`;
 
       case '艺术总监':
-        return `<!-- 贝雷帽 -->
-          <ellipse cx="100" cy="40" rx="30" ry="8" fill="#111"/>
-          <ellipse cx="100" cy="38" rx="26" ry="12" fill="#1A1A1A"/>
-          <circle cx="100" cy="30" r="3" fill="#333"/>
-          <!-- 小圆墨镜 -->
-          <circle cx="86" cy="70" r="9" fill="#1A1A2E" stroke="#DAA520" stroke-width="1.5"/>
-          <circle cx="114" cy="70" r="9" fill="#1A1A2E" stroke="#DAA520" stroke-width="1.5"/>
-          <line x1="95" y1="70" x2="105" y2="70" stroke="#DAA520" stroke-width="1"/>
-          <circle cx="83" cy="68" r="1.5" fill="#FFF" opacity=".3"/>
-          <circle cx="111" cy="68" r="1.5" fill="#FFF" opacity=".3"/>`;
+        return `<!-- 贝雷帽（编织纹理）+ 圆框金边墨镜 -->
+          <!-- 贝雷帽底部 -->
+          <ellipse cx="100" cy="42" rx="32" ry="9" fill="#1A1A1A"/>
+          <!-- 贝雷帽主体 -->
+          <ellipse cx="100" cy="37" rx="28" ry="14" fill="#222"/>
+          <!-- 贝雷帽编织纹理 -->
+          <path d="M78,38 Q100,44 122,38" fill="none" stroke="#333" stroke-width="0.6" opacity=".5"/>
+          <path d="M76,42 Q100,48 124,42" fill="none" stroke="#333" stroke-width="0.6" opacity=".5"/>
+          <path d="M82,34 Q100,40 118,34" fill="none" stroke="#333" stroke-width="0.6" opacity=".4"/>
+          <!-- 贝雷帽高光 -->
+          <ellipse cx="94" cy="34" rx="10" ry="5" fill="#3A3A3A" opacity=".3"/>
+          <!-- 贝雷帽小揪揪 -->
+          <circle cx="100" cy="28" r="3.5" fill="#2A2A2A"/>
+          <circle cx="99" cy="27" r="1" fill="#444" opacity=".5"/>
+          <!-- 圆框金边墨镜 -->
+          <circle cx="86" cy="70" r="10" fill="#1A1A2E" stroke="#DAA520" stroke-width="2"/>
+          <circle cx="114" cy="70" r="10" fill="#1A1A2E" stroke="#DAA520" stroke-width="2"/>
+          <!-- 镜片反光 -->
+          <ellipse cx="83" cy="67" rx="3" ry="2.5" fill="#FFF" opacity=".15" transform="rotate(-20,83,67)"/>
+          <ellipse cx="111" cy="67" rx="3" ry="2.5" fill="#FFF" opacity=".15" transform="rotate(-20,111,67)"/>
+          <!-- 鼻梁金连 -->
+          <line x1="96" y1="70" x2="104" y2="70" stroke="#DAA520" stroke-width="1.5"/>`;
 
       case '夏威夷度假':
-        return `<!-- 草帽 -->
-          <ellipse cx="100" cy="40" rx="34" ry="10" fill="#D4A060"/>
-          <ellipse cx="100" cy="38" rx="22" ry="14" fill="#E8C880"/>
-          <ellipse cx="100" cy="50" rx="36" ry="5" fill="#C09040"/>
-          <!-- 墨镜 -->
-          <rect x="81" y="64" width="16" height="9" rx="4" fill="#222"/>
-          <rect x="103" y="64" width="16" height="9" rx="4" fill="#222"/>
-          <line x1="97" y1="68" x2="103" y2="68" stroke="#222" stroke-width="1.5"/>
-          <circle cx="85" cy="65" r="1" fill="#FFF" opacity=".2"/>
-          <circle cx="107" cy="65" r="1" fill="#FFF" opacity=".2"/>`;
+        return `<!-- 编织草帽（麦秆纹理）+ 墨镜 -->
+          <!-- 帽檐阴影 -->
+          <ellipse cx="100" cy="50" rx="38" ry="7" fill="#8B5E30" opacity=".5"/>
+          <!-- 帽檐 -->
+          <ellipse cx="100" cy="42" rx="36" ry="10" fill="#D4A060"/>
+          <!-- 帽檐编织纹理 -->
+          <path d="M68,42 Q100,48 132,42" stroke="#C09040" stroke-width="0.8"/>
+          <path d="M66,44 Q100,50 134,44" stroke="#C09040" stroke-width="0.8"/>
+          <path d="M72,40 Q100,46 128,40" stroke="#E8C880" stroke-width="0.6"/>
+          <!-- 帽冠 -->
+          <ellipse cx="100" cy="37" rx="24" ry="16" fill="#E8C880"/>
+          <!-- 帽冠编织纹 -->
+          <path d="M80,36 Q100,42 120,36" stroke="#D4A060" stroke-width="0.6" opacity=".5"/>
+          <path d="M78,40 Q100,46 122,40" stroke="#D4A060" stroke-width="0.6" opacity=".5"/>
+          <!-- 帽冠高光 -->
+          <ellipse cx="95" cy="34" rx="10" ry="6" fill="#F0D898" opacity=".3"/>
+          <!-- 帽带 -->
+          <path d="M78,43 Q100,52 122,43" fill="none" stroke="#CC3333" stroke-width="3" opacity=".8"/>
+          <path d="M78,43 Q100,52 122,43" fill="none" stroke="#EE5555" stroke-width="1" opacity=".4"/>
+          <!-- 墨镜（飞行员款） -->
+          <rect x="80" y="65" width="18" height="10" rx="5" fill="#1A1A2E"/>
+          <rect x="80" y="65" width="18" height="10" rx="5" fill="none" stroke="#444" stroke-width="1"/>
+          <rect x="102" y="65" width="18" height="10" rx="5" fill="#1A1A2E"/>
+          <rect x="102" y="65" width="18" height="10" rx="5" fill="none" stroke="#444" stroke-width="1"/>
+          <line x1="98" y1="69" x2="102" y2="69" stroke="#444" stroke-width="1.5"/>
+          <!-- 镜片渐变反光 -->
+          <path d="M83,67 Q88,70 93,66" fill="none" stroke="#FFF" stroke-width="1" opacity=".2"/>
+          <path d="M105,67 Q110,70 115,66" fill="none" stroke="#FFF" stroke-width="1" opacity=".2"/>`;
 
       case '女装大佬':
-        return `<!-- 金色假发 -->
-          <path d="M65,55 Q60,28 75,23 Q80,12 100,15 Q120,12 125,23 Q140,28 135,55" fill="#FFD700" opacity=".9"/>
-          <ellipse cx="100" cy="48" rx="30" ry="18" fill="#FFD700" opacity=".9"/>
-          <path d="M78,33 Q86,20 93,28" fill="none" stroke="#E8C000" stroke-width="2.5"/>
-          <path d="M107,28 Q114,20 122,33" fill="none" stroke="#E8C000" stroke-width="2.5"/>`;
+        return `<!-- 金色大波浪假发（发丝层次） -->
+          <!-- 头发底层（鬓角） -->
+          <path d="M60,56 Q58,45 65,38 L75,32 Q80,26 88,30" fill="#C99820"/>
+          <path d="M140,56 Q142,45 135,38 L125,32 Q120,26 112,30" fill="#C99820"/>
+          <!-- 头发主体（刘海区） -->
+          <path d="M65,56 Q60,28 75,22 Q80,10 100,14 Q120,10 125,22 Q140,28 135,56" fill="#FFD700" opacity=".9"/>
+          <!-- 头顶蓬松层 -->
+          <ellipse cx="100" cy="45" rx="32" ry="20" fill="#FFD700" opacity=".9"/>
+          <!-- 头发高光 -->
+          <ellipse cx="94" cy="38" rx="12" ry="8" fill="#FFE890" opacity=".35"/>
+          <!-- 发丝纹理线 -->
+          <path d="M70,48 Q80,38 88,34" fill="none" stroke="#E8C000" stroke-width="1.5" opacity=".6"/>
+          <path d="M75,40 Q84,30 92,28" fill="none" stroke="#E8C000" stroke-width="1.5" opacity=".5"/>
+          <path d="M130,48 Q120,38 112,34" fill="none" stroke="#E8C000" stroke-width="1.5" opacity=".6"/>
+          <path d="M125,40 Q116,30 108,28" fill="none" stroke="#E8C000" stroke-width="1.5" opacity=".5"/>
+          <!-- 两侧垂发 -->
+          <path d="M65,50 Q58,65 62,78" fill="none" stroke="#FFD700" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+          <path d="M135,50 Q142,65 138,78" fill="none" stroke="#FFD700" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+          <!-- 刘海弧线 -->
+          <path d="M80,22 Q90,14 100,16 Q110,14 120,22" fill="none" stroke="#F0C800" stroke-width="2" opacity=".5"/>
+          <!-- 蝴蝶结发饰 -->
+          <ellipse cx="100" cy="20" rx="8" ry="5" fill="#FF69B4"/>
+          <ellipse cx="93" cy="20" rx="4" ry="3.5" fill="#FF69B4"/>
+          <ellipse cx="107" cy="20" rx="4" ry="3.5" fill="#FF69B4"/>
+          <circle cx="100" cy="20" r="2.5" fill="#FF85C8"/>`;
 
       default:
         return '';
@@ -1132,20 +1511,37 @@ function renderMonkeySVG(opts = {}) {
               </g>`;
     }
     if (side === 'R' && ex.eyeR === 'ellipse-squint') {
-      // 眯眼
-      return `<ellipse cx="${cx}" cy="${cy}" rx="${r*0.85}" ry="${r*0.45}" fill="#FFF"/><ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.42}" ry="${r*0.38}" fill="#5C3420"/><circle cx="${pupilCx-1.5}" cy="${pupilCy-2}" r="2.5" fill="#1A0A00"/><circle cx="${pupilCx+2}" cy="${pupilCy-3}" r="1" fill="#FFF" opacity=".7"/>`;
+      // 眯眼 - 加虹膜细节
+      return `<ellipse cx="${cx}" cy="${cy}" rx="${r*0.85}" ry="${r*0.45}" fill="#FFF"/>` +
+             `<ellipse cx="${cx}" cy="${cy}" rx="${r*0.85}" ry="${r*0.45}" fill="none" stroke="#C89878" stroke-width="0.8" opacity=".3"/>` +
+             `<ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.42}" ry="${r*0.38}" fill="#7B4828"/>` +
+             `<ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.42}" ry="${r*0.38}" fill="none" stroke="#5C3418" stroke-width="0.5" opacity=".5"/>` +
+             `<circle cx="${pupilCx-1.5}" cy="${pupilCy-2}" r="2.5" fill="#1A0A00"/>` +
+             `<circle cx="${pupilCx+2}" cy="${pupilCy-3}" r="1" fill="#FFF" opacity=".75"/>` +
+             `<circle cx="${pupilCx-1}" cy="${pupilCy+1}" r=".5" fill="#FFF" opacity=".35"/>`;
     }
     if (ex.eyeL === 'circle' && side === 'L') {
       // 惊讶圆眼
-      eyeShape = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFF"/><circle cx="${pupilCx}" cy="${pupilCy}" r="${r*0.45}" fill="#5C3420"/>`;
+      eyeShape = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFF"/>` +
+                 `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#C89878" stroke-width="0.8" opacity=".3"/>` +
+                 `<circle cx="${pupilCx}" cy="${pupilCy}" r="${r*0.45}" fill="#7B4828"/>`;
     } else {
-      eyeShape = `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*0.85}" fill="#FFF"/><ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.45}" ry="${r*0.38}" fill="#5C3420"/>`;
+      eyeShape = `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*0.85}" fill="#FFF"/>` +
+                 `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*0.85}" fill="none" stroke="#C89878" stroke-width="0.8" opacity=".3"/>` +
+                 `<ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.45}" ry="${r*0.38}" fill="#7B4828"/>` +
+                 // 虹膜纹路（细线）
+                 `<ellipse cx="${pupilCx}" cy="${pupilCy}" rx="${r*0.45}" ry="${r*0.38}" fill="none" stroke="#9B6040" stroke-width="0.6" opacity=".4"/>`;
     }
 
     return eyeShape +
+      // 瞳孔
       `<circle cx="${pupilCx-1.5}" cy="${pupilCy-2.5}" r="3" fill="#1A0A00"/>` +
-      `<circle cx="${pupilCx+2.5}" cy="${pupilCy-4}" r="1.8" fill="#FFF" opacity=".8"/>` +
-      `<circle cx="${pupilCx-1}" cy="${pupilCy+1.5}" r=".8" fill="#FFF" opacity=".4"/>`;
+      // 主高光（大）
+      `<circle cx="${pupilCx+2.5}" cy="${pupilCy-4}" r="1.8" fill="#FFF" opacity=".85"/>` +
+      // 副高光（小）
+      `<circle cx="${pupilCx-1}" cy="${pupilCy+1.5}" r=".8" fill="#FFF" opacity=".38"/>` +
+      // 眼角皮肤细节（内眼角粉色）
+      `<circle cx="${cx + (side==='L' ? -r+1 : r-1)}" cy="${cy}" r="1.2" fill="#F0A090" opacity=".45"/>`;
   }
 
   // 嘴巴SVG
@@ -1183,139 +1579,319 @@ function renderMonkeySVG(opts = {}) {
   // 构建完整SVG
   const svg = `
   <svg class="${cls}" viewBox="0 0 200 240" width="${Math.round(200*scale)}" height="${Math.round(240*scale)}" xmlns="http://www.w3.org/2000/svg">
-    <!-- 尾部 -->
+    <defs>
+      <!-- 身体径向渐变 -->
+      <radialGradient id="bodyGrad" cx="42%" cy="38%" r="60%">
+        <stop offset="0%" stop-color="#E09060"/>
+        <stop offset="100%" stop-color="#A05A28"/>
+      </radialGradient>
+      <!-- 头部渐变 -->
+      <radialGradient id="headGrad" cx="40%" cy="32%" r="62%">
+        <stop offset="0%" stop-color="#DC9858"/>
+        <stop offset="100%" stop-color="#9A5020"/>
+      </radialGradient>
+      <!-- 脸部皮肤渐变 -->
+      <radialGradient id="faceGrad" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#FCEAC8"/>
+        <stop offset="100%" stop-color="#F0C890"/>
+      </radialGradient>
+      <!-- 耳内渐变 -->
+      <radialGradient id="earInnerGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F5B8A8"/>
+        <stop offset="100%" stop-color="#E0907A"/>
+      </radialGradient>
+      <!-- 鼻梁渐变 -->
+      <radialGradient id="noseGrad" cx="38%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#C8754A"/>
+        <stop offset="100%" stop-color="#8B4020"/>
+      </radialGradient>
+      <!-- 腮红渐变（动态透明度） -->
+      <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F08080" stop-opacity="${ex.blush}"/>
+        <stop offset="100%" stop-color="#F08080" stop-opacity="0"/>
+      </radialGradient>
+      <!-- 夏威夷衬衫阴影渐变 -->
+      <linearGradient id="hawaiiGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E8C800"/>
+        <stop offset="100%" stop-color="#AA8800"/>
+      </linearGradient>
+      <!-- 香蕉皮立体渐变 -->
+      <linearGradient id="bananaGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#FFFDE0"/>
+        <stop offset="40%" stop-color="#FFE135"/>
+        <stop offset="100%" stop-color="#C99820"/>
+      </linearGradient>
+    </defs>
+
+    <!-- ===== 尾巴 ===== -->
     <g class="tail-path">
-      <path d="M68,175 Q30,190 20,160 Q8,130 30,108 Q45,95 58,105" fill="none" stroke="#C8804E" stroke-width="10" stroke-linecap="round"/>
-      <path d="M58,105 Q62,95 56,90" fill="none" stroke="#A5673B" stroke-width="7" stroke-linecap="round"/>
+      <!-- 尾巴底层阴影 -->
+      <path d="M68,176 Q28,192 18,161 Q6,128 30,106 Q46,93 60,103" fill="none" stroke="#8B4A20" stroke-width="13" stroke-linecap="round" opacity=".3"/>
+      <!-- 尾巴主体 -->
+      <path d="M68,175 Q30,190 20,160 Q8,130 30,108 Q45,95 58,105" fill="none" stroke="url(#bodyGrad)" stroke-width="11" stroke-linecap="round"/>
+      <!-- 尾巴高光 -->
+      <path d="M64,172 Q28,185 20,158 Q10,132 34,112 Q46,102 56,108" fill="none" stroke="#E0A060" stroke-width="4" stroke-linecap="round" opacity=".45"/>
+      <!-- 尾巴尖部 -->
+      <path d="M58,105 Q63,94 56,88 Q52,84 50,88" fill="none" stroke="#C87840" stroke-width="8" stroke-linecap="round"/>
+      <path d="M57,104 Q62,95 56,90" fill="none" stroke="#D49060" stroke-width="3" stroke-linecap="round" opacity=".5"/>
     </g>
 
-    <!-- 身体阴影 -->
-    <ellipse cx="100" cy="185" rx="42" ry="12" fill="rgba(0,0,0,.08)"/>
+    <!-- ===== 地面阴影 ===== -->
+    <ellipse cx="100" cy="226" rx="46" ry="8" fill="rgba(0,0,0,.12)"/>
 
-    <!-- 腿部 -->
-    <rect x="70" y="175" width="22" height="30" rx="10" fill="#D4A06A"/>
-    <rect x="108" y="175" width="22" height="30" rx="10" fill="#D4A06A"/>
-    <!-- 脚 -->
-    <ellipse cx="80" cy="207" rx="16" ry="9" fill="#C8804E"/>
-    <ellipse cx="120" cy="207" rx="16" ry="9" fill="#C8804E"/>
-    <!-- 脚趾 -->
-    <circle cx="72" cy="207" r="3.5" fill="#A5673B"/>
-    <circle cx="82" cy="209" r="3.5" fill="#A5673B"/>
-    <circle cx="112" cy="207" r="3.5" fill="#A5673B"/>
-    <circle cx="122" cy="209" r="3.5" fill="#A5673B"/>
+    <!-- ===== 腿部 ===== -->
+    <!-- 左腿 -->
+    <rect x="72" y="174" width="21" height="32" rx="10" fill="#BA7040"/>
+    <rect x="72" y="174" width="21" height="32" rx="10" fill="url(#bodyGrad)" opacity=".9"/>
+    <!-- 左腿高光 -->
+    <path d="M75,178 Q79,178 79,196" stroke="#E09A60" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+    <!-- 右腿 -->
+    <rect x="107" y="174" width="21" height="32" rx="10" fill="#BA7040"/>
+    <rect x="107" y="174" width="21" height="32" rx="10" fill="url(#bodyGrad)" opacity=".9"/>
+    <!-- 右腿高光 -->
+    <path d="M110,178 Q114,178 114,196" stroke="#E09A60" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
 
-    <!-- 身体 -->
-    <ellipse cx="100" cy="158" rx="38" ry="38" fill="#C8804E"/>
+    <!-- ===== 脚部 ===== -->
+    <!-- 左脚 -->
+    <ellipse cx="80" cy="208" rx="17" ry="10" fill="#A86030"/>
+    <ellipse cx="81" cy="207" rx="14" ry="8" fill="#C87840"/>
+    <!-- 左脚高光 -->
+    <ellipse cx="78" cy="204" rx="6" ry="3" fill="#E0A060" opacity=".35"/>
+    <!-- 左脚趾（4个，更真实） -->
+    <circle cx="68" cy="205" r="4" fill="#B06838"/>
+    <circle cx="75" cy="202" r="3.8" fill="#B87040"/>
+    <circle cx="83" cy="201" r="3.5" fill="#B87040"/>
+    <circle cx="90" cy="204" r="3.2" fill="#A86030"/>
+    <!-- 趾甲 -->
+    <ellipse cx="68" cy="203" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
+    <ellipse cx="75" cy="200" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
+    <ellipse cx="83" cy="199" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
 
-    <!-- 衣服渲染 -->
+    <!-- 右脚 -->
+    <ellipse cx="120" cy="208" rx="17" ry="10" fill="#A86030"/>
+    <ellipse cx="119" cy="207" rx="14" ry="8" fill="#C87840"/>
+    <ellipse cx="122" cy="204" rx="6" ry="3" fill="#E0A060" opacity=".35"/>
+    <!-- 右脚趾 -->
+    <circle cx="110" cy="204" r="3.2" fill="#A86030"/>
+    <circle cx="117" cy="201" r="3.5" fill="#B87040"/>
+    <circle cx="125" cy="202" r="3.8" fill="#B87040"/>
+    <circle cx="132" cy="205" r="4" fill="#B06838"/>
+    <!-- 趾甲 -->
+    <ellipse cx="117" cy="199" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
+    <ellipse cx="125" cy="200" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
+    <ellipse cx="132" cy="203" rx="2" ry="1.2" fill="#8B4A20" opacity=".4"/>
+
+    <!-- ===== 身体 ===== -->
+    <ellipse cx="100" cy="157" rx="39" ry="39" fill="#B86830"/>
+    <ellipse cx="100" cy="157" rx="39" ry="39" fill="url(#bodyGrad)"/>
+    <!-- 身体右侧阴影 -->
+    <ellipse cx="115" cy="163" rx="26" ry="30" fill="#A05820" opacity=".22"/>
+    <!-- 身体高光 -->
+    <ellipse cx="88" cy="140" rx="16" ry="10" fill="#F0B068" opacity=".3"/>
+
+    <!-- ===== 胳膊 ===== -->
+    <!-- 胳膊在衣服之前渲染，自然露出 -->
+    <g class="left-arm">
+    <!-- 臂阴影 -->
+    <path d="M64,143 Q48,152 50,170 Q52,173 56,169" fill="#A05828" stroke="none"/>
+    <!-- 臂主体 -->
+    <path d="M65,140 Q50,149 52,167 Q54,171 58,168" fill="url(#bodyGrad)" stroke="#A06030" stroke-width="0.8"/>
+    <!-- 臂高光 -->
+    <path d="M65,141 Q53,148 54,162" stroke="#E0A060" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".4"/>
+    <!-- 左手掌 -->
+    <ellipse cx="52" cy="171" rx="11" ry="9" fill="#C87840"/>
+    <ellipse cx="53" cy="169" rx="8" ry="6" fill="#D4924E" opacity=".8"/>
+    <!-- 左手指（3根） -->
+    <path d="M44,167 Q41,162 44,158" stroke="#C07030" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M47,164 Q44,159 47,155" stroke="#C87838" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M51,176 Q47,180 44,177" stroke="#C07030" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- 指甲 -->
+    <ellipse cx="44" cy="158" rx="2" ry="1.5" fill="#8B4A20" opacity=".5"/>
+    <ellipse cx="47" cy="155" rx="2" ry="1.5" fill="#8B4A20" opacity=".5"/>
+    </g>
+
+    <!-- 右臂阴影 -->
+    <path d="M136,143 Q152,152 150,170 Q148,173 144,169" fill="#A05828" stroke="none"/>
+    <!-- 右臂主体 -->
+    <path d="M135,140 Q150,149 148,167 Q146,171 142,168" fill="url(#bodyGrad)" stroke="#A06030" stroke-width="0.8"/>
+    <!-- 右臂高光 -->
+    <path d="M135,141 Q147,148 146,162" stroke="#E0A060" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".4"/>
+    <!-- 右手掌 -->
+    <ellipse cx="148" cy="171" rx="11" ry="9" fill="#C87840"/>
+    <ellipse cx="147" cy="169" rx="8" ry="6" fill="#D4924E" opacity=".8"/>
+    <!-- 右手指（3根） -->
+    <path d="M156,167 Q159,162 156,158" stroke="#C07030" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M153,164 Q156,159 153,155" stroke="#C87838" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M149,176 Q153,180 156,177" stroke="#C07030" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- 指甲 -->
+    <ellipse cx="156" cy="158" rx="2" ry="1.5" fill="#8B4A20" opacity=".5"/>
+    <ellipse cx="153" cy="155" rx="2" ry="1.5" fill="#8B4A20" opacity=".5"/>
+
+    <!-- ===== 衣服渲染 ===== -->
     ${clothing === 'underwear' ? `
     <!-- 白背心 -->
-    <path d="M68,138 L68,175 Q68,185 100,185 Q132,185 132,175 L132,138 Z" fill="#FFFFFF" opacity=".95"/>
-    <path d="M68,138 L68,175 Q68,185 100,185 Q132,185 132,175 L132,138 Z" fill="none" stroke="#E0E0E0" stroke-width="1"/>
-    <!-- 背心肩带 -->
-    <path d="M73,138 Q72,120 78,115" fill="none" stroke="#E0E0E0" stroke-width="3" stroke-linecap="round"/>
-    <path d="M127,138 Q128,120 122,115" fill="none" stroke="#E0E0E0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M68,138 L68,175 Q68,186 100,186 Q132,186 132,175 L132,138 Z" fill="#FFFFFF" opacity=".96"/>
+    <!-- 背心细节：竖条阴影 -->
+    <path d="M68,138 L68,175 Q68,186 100,186 Q132,186 132,175 L132,138 Z" fill="none" stroke="#D8D8D8" stroke-width="0.8"/>
+    <!-- 背心折痕 -->
+    <path d="M85,138 Q83,158 84,176" stroke="#E8E8E8" stroke-width="1" fill="none" opacity=".6"/>
+    <path d="M115,138 Q117,158 116,176" stroke="#E8E8E8" stroke-width="1" fill="none" opacity=".6"/>
+    <!-- 背心肩带（更宽） -->
+    <path d="M73,138 Q71,122 78,115" fill="none" stroke="#D8D8D8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M127,138 Q129,122 122,115" fill="none" stroke="#D8D8D8" stroke-width="4" stroke-linecap="round"/>
     <!-- 内裤 -->
-    <rect x="74" y="178" width="52" height="12" rx="6" fill="#F0F0F0" stroke="#DDD" stroke-width=".5"/>
+    <rect x="74" y="178" width="52" height="13" rx="6.5" fill="#F0F0F0" stroke="#DCDCDC" stroke-width=".8"/>
+    <!-- 内裤细节腰带 -->
+    <rect x="74" y="178" width="52" height="4" rx="4" fill="#E4E4E4" opacity=".8"/>
     ` : clothing === 'outfit' ? renderClothingSVG(outfit) : ``}
 
-    <!-- 腹部浅色毛（仅裸体时显示） -->
-    ${clothing !== 'underwear' && clothing !== 'outfit' ? `<ellipse cx="100" cy="165" rx="24" ry="20" fill="#E8C4A0" opacity=".6"/>` : ''}
+    <!-- 腹部浅色毛 -->
+    ${clothing !== 'underwear' && clothing !== 'outfit' ? `
+    <ellipse cx="100" cy="162" rx="24" ry="22" fill="#E8C498" opacity=".55"/>
+    <!-- 腹毛细线纹理 -->
+    <path d="M92,148 Q100,145 108,148" stroke="#D4B088" stroke-width="1" fill="none" opacity=".5"/>
+    <path d="M88,156 Q100,152 112,156" stroke="#D4B088" stroke-width="1" fill="none" opacity=".4"/>
+    <path d="M90,165 Q100,160 110,165" stroke="#D4B088" stroke-width="1" fill="none" opacity=".4"/>
+    ` : ''}
 
-    <!-- 左臂 -->
-    <g class="left-arm">
-    <path d="M64,142 Q50,150 52,168 Q54,170 58,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
-    <!-- 左手 -->
-    <ellipse cx="52" cy="170" rx="10" ry="8" fill="#D4A06A"/>
-    <circle cx="46" cy="166" r="3.5" fill="#D4A06A"/>
-    <circle cx="49" cy="174" r="3.5" fill="#D4A06A"/>
-    </g>
+    <!-- ===== 颈部 ===== -->
+    <rect x="86" y="112" width="28" height="14" rx="7" fill="#B86830"/>
+    <rect x="86" y="112" width="28" height="14" rx="7" fill="url(#bodyGrad)" opacity=".9"/>
 
-    <!-- 右臂 -->
-    <path d="M136,142 Q150,150 148,168 Q146,170 142,166" fill="#C8804E" stroke="#B8703A" stroke-width="1"/>
-    <!-- 右手 -->
-    <ellipse cx="148" cy="170" rx="10" ry="8" fill="#D4A06A"/>
-    <circle cx="151" cy="174" r="3.5" fill="#D4A06A"/>
-    <circle cx="154" cy="166" r="3.5" fill="#D4A06A"/>
+    <!-- ===== 头部过渡阴影 ===== -->
+    <ellipse cx="100" cy="116" rx="48" ry="10" fill="rgba(0,0,0,.06)"/>
 
-    <!-- 头部阴影 -->
-    <ellipse cx="100" cy="112" rx="48" ry="16" fill="rgba(0,0,0,.05)"/>
-
-    <!-- 左耳 -->
+    <!-- ===== 左耳 ===== -->
     <g class="left-ear">
-    <circle cx="44" cy="72" r="22" fill="#C8804E"/>
-    <circle cx="44" cy="72" r="14" fill="#F0B4A0"/>
-    <circle cx="44" cy="72" r="7" fill="#E89A8A"/>
+    <!-- 耳廓外圈 -->
+    <circle cx="44" cy="74" r="23" fill="#A86030"/>
+    <circle cx="44" cy="74" r="23" fill="url(#bodyGrad)" opacity=".7"/>
+    <!-- 耳廓阴影 -->
+    <circle cx="47" cy="76" r="20" fill="#903E18" opacity=".2"/>
+    <!-- 中层（耳甲腔） -->
+    <circle cx="44" cy="74" r="15" fill="url(#earInnerGrad)"/>
+    <!-- 内耳软骨弧线 -->
+    <path d="M36,68 Q38,78 42,82 Q46,85 50,81" stroke="#D4806A" stroke-width="2" fill="none" opacity=".6"/>
+    <path d="M38,70 Q40,79 44,83" stroke="#E89888" stroke-width="1" fill="none" opacity=".4"/>
+    <!-- 内耳最深处 -->
+    <circle cx="44" cy="76" r="7" fill="#E07868"/>
+    <circle cx="44" cy="76" r="4" fill="#C86050" opacity=".6"/>
+    <!-- 耳廓高光 -->
+    <ellipse cx="38" cy="67" rx="5" ry="4" fill="#F0C0A8" opacity=".45"/>
     </g>
 
-    <!-- 右耳 -->
+    <!-- ===== 右耳 ===== -->
     <g class="right-ear">
-    <circle cx="156" cy="72" r="22" fill="#C8804E"/>
-    <circle cx="156" cy="72" r="14" fill="#F0B4A0"/>
-    <circle cx="156" cy="72" r="7" fill="#E89A8A"/>
+    <circle cx="156" cy="74" r="23" fill="#A86030"/>
+    <circle cx="156" cy="74" r="23" fill="url(#bodyGrad)" opacity=".7"/>
+    <circle cx="153" cy="76" r="20" fill="#903E18" opacity=".2"/>
+    <circle cx="156" cy="74" r="15" fill="url(#earInnerGrad)"/>
+    <path d="M164,68 Q162,78 158,82 Q154,85 150,81" stroke="#D4806A" stroke-width="2" fill="none" opacity=".6"/>
+    <path d="M162,70 Q160,79 156,83" stroke="#E89888" stroke-width="1" fill="none" opacity=".4"/>
+    <circle cx="156" cy="76" r="7" fill="#E07868"/>
+    <circle cx="156" cy="76" r="4" fill="#C86050" opacity=".6"/>
+    <ellipse cx="162" cy="67" rx="5" ry="4" fill="#F0C0A8" opacity=".45"/>
     </g>
 
-    <!-- 头部 + 脸部 + 五官 -->
+    <!-- ===== 头部 ===== -->
     <g class="head-group">
-    <ellipse cx="100" cy="78" rx="45" ry="42" fill="#C8804E"/>
+    <!-- 头部主体 -->
+    <ellipse cx="100" cy="79" rx="46" ry="43" fill="#B86830"/>
+    <ellipse cx="100" cy="79" rx="46" ry="43" fill="url(#headGrad)"/>
+    <!-- 头部右侧阴影 -->
+    <ellipse cx="116" cy="84" rx="34" ry="36" fill="#8B3E18" opacity=".18"/>
+    <!-- 头部高光 -->
+    <ellipse cx="84" cy="56" rx="18" ry="12" fill="#F0B060" opacity=".22"/>
 
-    <!-- 脸部浅色区域 -->
-    <ellipse cx="100" cy="80" rx="28" ry="24" fill="#FAD5B0"/>
-    <ellipse cx="100" cy="82" rx="26" ry="20" fill="#E8C4A0" opacity=".25"/>
+    <!-- ===== 脸部浅色区域 ===== -->
+    <ellipse cx="100" cy="82" rx="30" ry="26" fill="url(#faceGrad)"/>
+    <!-- 脸部边缘柔化 -->
+    <ellipse cx="100" cy="83" rx="28" ry="23" fill="none" stroke="#E8B880" stroke-width="2" opacity=".3"/>
+    <!-- 脸部高光 -->
+    <ellipse cx="90" cy="72" rx="8" ry="5" fill="#FFF5E0" opacity=".25"/>
 
-    <!-- 头发 / 顶部乱毛 -->
-    <path d="M72,50 Q75,30 80,42 Q84,22 90,38 Q94,20 100,36 Q106,18 110,38 Q116,22 120,42 Q125,30 128,50" fill="#8B4A2B"/>
-    <path d="M76,50 Q80,35 86,44" fill="#7A3E1F" opacity=".5"/>
-    <path d="M124,50 Q120,35 114,44" fill="#7A3E1F" opacity=".5"/>
-    <!-- 中间蓬松毛 -->
-    <ellipse cx="100" cy="46" rx="16" ry="10" fill="#8B4A2B"/>
-    <ellipse cx="94" cy="43" rx="8" ry="7" fill="#9B5A3B"/>
-    <ellipse cx="108" cy="44" rx="7" ry="6" fill="#9B5A3B"/>
+    <!-- ===== 头发 / 顶毛 ===== -->
+    <!-- 底层头发 -->
+    <path d="M68,52 Q70,28 77,40 Q81,20 88,36 Q93,18 100,34 Q107,16 112,36 Q119,20 123,40 Q130,28 132,52" fill="#7A3E1A"/>
+    <!-- 主发层 -->
+    <path d="M70,50 Q72,30 79,42 Q83,22 90,38 Q94,20 100,36 Q106,18 110,38 Q117,22 121,42 Q128,30 130,50" fill="#8B4A2B"/>
+    <!-- 发丝高光层 -->
+    <path d="M80,48 Q82,32 88,42" stroke="#B86040" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+    <path d="M100,46 Q101,28 100,40" stroke="#B86040" stroke-width="2" fill="none" stroke-linecap="round" opacity=".4"/>
+    <path d="M120,48 Q118,32 112,42" stroke="#B86040" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+    <!-- 头顶蓬松毛簇 -->
+    <ellipse cx="100" cy="44" rx="18" ry="11" fill="#8B4A2B"/>
+    <ellipse cx="92" cy="40" rx="10" ry="8" fill="#9A5434"/>
+    <ellipse cx="110" cy="41" rx="9" ry="7" fill="#9A5434"/>
+    <ellipse cx="100" cy="38" rx="8" ry="6" fill="#A05C38"/>
+    <!-- 发丝细节 -->
+    <path d="M76,50 Q80,36 85,44" fill="none" stroke="#6A3215" stroke-width="1.2" opacity=".5"/>
+    <path d="M124,50 Q120,36 115,44" fill="none" stroke="#6A3215" stroke-width="1.2" opacity=".5"/>
+    <path d="M88,36 Q92,26 95,36" fill="none" stroke="#6A3215" stroke-width="1" opacity=".35"/>
+    <path d="M105,34 Q108,24 112,36" fill="none" stroke="#6A3215" stroke-width="1" opacity=".35"/>
+    <!-- 头顶最亮高光 -->
+    <ellipse cx="96" cy="36" rx="6" ry="4" fill="#CC7040" opacity=".35"/>
 
-    <!-- 眉毛 -->
-    <path d="M${80+browLift*0.3},${58} Q${88+browLift},${54+browLift} ${96+browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M${120-browLift*0.3},${58} Q${112-browLift},${54+browLift} ${104-browLift*0.5},${58}" stroke="#7A3E1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- ===== 眉毛（加粗、更自然） ===== -->
+    <!-- 眉毛阴影 -->
+    <path d="M${81+browLift*0.3},${60} Q${89+browLift},${56+browLift} ${97+browLift*0.5},${60}" stroke="#4A2010" stroke-width="4" fill="none" stroke-linecap="round" opacity=".3"/>
+    <path d="M${119-browLift*0.3},${60} Q${111-browLift},${56+browLift} ${103-browLift*0.5},${60}" stroke="#4A2010" stroke-width="4" fill="none" stroke-linecap="round" opacity=".3"/>
+    <!-- 眉毛主体 -->
+    <path d="M${80+browLift*0.3},${58} Q${88+browLift},${54+browLift} ${96+browLift*0.5},${58}" stroke="#6A3418" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M${120-browLift*0.3},${58} Q${112-browLift},${54+browLift} ${104-browLift*0.5},${58}" stroke="#6A3418" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- 眉毛高光 -->
+    <path d="M${82+browLift*0.3},${57} Q${88+browLift},${53+browLift} ${94+browLift*0.5},${57}" stroke="#9A5838" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".4"/>
+    <path d="M${118-browLift*0.3},${57} Q${112-browLift},${53+browLift} ${106-browLift*0.5},${57}" stroke="#9A5838" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".4"/>
 
-    <!-- 眼睛（自动眨眼） -->
+    <!-- ===== 眼睛 ===== -->
     <g class="blink-group">
     <g class="eye-group">
-      ${renderEye(86, 68, 'L')}
-      ${renderEye(114, 68, 'R')}
+      ${renderEye(86, 69, 'L')}
+      ${renderEye(114, 69, 'R')}
     </g>
     </g>
 
-    <!-- 鼻子 -->
-    <ellipse cx="100" cy="76" rx="6" ry="4.5" fill="#C47A4A"/>
-    <ellipse cx="100" cy="75" rx="4" ry="3" fill="#A06030"/>
+    <!-- ===== 鼻子（更立体） ===== -->
+    <!-- 鼻底阴影 -->
+    <ellipse cx="101" cy="78" rx="8" ry="6" fill="#8B3A18" opacity=".2"/>
+    <!-- 鼻主体 -->
+    <ellipse cx="100" cy="76" rx="7.5" ry="5.5" fill="url(#noseGrad)"/>
+    <!-- 鼻梁高光 -->
+    <ellipse cx="98" cy="73" rx="3" ry="2" fill="#E09060" opacity=".45"/>
     <!-- 鼻孔 -->
-    <circle cx="98" cy="76" r="1.2" fill="#6B3020"/>
-    <circle cx="102" cy="76" r="1.2" fill="#6B3020"/>
+    <ellipse cx="97" cy="77" rx="2.2" ry="1.8" fill="#4A1A08"/>
+    <ellipse cx="103" cy="77" rx="2.2" ry="1.8" fill="#4A1A08"/>
+    <!-- 鼻翼 -->
+    <path d="M92,74 Q93,78 94,76" stroke="#A85030" stroke-width="1.2" fill="none" opacity=".4"/>
+    <path d="M108,74 Q107,78 106,76" stroke="#A85030" stroke-width="1.2" fill="none" opacity=".4"/>
 
-    <!-- 嘴巴 -->
+    <!-- ===== 嘴巴 ===== -->
     <g class="mouth-group">
       ${renderMouth()}
     </g>
 
-    <!-- 腮红 -->
-    <ellipse cx="78" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
-    <ellipse cx="122" cy="80" rx="8" ry="5" fill="#F5A0A0" opacity="${ex.blush}" class="blush"/>
+    <!-- ===== 腮红（更柔和渐变感） ===== -->
+    <ellipse cx="76" cy="82" rx="10" ry="7" fill="url(#blushGrad)" class="blush"/>
+    <ellipse cx="124" cy="82" rx="10" ry="7" fill="url(#blushGrad)" class="blush"/>
 
-    <!-- 泪滴（哭表情） -->
+    <!-- ===== 泪滴（哭表情） ===== -->
     ${expression === 'cry' ? `
     <g class="tear-drop" style="animation:tearFall 1.2s ease-in infinite">
-      <circle cx="80" cy="92" r="2.5" fill="#85C8F5" opacity=".7"/>
-      <ellipse cx="80" cy="94.5" rx="1.8" ry="2.5" fill="#85C8F5" opacity=".5"/>
+      <ellipse cx="80" cy="92" rx="2.5" ry="3" fill="#85C8F5" opacity=".8"/>
+      <path d="M78,92 Q80,98 82,92" fill="#85C8F5" opacity=".6"/>
     </g>
     <g class="tear-drop" style="animation:tearFall 1.2s ease-in infinite;animation-delay:.6s">
-      <circle cx="122" cy="92" r="2.5" fill="#85C8F5" opacity=".7"/>
-      <ellipse cx="122" cy="94.5" rx="1.8" ry="2.5" fill="#85C8F5" opacity=".5"/>
+      <ellipse cx="120" cy="92" rx="2.5" ry="3" fill="#85C8F5" opacity=".8"/>
+      <path d="M118,92 Q120,98 122,92" fill="#85C8F5" opacity=".6"/>
     </g>` : ''}
 
-    <!-- 面颊细节毛 -->
-    <path d="M72,70 Q76,68 78,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
-    <path d="M128,70 Q124,68 122,72" stroke="#D4A06A" stroke-width="1" fill="none" opacity=".4"/>
+    <!-- ===== 面颊毛发纹理 ===== -->
+    <path d="M70,68 Q74,66 76,70" stroke="#D49858" stroke-width="1.2" fill="none" opacity=".38"/>
+    <path d="M68,74 Q72,72 74,76" stroke="#D49858" stroke-width="1" fill="none" opacity=".3"/>
+    <path d="M130,68 Q126,66 124,70" stroke="#D49858" stroke-width="1.2" fill="none" opacity=".38"/>
+    <path d="M132,74 Q128,72 126,76" stroke="#D49858" stroke-width="1" fill="none" opacity=".3"/>
 
-    <!-- 头部配饰（眼镜/帽子/假发/王冠） -->
+    <!-- ===== 头部配饰（眼镜/帽子/假发/王冠） ===== -->
     ${clothing === 'outfit' ? renderHeadAccessoriesSVG(outfit) : ''}
     </g>
 
